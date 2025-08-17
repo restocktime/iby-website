@@ -77,9 +77,7 @@ export function OrientationHandler({
   const handleRotateDevice = () => {
     // Try to lock orientation if supported
     if (screen.orientation && 'lock' in screen.orientation) {
-      const targetOrientation: string = preferredOrientation === 'portrait' 
-        ? 'portrait-primary' 
-        : 'landscape-primary'
+      const targetOrientation: string = preferredOrientation === 'portrait' ? 'portrait-primary' : 'landscape-primary'
       
       (screen.orientation as any).lock(targetOrientation).catch(() => {
         // Orientation lock not supported or failed

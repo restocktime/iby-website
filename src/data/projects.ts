@@ -14,7 +14,7 @@ export const sampleProjects: Project[] = [
       { name: 'Docker', category: 'tool', proficiency: 8, yearsOfExperience: 3 },
       { name: 'AWS', category: 'cloud', proficiency: 7, yearsOfExperience: 3 }
     ],
-    liveUrl: 'https://postmodern411.com',
+    liveUrl: 'https://sundayedgepro.com',
     githubUrl: 'https://github.com/restocktime',
     demoCredentials: {
       username: 'demo@sundayedge.com',
@@ -40,17 +40,17 @@ export const sampleProjects: Project[] = [
     screenshots: [
       {
         id: 'se-1',
-        url: '/api/placeholder/800/600',
-        alt: 'Sunday Edge Pro Dashboard',
+        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&crop=center&auto=format&q=80',
+        alt: 'Sunday Edge Pro Dashboard - Sports Analytics Platform',
         type: 'image',
-        caption: 'Main analytics dashboard with real-time predictions'
+        caption: 'Advanced sports betting analytics dashboard with real-time predictions'
       },
       {
         id: 'se-2',
-        url: '/api/placeholder/800/600',
-        alt: 'Prediction Models',
+        url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=800&fit=crop&crop=center&auto=format&q=80',
+        alt: 'Sports Prediction Models Interface',
         type: 'image',
-        caption: 'Advanced ML prediction models interface'
+        caption: 'Machine learning prediction models for sports betting'
       }
     ],
     caseStudy: {
@@ -105,10 +105,10 @@ export const sampleProjects: Project[] = [
     screenshots: [
       {
         id: 'rt-1',
-        url: '/api/placeholder/800/600',
-        alt: 'Restocktime Dashboard',
+        url: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1200&h=800&fit=crop&crop=center&auto=format&q=80',
+        alt: 'Restocktime Inventory Dashboard',
         type: 'image',
-        caption: 'Inventory management dashboard'
+        caption: 'E-commerce inventory management and restock prediction dashboard'
       }
     ],
     caseStudy: {
@@ -156,10 +156,10 @@ export const sampleProjects: Project[] = [
     screenshots: [
       {
         id: 'so-1',
-        url: '/api/placeholder/800/600',
-        alt: 'Shuk Online Homepage',
+        url: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=800&fit=crop&crop=center&auto=format&q=80',
+        alt: 'Shuk Online E-commerce Platform',
         type: 'image',
-        caption: 'Modern e-commerce storefront'
+        caption: 'Middle Eastern grocery delivery platform with modern storefront'
       }
     ],
     caseStudy: {
@@ -207,10 +207,10 @@ export const sampleProjects: Project[] = [
     screenshots: [
       {
         id: 'gs-1',
-        url: '/api/placeholder/800/600',
-        alt: 'Scraper Dashboard',
+        url: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1200&h=800&fit=crop&crop=center&auto=format&q=80',
+        alt: 'Google Scraper Suite Dashboard',
         type: 'image',
-        caption: 'Real-time scraping monitoring dashboard'
+        caption: 'Comprehensive web scraping toolkit with monitoring dashboard'
       }
     ],
     caseStudy: {
@@ -263,12 +263,17 @@ export const sampleProjects: Project[] = [
     screenshots: [
       {
         id: 'wm-1',
-        url: '/api/placeholder/800/600',
-        alt: 'Monitor Dashboard',
+        url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=800&fit=crop&crop=center&auto=format&q=80',
+        alt: 'Website Monitor Pro Dashboard',
         type: 'image',
         caption: 'Real-time website monitoring dashboard'
       }
     ],
+    liveDemo: {
+      type: 'interactive',
+      component: 'LiveScraperDemo',
+      description: 'Interactive demo showing real-time web scraping and data extraction in action'
+    },
     caseStudy: {
       challenge: 'Businesses needed proactive website monitoring with instant notifications and detailed performance analytics.',
       solution: 'Built a comprehensive monitoring platform with multi-channel alerts, performance tracking, and automated response systems.',

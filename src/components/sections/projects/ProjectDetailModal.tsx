@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { Project } from '@/types'
 import { LivePreview } from './LivePreview'
+import { DemoRenderer } from './DemoRenderer'
 import LiveMetrics from './LiveMetrics'
 import ScraperDashboard from './ScraperDashboard'
 
@@ -18,7 +19,7 @@ interface ProjectDetailModalProps {
 }
 
 export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'metrics' | 'preview'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'metrics' | 'demo' | 'preview'>('overview')
   const [copiedText, setCopiedText] = useState<string | null>(null)
 
   const copyToClipboard = (text: string, label: string) => {
@@ -31,6 +32,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
     { id: 'overview' as const, label: 'Overview', icon: Globe },
     { id: 'technical' as const, label: 'Technical', icon: Code },
     { id: 'metrics' as const, label: 'Metrics', icon: TrendingUp },
+    ...(project.liveDemo ? [{ id: 'demo' as const, label: 'Live Demo', icon: Monitor }] : []),
     ...(project.liveUrl ? [{ id: 'preview' as const, label: 'Live Preview', icon: Monitor }] : [])
   ]
 
@@ -476,6 +478,21 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                     </div>
                   </div>
                 </div>
+              </motion.div>
+            )}
+
+            {activeTab === 'demo' && project.liveDemo && (
+              <motion.div
+                key="demo"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="h-[500px]"
+              >
+                <DemoRenderer
+                  liveDemo={project.liveDemo}
+                  projectTitle={project.title}
+                />
               </motion.div>
             )}
 

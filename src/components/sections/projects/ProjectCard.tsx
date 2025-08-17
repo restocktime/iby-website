@@ -75,7 +75,7 @@ export function ProjectCard({ project, onClick, index }: ProjectCardProps) {
       </div>
 
       {/* Project Image */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-56 sm:h-64 overflow-hidden">
         {primaryScreenshot && (
           <>
             {!imageLoaded && (
@@ -152,7 +152,7 @@ export function ProjectCard({ project, onClick, index }: ProjectCardProps) {
 
 
       {/* Project Content */}
-      <div className="p-6">
+      <div className="p-8">
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
             {project.title}

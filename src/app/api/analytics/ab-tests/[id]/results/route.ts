@@ -6,11 +6,11 @@ const abTests = new Map<string, ABTest>()
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params
   try {
-    const testId = params.id
-    const test = abTests.get(testId)
+    const test = abTests.get(id)
 
     if (!test) {
       return NextResponse.json(

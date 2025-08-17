@@ -12,6 +12,14 @@ export interface Project {
   status: 'active' | 'completed' | 'ongoing'
   featured: boolean
   category: ProjectCategory
+  liveDemo?: LiveDemo
+}
+
+export interface LiveDemo {
+  type: 'interactive' | 'video' | 'iframe'
+  component?: string
+  url?: string
+  description: string
 }
 
 export interface Technology {

@@ -39,7 +39,7 @@ export function ProjectGrid({ projects, onProjectClick }: ProjectGridProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 auto-rows-fr"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 auto-rows-fr"
       style={{ 
         gridTemplateRows: 'masonry' // Enable masonry layout for better alignment
       }}

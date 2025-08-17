@@ -71,8 +71,8 @@ export default function Home() {
                     
                     {/* Description Section */}
                     <SectionTransition delay={0.4}>
-                      <div className="mb-16 lg:mb-20 text-center">
-                        <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 leading-relaxed font-body max-w-4xl mx-auto font-medium text-center">
+                      <div className="mb-16 lg:mb-20 flex justify-center">
+                        <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 leading-relaxed font-body max-w-4xl font-medium text-center">
                           Passionate full-stack developer with expertise in modern web technologies, 
                           automation, and custom business solutions. I specialize in creating 
                           innovative applications that solve real-world problems and drive business growth.

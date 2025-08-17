@@ -86,7 +86,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
       console.error('Error rendering project layout:', error)
       // Fallback to simple grid
       return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
@@ -120,7 +120,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 id="projects-heading" className="text-4xl md:text-5xl font-heading font-bold text-white mb-4 tracking-tight">
             Live Project Showcase

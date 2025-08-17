@@ -13,22 +13,28 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://github.com"
+                href="https://github.com/restocktime"
                 className="text-neutral-400 hover:text-white transition-colors"
               >
                 GitHub
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/isaac-benyakar"
                 className="text-neutral-400 hover:text-white transition-colors"
               >
                 LinkedIn
               </Link>
               <Link
-                href="https://twitter.com"
+                href="https://twitter.com/restocktime"
                 className="text-neutral-400 hover:text-white transition-colors"
               >
-                Twitter
+                X (Twitter)
+              </Link>
+              <Link
+                href="https://instagram.com/benyakar94"
+                className="text-neutral-400 hover:text-white transition-colors"
+              >
+                Instagram
               </Link>
             </div>
           </div>
@@ -75,13 +81,13 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2">
               <li className="text-neutral-400">
-                Email: isaac@example.com
+                Email: iby@isaacbenyakar.com
               </li>
               <li className="text-neutral-400">
-                Phone: +1 (555) 123-4567
+                Phone: +1 (305) 393-3009
               </li>
               <li className="text-neutral-400">
-                Location: New York, NY
+                WhatsApp: +1 (305) 393-3009
               </li>
             </ul>
           </div>

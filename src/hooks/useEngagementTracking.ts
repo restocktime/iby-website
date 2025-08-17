@@ -51,15 +51,10 @@ export function useEngagementTracking() {
 
     return () => {
       // Track session end
-      if (newSession) {
-        trackAnalyticsEvent('session_end', {
-          sessionId: newSession.sessionId,
-          duration: metrics.sessionDuration,
-          engagementScore: metrics.engagementScore,
-          sectionsVisited: Array.from(metrics.sectionsVisited),
-          timestamp: new Date().toISOString()
-        })
-      }
+      trackAnalyticsEvent('session_end', {
+        sessionId,
+        timestamp: new Date().toISOString()
+      })
     }
   }, [])
 
@@ -75,42 +70,44 @@ export function useEngagementTracking() {
     return () => clearInterval(interval)
   }, [])
 
-  // Calculate engagement score
+  // Calculate engagement score - using separate state to avoid infinite loops
   useEffect(() => {
-    const calculateEngagementScore = () => {
-      const {
-        sessionDuration,
-        sectionsVisited,
-        interactionCount,
-        scrollDepth
-      } = metrics
+    const {
+      sessionDuration,
+      sectionsVisited,
+      interactionCount,
+      scrollDepth,
+      engagementScore: currentScore
+    } = metrics
 
-      // Base score components
-      const timeScore = Math.min(sessionDuration / 300, 1) * 25 // Max 25 points for 5+ minutes
-      const sectionScore = Math.min(sectionsVisited.size / 6, 1) * 25 // Max 25 points for visiting all sections
-      const interactionScore = Math.min(interactionCount / 20, 1) * 25 // Max 25 points for 20+ interactions
-      const scrollScore = Math.min(scrollDepth / 100, 1) * 25 // Max 25 points for 100% scroll
+    // Base score components
+    const timeScore = Math.min(sessionDuration / 300, 1) * 25 // Max 25 points for 5+ minutes
+    const sectionScore = Math.min(sectionsVisited.size / 6, 1) * 25 // Max 25 points for visiting all sections
+    const interactionScore = Math.min(interactionCount / 20, 1) * 25 // Max 25 points for 20+ interactions
+    const scrollScore = Math.min(scrollDepth / 100, 1) * 25 // Max 25 points for 100% scroll
 
-      const totalScore = timeScore + sectionScore + interactionScore + scrollScore
+    const totalScore = Math.round(timeScore + sectionScore + interactionScore + scrollScore)
 
+    // Only update if the score has actually changed
+    if (totalScore !== currentScore) {
       setMetrics(prev => ({
         ...prev,
-        engagementScore: Math.round(totalScore)
+        engagementScore: totalScore
       }))
-
-      // Update session
-      if (session) {
-        setSession(prev => prev ? {
-          ...prev,
-          visitDuration: sessionDuration,
-          sectionsVisited: Array.from(sectionsVisited),
-          engagementScore: Math.round(totalScore)
-        } : null)
-      }
     }
+  }, [metrics.sessionDuration, metrics.sectionsVisited.size, metrics.interactionCount, metrics.scrollDepth])
 
-    calculateEngagementScore()
-  }, [metrics.sessionDuration, metrics.sectionsVisited.size, metrics.interactionCount, metrics.scrollDepth, session])
+  // Update session separately to avoid circular dependencies
+  useEffect(() => {
+    if (session?.sessionId) {
+      setSession(prev => prev ? {
+        ...prev,
+        visitDuration: metrics.sessionDuration,
+        sectionsVisited: Array.from(metrics.sectionsVisited),
+        engagementScore: metrics.engagementScore
+      } : null)
+    }
+  }, [metrics.engagementScore, session?.sessionId, metrics.sessionDuration, metrics.sectionsVisited.size])
 
   const trackInteraction = useCallback((event: Omit<InteractionEvent, 'coordinates'>) => {
     const fullEvent: InteractionEvent = {

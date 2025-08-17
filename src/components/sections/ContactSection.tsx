@@ -7,7 +7,7 @@ import {
   PhoneIcon, 
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/outline'
-import { useEngagementTracking } from '@/hooks/useEngagementTracking'
+import { useEngagementTracking } from '@/hooks/useEngagementTracking-simple'
 import { AvailabilityIndicator } from './contact/AvailabilityIndicator'
 import { ContactMethodCard } from './contact/ContactMethodCard'
 import { SmartContactForm } from './contact/SmartContactForm'
@@ -40,7 +40,7 @@ export function ContactSection() {
       name: 'Email',
       icon: EnvelopeIcon,
       description: 'Professional inquiries and detailed project discussions',
-      action: 'isaac@isaacbenyakar.com',
+      action: 'iby@isaacbenyakar.com',
       responseTime: isPriorityUser ? '1-2 hours' : '2-4 hours',
       availability: 'always',
       priority: 'high'
@@ -50,7 +50,7 @@ export function ContactSection() {
       name: 'WhatsApp',
       icon: PhoneIcon,
       description: 'Quick questions and urgent project needs',
-      action: '+1-555-0123',
+      action: '+1-305-393-3009',
       responseTime: isPriorityUser ? '5-15 minutes' : '15-30 minutes',
       availability: 'business-hours',
       priority: 'urgent'
@@ -60,7 +60,7 @@ export function ContactSection() {
       name: 'Discord',
       icon: ChatBubbleLeftRightIcon,
       description: 'Technical discussions and collaboration',
-      action: 'isaac#1234',
+      action: 'restocktime',
       responseTime: isPriorityUser ? '30 minutes-1 hour' : '1-2 hours',
       availability: 'evenings',
       priority: 'medium'

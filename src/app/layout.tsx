@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
+import { Inter, Poppins, JetBrains_Mono, Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { PerformanceMonitor } from "@/components/ui/PerformanceWrapper";
@@ -28,6 +28,19 @@ const poppins = Poppins({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-luxury",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-modern",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -293,7 +306,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} ${montserrat.variable} font-sans antialiased`}
       >
         {/* Skip Links */}
         <div className="sr-only focus-within:not-sr-only">

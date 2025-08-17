@@ -13,7 +13,7 @@ import {
   ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/outline'
 import { ContactForm, ProjectCategory } from '@/types'
-import { useEngagementTracking } from '@/hooks/useEngagementTracking'
+import { useEngagementTracking } from '@/hooks/useEngagementTracking-simple'
 import { useABTest } from '@/hooks/useABTest'
 import { useAnalytics } from '@/components/providers/AnalyticsProvider'
 

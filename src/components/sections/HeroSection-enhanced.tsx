@@ -1,18 +1,22 @@
 'use client'
 
 import { useRef, Suspense } from 'react'
-
+import { Canvas } from '@react-three/fiber'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import CSSParticles from './hero/CSSParticles'
+import ParticleSystem from './hero/ParticleSystem'
 import TypewriterText from './hero/TypewriterText'
-import FloatingCards from './hero/FloatingCards'
 import ScrollIndicator from './hero/ScrollIndicator'
 import Button from '@/components/ui/Button'
-import { PerformanceWrapper, AdaptiveComponent } from '@/components/ui/PerformanceWrapper'
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary'
-import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities'
 
-// Fallback component for low-performance devices
+// Simple loading fallback for 3D content
+const ParticleLoading = () => (
+  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20">
+    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-purple-900/50 to-slate-900/50" />
+  </div>
+)
+
+// Fallback component for when 3D fails
 const SimpleBanner = () => (
   <section 
     className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
@@ -23,14 +27,13 @@ const SimpleBanner = () => (
       <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
         Isaac Benyakar
       </h1>
-      <div className="text-2xl md:text-4xl text-white/90 mb-8" role="text" aria-label="Professional title">
+      <div className="text-2xl md:text-4xl text-white/90 mb-8">
         Full-Stack Developer & Automation Expert
       </div>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button 
           size="lg" 
-          className="bg-white text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          aria-label="View my portfolio projects"
+          className="bg-white text-blue-900 hover:bg-blue-50"
           onClick={() => {
             const projectsSection = document.getElementById('projects');
             projectsSection?.scrollIntoView({ behavior: 'smooth' });
@@ -41,8 +44,7 @@ const SimpleBanner = () => (
         <Button 
           variant="outline" 
           size="lg" 
-          className="border-white text-white hover:bg-white hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
-          aria-label="Navigate to contact section"
+          className="border-white text-white hover:bg-white hover:text-blue-900"
           onClick={() => {
             const contactSection = document.getElementById('contact');
             contactSection?.scrollIntoView({ behavior: 'smooth' });
@@ -55,36 +57,18 @@ const SimpleBanner = () => (
   </section>
 )
 
-// Loading fallback
-const HeroLoading = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-    <div className="text-center">
-      <div className="animate-pulse">
-        <div className="h-16 bg-white/20 rounded mb-4 w-96"></div>
-        <div className="h-8 bg-white/10 rounded mb-8 w-64 mx-auto"></div>
-        <div className="flex gap-4 justify-center">
-          <div className="h-12 bg-white/20 rounded w-32"></div>
-          <div className="h-12 bg-white/10 rounded w-32"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-)
-
 const HeroSection = () => {
   const containerRef = useRef<HTMLElement>(null)
-  const { supportsWebGL, performanceLevel } = useDeviceCapabilities()
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   })
 
-  // Parallax transforms for different layers - reduced on low performance
-  const parallaxIntensity = performanceLevel === 'low' ? 0.3 : 1
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", `${50 * parallaxIntensity}%`])
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", `${25 * parallaxIntensity}%`])
-  const particlesY = useTransform(scrollYProgress, [0, 1], ["0%", `${75 * parallaxIntensity}%`])
+  // Parallax transforms
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"])
+  const particlesY = useTransform(scrollYProgress, [0, 1], ["0%", "75%"])
 
   return (
     <ErrorBoundary level="section" fallback={SimpleBanner}>
@@ -95,12 +79,27 @@ const HeroSection = () => {
         role="banner"
         aria-label="Hero section - Isaac Benyakar introduction"
       >
-        {/* Flowing Particle Background */}
+        {/* 3D Particle Background */}
         <motion.div 
           className="absolute inset-0 z-0"
           style={{ y: particlesY }}
         >
-          <CSSParticles />
+          <ErrorBoundary level="component" fallback={<ParticleLoading />}>
+            <Suspense fallback={<ParticleLoading />}>
+              <Canvas
+                camera={{ position: [0, 0, 5], fov: 75 }}
+                className="w-full h-full"
+                gl={{ 
+                  antialias: true,
+                  alpha: true,
+                  powerPreference: 'high-performance'
+                }}
+                dpr={[1, 2]}
+              >
+                <ParticleSystem />
+              </Canvas>
+            </Suspense>
+          </ErrorBoundary>
         </motion.div>
 
         {/* Background Gradient Overlay */}
@@ -120,7 +119,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-6xl md:text-8xl font-luxury font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent tracking-wide">
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
               Isaac Benyakar
             </h1>
             
@@ -130,9 +129,11 @@ const HeroSection = () => {
               aria-live="polite"
               aria-label="Professional title"
             >
-              <Suspense fallback={<span>Full-Stack Developer & Automation Expert</span>}>
-                <TypewriterText />
-              </Suspense>
+              <ErrorBoundary level="component" fallback={<span>Full-Stack Developer & Automation Expert</span>}>
+                <Suspense fallback={<span>Full-Stack Developer & Automation Expert</span>}>
+                  <TypewriterText />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </motion.div>
 
@@ -144,8 +145,7 @@ const HeroSection = () => {
           >
             <Button 
               size="lg" 
-              className="bg-white text-blue-900 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              aria-label="View my portfolio projects"
+              className="bg-white text-blue-900 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300"
               onClick={() => {
                 const projectsSection = document.getElementById('projects');
                 projectsSection?.scrollIntoView({ behavior: 'smooth' });
@@ -156,8 +156,7 @@ const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-white text-white hover:bg-white hover:text-blue-900 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
-              aria-label="Navigate to contact section"
+              className="border-white text-white hover:bg-white hover:text-blue-900 transform hover:scale-105 transition-all duration-300"
               onClick={() => {
                 const contactSection = document.getElementById('contact');
                 contactSection?.scrollIntoView({ behavior: 'smooth' });
@@ -167,11 +166,6 @@ const HeroSection = () => {
             </Button>
           </motion.div>
         </motion.div>
-
-        {/* Floating Project Cards */}
-        <Suspense fallback={null}>
-          <FloatingCards />
-        </Suspense>
 
         {/* Scroll Indicator */}
         <ScrollIndicator />

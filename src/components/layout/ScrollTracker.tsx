@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useEngagementTracking } from '@/hooks/useEngagementTracking'
+import { useEngagementTracking } from '@/hooks/useEngagementTracking-simple'
 
 export function ScrollTracker() {
   const { trackScrollDepth, trackInteraction } = useEngagementTracking()

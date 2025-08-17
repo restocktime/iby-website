@@ -14,8 +14,8 @@ export const sampleProjects: Project[] = [
       { name: 'Docker', category: 'tool', proficiency: 8, yearsOfExperience: 3 },
       { name: 'AWS', category: 'cloud', proficiency: 7, yearsOfExperience: 3 }
     ],
-    liveUrl: 'https://sundayedgepro.com',
-    githubUrl: 'https://github.com/isaac-benyakar/sunday-edge-pro',
+    liveUrl: 'https://postmodern411.com',
+    githubUrl: 'https://github.com/restocktime',
     demoCredentials: {
       username: 'demo@sundayedge.com',
       password: 'demo123',
@@ -85,7 +85,7 @@ export const sampleProjects: Project[] = [
       { name: 'Express.js', category: 'backend', proficiency: 8, yearsOfExperience: 4 },
       { name: 'Stripe', category: 'tool', proficiency: 7, yearsOfExperience: 2 }
     ],
-    liveUrl: 'https://restocktime.com',
+    liveUrl: 'https://restock-time.info',
     metrics: {
       performanceScore: 8,
       userEngagement: {
@@ -136,7 +136,7 @@ export const sampleProjects: Project[] = [
       { name: 'Stripe', category: 'tool', proficiency: 7, yearsOfExperience: 2 },
       { name: 'Vercel', category: 'cloud', proficiency: 8, yearsOfExperience: 3 }
     ],
-    liveUrl: 'https://shukonline.com',
+    liveUrl: 'http://shukonline.com',
     metrics: {
       performanceScore: 8,
       userEngagement: {

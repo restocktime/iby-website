@@ -3,21 +3,23 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[44px] min-w-[44px] relative',
+  'inline-flex items-center justify-center rounded-xl font-modern font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none min-h-[44px] min-w-[44px] relative overflow-hidden group',
   {
     variants: {
       variant: {
-        default: 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg active:bg-blue-800 active:scale-95',
-        secondary: 'bg-neutral-600 text-white hover:bg-neutral-700 shadow-md hover:shadow-lg active:bg-neutral-800 active:scale-95',
-        outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:border-blue-700 active:bg-blue-100',
-        ghost: 'text-blue-600 hover:bg-blue-50 active:bg-blue-100',
-        destructive: 'bg-red-600 text-white hover:bg-red-700 shadow-md hover:shadow-lg active:bg-red-800 active:scale-95',
+        default: 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl active:scale-95 transform hover:scale-105',
+        secondary: 'bg-gradient-to-r from-slate-600 to-slate-700 text-white hover:from-slate-700 hover:to-slate-800 shadow-lg hover:shadow-xl active:scale-95 transform hover:scale-105',
+        outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-blue-700 active:bg-blue-700 backdrop-blur-sm bg-white/10 transform hover:scale-105',
+        ghost: 'text-blue-600 hover:bg-blue-50 active:bg-blue-100 transform hover:scale-105',
+        destructive: 'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-xl active:scale-95 transform hover:scale-105',
+        premium: 'bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white hover:from-purple-700 hover:via-blue-700 hover:to-cyan-700 shadow-xl hover:shadow-2xl transform hover:scale-105 active:scale-95',
       },
       size: {
-        default: 'h-10 px-4 py-2 text-sm',
-        sm: 'h-9 px-3 text-sm',
-        lg: 'h-12 px-8 text-base',
-        icon: 'h-10 w-10',
+        default: 'h-11 px-6 py-2 text-sm',
+        sm: 'h-9 px-4 text-sm',
+        lg: 'h-14 px-10 text-lg',
+        xl: 'h-16 px-12 text-xl',
+        icon: 'h-11 w-11',
       },
     },
     defaultVariants: {

@@ -24,9 +24,7 @@ function SimpleParticles() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={100}
-            array={new Float32Array(Array.from({ length: 300 }, () => (Math.random() - 0.5) * 10))}
-            itemSize={3}
+            args={[new Float32Array(Array.from({ length: 300 }, () => (Math.random() - 0.5) * 10)), 3]}
           />
         </bufferGeometry>
         <pointsMaterial color="white" size={0.1} />

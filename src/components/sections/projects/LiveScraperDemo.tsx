@@ -37,9 +37,7 @@ interface ScrapedProduct {
   timestamp: string
 }
 
-interface LiveScraperDemoProps {
-  // No props needed for now
-}
+// No props interface needed - component takes no props
 
 export function LiveScraperDemo(): JSX.Element {
   const [isRunning, setIsRunning] = useState(false)

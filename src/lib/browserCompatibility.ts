@@ -159,7 +159,7 @@ class BrowserCompatibilityManager {
 
   private hasDynamicImport(): boolean {
     try {
-      return typeof import === 'function';
+      return typeof (import as any) === 'function';
     } catch {
       return false;
     }

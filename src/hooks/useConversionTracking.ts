@@ -293,7 +293,7 @@ export function useConversionTracking(options: ConversionTrackingOptions = {}) {
   }
 }
 
-function throttle(func: Function, delay: number) {
+function throttle(func: (...args: any[]) => void, delay: number) {
   let timeoutId: NodeJS.Timeout
   let lastExecTime = 0
   

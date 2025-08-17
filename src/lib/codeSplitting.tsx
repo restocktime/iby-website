@@ -64,7 +64,7 @@ export const dynamicImportConfigs = {
 };
 
 // Enhanced dynamic import wrapper with error boundaries
-export function createDynamicComponent<T = {}>(
+export function createDynamicComponent<T = Record<string, unknown>>(
   importFn: () => Promise<{ default: ComponentType<T> }>,
   config: keyof typeof dynamicImportConfigs = 'component',
   errorFallback?: ReactElement
@@ -254,7 +254,7 @@ export function trackDynamicImport(componentName: string) {
 }
 
 // Utility to create optimized dynamic imports with tracking
-export function createTrackedDynamicComponent<T = {}>(
+export function createTrackedDynamicComponent<T = Record<string, unknown>>(
   componentName: string,
   importFn: () => Promise<{ default: ComponentType<T> }>,
   config: keyof typeof dynamicImportConfigs = 'component'
@@ -263,9 +263,9 @@ export function createTrackedDynamicComponent<T = {}>(
   
   const enhancedImportFn = async () => {
     try {
-      const module = await importFn();
+      const moduleResult = await importFn();
       tracker.onLoad();
-      return module;
+      return moduleResult;
     } catch (error) {
       tracker.onError(error as Error);
       throw error;

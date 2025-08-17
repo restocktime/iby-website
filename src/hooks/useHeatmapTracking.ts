@@ -32,7 +32,7 @@ export function useHeatmapTracking(options: HeatmapTrackingOptions = {}) {
     return !excludeSelectors.some(selector => element.matches(selector))
   }, [excludeSelectors])
 
-  const throttle = useCallback((func: Function, delay: number) => {
+  const throttle = useCallback((func: (...args: any[]) => void, delay: number) => {
     let timeoutId: NodeJS.Timeout
     let lastExecTime = 0
     

@@ -19,7 +19,7 @@ const SimpleBanner = () => (
     role="banner"
     aria-label="Hero section - Isaac Benyakar introduction"
   >
-    <div className="container mx-auto px-6 text-center">
+    <div className="container mx-auto px-8 sm:px-12 lg:px-16 text-center pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
       <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
         Isaac Benyakar
       </h1>
@@ -111,7 +111,7 @@ const HeroSection = () => {
 
         {/* Main Content */}
         <motion.div 
-          className="container mx-auto px-6 text-center relative z-20"
+          className="container mx-auto px-8 sm:px-12 lg:px-16 text-center relative z-20 pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24"
           style={{ y: contentY }}
         >
           <motion.div
@@ -120,12 +120,12 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-6xl md:text-8xl font-luxury font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent tracking-wide">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-luxury font-bold mb-8 sm:mb-10 lg:mb-12 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent tracking-wide leading-none m-0">
               Isaac Benyakar
             </h1>
             
             <div 
-              className="text-2xl md:text-4xl text-white/90 mb-8 h-16 flex items-center justify-center"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white/90 mb-12 sm:mb-16 lg:mb-20 h-16 sm:h-20 lg:h-24 flex items-center justify-center m-0"
               role="text"
               aria-live="polite"
               aria-label="Professional title"
@@ -140,7 +140,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center mb-20 sm:mb-24 lg:mb-28"
           >
             <Button 
               size="lg" 

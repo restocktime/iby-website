@@ -81,34 +81,34 @@ export function ContactSection() {
   return (
     <section 
       id="contact"
-      className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20"
+      className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-32 pb-20 px-4 sm:px-6 lg:px-8"
       role="region"
       aria-labelledby="contact-heading"
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20 px-4"
         >
-          <h2 id="contact-heading" className="text-5xl font-bold text-white mb-6">
+          <h2 id="contact-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold text-white mb-8 leading-tight tracking-wide m-0">
             Let&apos;s Build Something
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 block sm:inline">
               {' '}Amazing
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-modern">
             Ready to transform your ideas into reality? Choose your preferred way to connect,
             and I&apos;ll get back to you with a personalized response.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start max-w-6xl mx-auto">
           {/* Contact Methods */}
-          <div className="space-y-8" role="region" aria-labelledby="contact-methods-heading">
-            <div className="flex items-center justify-between mb-8">
-              <h3 id="contact-methods-heading" className="text-2xl font-semibold text-white">Contact Methods</h3>
+          <div className="space-y-8 px-4 lg:px-0" role="region" aria-labelledby="contact-methods-heading">
+            <div className="flex items-center justify-between mb-10">
+              <h3 id="contact-methods-heading" className="text-2xl lg:text-3xl font-luxury font-semibold text-white">Contact Methods</h3>
               <AvailabilityIndicator />
             </div>
 

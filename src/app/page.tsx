@@ -164,22 +164,17 @@ export default function Home() {
               </SectionTransition>
 
               {/* Contact Section */}
-              <section 
-                id="contact"
-                className="relative w-full overflow-hidden py-16 sm:py-24 lg:py-32"
-                role="region" 
-                aria-labelledby="contact-heading"
-              >
+              <div className="relative w-full overflow-hidden">
                 <GlobalParticles 
                   density="medium" 
                   color="#ec4899" 
                   opacity={0.35} 
                   variant="gradient" 
                 />
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="relative z-10">
                   <ContactSection />
                 </div>
-              </section>
+              </div>
             </main>
           </Layout>
         </ClientWrapper>

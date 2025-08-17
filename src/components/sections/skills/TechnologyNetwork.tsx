@@ -75,15 +75,37 @@ const TechnologyNetwork: React.FC<TechnologyNetworkProps> = ({ className = '' })
 
   useEffect(() => {
     setIsClient(true)
-    initializeNodes()
-    startAnimation()
-    
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
+  }, [])
+
+  useEffect(() => {
+    if (isClient && canvasRef.current) {
+      const handleResize = () => {
+        const canvas = canvasRef.current
+        if (!canvas) return
+        
+        const container = canvas.parentElement
+        if (container) {
+          canvas.width = container.clientWidth
+          canvas.height = 500
+          initializeNodes()
+        }
+      }
+
+      // Initial setup
+      handleResize()
+      startAnimation()
+
+      // Add resize listener
+      window.addEventListener('resize', handleResize)
+      
+      return () => {
+        window.removeEventListener('resize', handleResize)
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+        }
       }
     }
-  }, [])
+  }, [isClient])
 
   const initializeNodes = () => {
     const canvas = canvasRef.current
@@ -91,12 +113,12 @@ const TechnologyNetwork: React.FC<TechnologyNetworkProps> = ({ className = '' })
 
     const centerX = canvas.width / 2
     const centerY = canvas.height / 2
-    const radius = Math.min(centerX, centerY) - 100
+    const radius = Math.min(centerX, centerY) - 80
 
     const initializedNodes = techNodes.map((node, index) => {
       const angle = (index / techNodes.length) * 2 * Math.PI
       // Use deterministic positioning based on index
-      const randomFactor = 0.5 + (Math.sin(index * 2.5) + 1) * 0.25
+      const randomFactor = 0.6 + (Math.sin(index * 2.5) + 1) * 0.2
       return {
         ...node,
         x: centerX + Math.cos(angle) * radius * randomFactor,
@@ -327,36 +349,35 @@ const TechnologyNetwork: React.FC<TechnologyNetworkProps> = ({ className = '' })
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Network Visualization */}
         <div className="flex-1">
-          <div className="relative bg-gray-900/50 rounded-lg border border-gray-700/50 overflow-hidden">
+          <div className="relative bg-white/5 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden shadow-2xl">
             {isClient ? (
               <canvas
                 ref={canvasRef}
-                width={600}
-                height={500}
                 onClick={handleCanvasClick}
                 onMouseMove={handleCanvasMouseMove}
-                className="w-full h-auto cursor-pointer"
+                className="w-full h-[500px] cursor-pointer bg-slate-900/50"
+                style={{ display: 'block' }}
               />
             ) : (
-              <div className="w-full h-[500px] bg-gray-800/30 animate-pulse flex items-center justify-center">
-                <div className="text-gray-400">Loading network visualization...</div>
+              <div className="w-full h-[500px] bg-slate-800/30 animate-pulse flex items-center justify-center">
+                <div className="text-white/60">Loading network visualization...</div>
               </div>
             )}
             
             {/* Legend */}
-            <div className="absolute top-4 left-4 bg-gray-800/80 backdrop-blur-sm rounded-lg p-3 border border-gray-700/50">
-              <div className="text-sm text-gray-400 mb-2">Categories</div>
+            <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+              <div className="text-sm text-white/80 mb-3 font-medium">Categories</div>
               {Object.entries(categoryColors).map(([category, color]) => (
-                <div key={category} className="flex items-center space-x-2 text-xs text-gray-300 mb-1">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: color }}></div>
+                <div key={category} className="flex items-center space-x-3 text-xs text-white/70 mb-2">
+                  <div className="w-3 h-3 rounded-full shadow-lg" style={{ backgroundColor: color }}></div>
                   <span className="capitalize">{category}</span>
                 </div>
               ))}
             </div>
 
             {/* Instructions */}
-            <div className="absolute bottom-4 right-4 bg-gray-800/80 backdrop-blur-sm rounded-lg p-3 border border-gray-700/50">
-              <div className="text-xs text-gray-400">
+            <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20">
+              <div className="text-xs text-white/70">
                 Click nodes to explore connections
               </div>
             </div>

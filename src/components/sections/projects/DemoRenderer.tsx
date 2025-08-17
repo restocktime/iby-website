@@ -4,10 +4,10 @@ import { LiveDemo } from '@/types'
 import { WebsiteMonitorDemo } from './WebsiteMonitorDemo'
 import { LiveScraperDemo } from './LiveScraperDemo'
 import { ScraperDemo } from './ScraperDemo'
-import { LiveMetrics } from './LiveMetrics'
-import { AnalyticsShowcase } from './AnalyticsShowcase'
-import { CRMShowcase } from './CRMShowcase'
-import { NotificationDemo } from './NotificationDemo'
+import LiveMetrics from './LiveMetrics'
+import AnalyticsShowcase from './AnalyticsShowcase'
+import CRMShowcase from './CRMShowcase'
+import NotificationDemo from './NotificationDemo'
 
 interface DemoRendererProps {
   liveDemo: LiveDemo

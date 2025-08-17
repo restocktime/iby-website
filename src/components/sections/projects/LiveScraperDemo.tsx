@@ -365,7 +365,7 @@ export function LiveScraperDemo({ onClose }: LiveScraperDemoProps) {
                 <div className="text-gray-500 text-center py-8">
                   <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
                   <p>No data extracted yet.</p>
-                  <p className="text-sm">Click "Start Scraper" to begin extraction.</p>
+                  <p className="text-sm">Click &quot;Start Scraper&quot; to begin extraction.</p>
                 </div>
               ) : (
                 <div className="space-y-3">

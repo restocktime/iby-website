@@ -129,7 +129,7 @@ const HeroSection = () => {
               aria-live="polite"
               aria-label="Professional title"
             >
-              <ErrorBoundary level="component" fallback={<span>Full-Stack Developer & Automation Expert</span>}>
+              <ErrorBoundary level="component" fallback={({ error, retry }) => <span>Full-Stack Developer & Automation Expert</span>}>
                 <Suspense fallback={<span>Full-Stack Developer & Automation Expert</span>}>
                   <TypewriterText />
                 </Suspense>

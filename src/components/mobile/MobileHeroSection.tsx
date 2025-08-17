@@ -47,8 +47,7 @@ export function MobileHeroSection({ children }: MobileHeroSectionProps) {
           ref={heroRef}
           className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
           style={{
-            // Optimize for mobile viewport
-            minHeight: '100vh',
+            // Optimize for mobile viewport - use dynamic viewport height
             minHeight: '100dvh', // Dynamic viewport height for mobile
           }}
         >

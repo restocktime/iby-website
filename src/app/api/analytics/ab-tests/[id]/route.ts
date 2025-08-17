@@ -7,10 +7,11 @@ const abTests = new Map<string, ABTest>()
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params
   try {
-    const testId = params.id
+    const testId = id
     const test = abTests.get(testId)
 
     if (!test) {
@@ -51,10 +52,11 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params
   try {
-    const testId = params.id
+    const testId = id
     const updates = await request.json()
     
     const existingTest = abTests.get(testId)
@@ -100,10 +102,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params
   try {
-    const testId = params.id
+    const testId = id
     const test = abTests.get(testId)
 
     if (!test) {

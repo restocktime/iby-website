@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Card } from '@/components/ui/Card';
+import Card from '@/components/ui/Card';
 import { performanceMonitor } from '@/lib/monitoring';
 
 interface HealthStatus {
@@ -210,7 +210,7 @@ export default function MonitoringDashboard() {
                 <div className="ml-5 w-0 flex-1">
                   <dl>
                     <dt className="text-sm font-medium text-gray-500 truncate">Memory Usage</dt>
-                    <dd className="text-lg font-medium text-gray-900">{formatMemory(healthStatus.memory.used)}</dd>
+                    <dd className="text-lg font-medium text-gray-900">{formatMemory(healthStatus.memory.heapUsed)}</dd>
                   </dl>
                 </div>
               </div>

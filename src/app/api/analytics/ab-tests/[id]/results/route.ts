@@ -23,7 +23,7 @@ export async function GET(
     const results = calculateTestResults(test)
 
     return NextResponse.json({
-      testId,
+      testId: id,
       testName: test.name,
       status: test.status,
       startDate: test.startDate,

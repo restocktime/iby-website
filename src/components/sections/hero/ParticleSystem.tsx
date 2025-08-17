@@ -181,6 +181,7 @@ const ParticleSystem = () => {
             count={particleCount}
             array={sizes}
             itemSize={1}
+            args={[sizes, 1]}
           />
         </bufferGeometry>
         <PointMaterial

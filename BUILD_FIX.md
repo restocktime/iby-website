@@ -4,31 +4,38 @@
 
 ### **Problem**
 - **Build Error**: Syntax error in `AnalyticsDashboard.tsx`
-- **Error Message**: `Unexpected token. Did you mean '{'}'}' or '&rbrace;'?`
-- **Location**: Line 266 in `src/components/admin/AnalyticsDashboard.tsx`
+- **Error Message**: `Unexpected eof` (end of file)
+- **Location**: Line 268 in `src/components/admin/AnalyticsDashboard.tsx`
 
 ### **Root Cause**
-- **Extra closing bracket**: `)}` on line 266 that shouldn't be there
-- **Malformed JSX**: Caused by incorrect nesting of closing braces
+- **Missing closing brackets**: Conditional block `{activeTab === 'overview' && (` was never closed
+- **Unclosed JSX**: The conditional rendering block needed proper closing
 
 ### **Solution**
-- **Removed extra `)}`** from line 266
-- **Fixed JSX structure** to properly close the component
+- **Added missing closing brackets**: `</div>` and `)}` to close the conditional block
+- **Fixed JSX structure** to properly close all nested elements
 
 ### **Before (Broken)**
 ```tsx
+      {activeTab === 'overview' && (
+        <div className="space-y-6">
+          // ... content ...
         </div>
       </div>
-      )}  // ← Extra closing bracket causing error
-    </div>
+    </div>  // ← Missing closing for conditional block
   )
 }
 ```
 
 ### **After (Fixed)**
 ```tsx
+      {activeTab === 'overview' && (
+        <div className="space-y-6">
+          // ... content ...
         </div>
       </div>
+        </div>  // ← Added missing closing div
+      )}        // ← Added missing closing for conditional
     </div>
   )
 }

@@ -104,6 +104,7 @@ const config: Config = {
         'spin-slow': 'spin 3s linear infinite',
         'float': 'float 3s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'flash': 'flash 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -133,6 +134,10 @@ const config: Config = {
         glow: {
           '0%': { boxShadow: '0 0 5px rgba(59, 130, 246, 0.5)' },
           '100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.8)' },
+        },
+        flash: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
         },
       },
       backdropBlur: {

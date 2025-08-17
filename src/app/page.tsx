@@ -39,10 +39,10 @@ export default function Home() {
                 aria-labelledby="about-heading"
               >
                 <GlobalParticles 
-                  density="medium" 
+                  density="heavy" 
                   color="#3b82f6" 
-                  opacity={0.4} 
-                  variant="gradient" 
+                  opacity={0.6} 
+                  variant="colorful" 
                 />
                 
                 {/* Main Content Container */}
@@ -55,7 +55,17 @@ export default function Home() {
                         <h2 id="about-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-slate-900 mb-6 tracking-tight leading-[0.9] text-center">
                           About Isaac
                         </h2>
-                        <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                        <div className="relative">
+                          <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full animate-flash"></div>
+                          {/* Small particles around the divider */}
+                          <div className="absolute inset-0 -m-8 pointer-events-none">
+                            <div className="absolute top-2 left-1/4 w-1 h-1 bg-blue-400 rounded-full animate-float opacity-60"></div>
+                            <div className="absolute -top-1 right-1/3 w-0.5 h-0.5 bg-purple-400 rounded-full animate-pulse opacity-50"></div>
+                            <div className="absolute top-3 right-1/4 w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce opacity-40"></div>
+                            <div className="absolute -top-2 left-1/3 w-0.5 h-0.5 bg-purple-300 rounded-full animate-ping opacity-30"></div>
+                            <div className="absolute top-1 left-1/2 w-1 h-1 bg-indigo-400 rounded-full animate-pulse opacity-50"></div>
+                          </div>
+                        </div>
                       </header>
                     </SectionTransition>
                     
@@ -166,10 +176,10 @@ export default function Home() {
               {/* Contact Section */}
               <div className="relative w-full overflow-hidden">
                 <GlobalParticles 
-                  density="medium" 
+                  density="heavy" 
                   color="#ec4899" 
-                  opacity={0.35} 
-                  variant="gradient" 
+                  opacity={0.5} 
+                  variant="colorful" 
                 />
                 <div className="relative z-10">
                   <ContactSection />

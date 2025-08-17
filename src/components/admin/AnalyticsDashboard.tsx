@@ -263,6 +263,8 @@ export function AnalyticsDashboard() {
           ))}
         </div>
       </div>
+        </div>
+      )}
     </div>
   )
 }

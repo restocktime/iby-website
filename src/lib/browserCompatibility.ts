@@ -159,7 +159,8 @@ class BrowserCompatibilityManager {
 
   private hasDynamicImport(): boolean {
     try {
-      return typeof (import as any) === 'function';
+      // Check if dynamic import is supported by testing for the feature
+      return !!globalThis && 'import' in globalThis;
     } catch {
       return false;
     }

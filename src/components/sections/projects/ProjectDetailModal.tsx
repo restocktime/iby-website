@@ -18,7 +18,7 @@ interface ProjectDetailModalProps {
   onClose: () => void
 }
 
-export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
+function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'metrics' | 'demo' | 'preview'>('overview')
   const [copiedText, setCopiedText] = useState<string | null>(null)
 
@@ -492,6 +492,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                 <DemoRenderer
                   liveDemo={project.liveDemo}
                   projectTitle={project.title}
+                  projectId={project.id}
                 />
               </motion.div>
             )}
@@ -517,3 +518,5 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
     </motion.div>
   )
 }
+
+export default ProjectDetailModal;

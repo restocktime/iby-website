@@ -7,7 +7,7 @@ import { ProjectGrid } from './projects/ProjectGrid'
 import { ProjectTimeline } from './projects/ProjectTimeline'
 import { ProjectNetwork } from './projects/ProjectNetwork'
 import { ProjectFilters } from './projects/ProjectFilters'
-import { ProjectDetailModal } from './projects/ProjectDetailModal'
+import ProjectDetailModal from './projects/ProjectDetailModal'
 import { LayoutToggle } from './projects/LayoutToggle'
 
 export type LayoutMode = 'grid' | 'timeline' | 'network'

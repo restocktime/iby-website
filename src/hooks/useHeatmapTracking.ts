@@ -52,9 +52,10 @@ export function useHeatmapTracking(options: HeatmapTrackingOptions = {}) {
     }
   }, [])
 
-  const handleClick = useCallback((event: MouseEvent) => {
+  const handleClick = useCallback((event: Event) => {
     if (!trackClicks) return
 
+    const mouseEvent = event as MouseEvent
     const target = event.target as Element
     if (!target || !shouldTrackElement(target)) return
 
@@ -62,16 +63,16 @@ export function useHeatmapTracking(options: HeatmapTrackingOptions = {}) {
     
     // Track click coordinates
     analytics.trackEvent('heatmap_click', {
-      coordinates: { x: event.clientX, y: event.clientY },
-      pageX: event.pageX,
-      pageY: event.pageY,
+      coordinates: { x: mouseEvent.clientX, y: mouseEvent.clientY },
+      pageX: mouseEvent.pageX,
+      pageY: mouseEvent.pageY,
       element: target.tagName.toLowerCase(),
       elementText: target.textContent?.slice(0, 50) || '',
       timestamp: Date.now()
     })
   }, [trackClicks, analytics, shouldTrackElement])
 
-  const handleMouseOver = useCallback((event: MouseEvent) => {
+  const handleMouseOver = useCallback((event: Event) => {
     if (!trackHovers) return
 
     const target = event.target as Element
@@ -80,13 +81,14 @@ export function useHeatmapTracking(options: HeatmapTrackingOptions = {}) {
     analytics.trackHeatmapInteraction(target as HTMLElement, 'hover')
   }, [trackHovers, analytics, shouldTrackElement])
 
-  const handleMouseMove = useCallback(throttle((event: MouseEvent) => {
+  const handleMouseMove = useCallback(throttle((event: Event) => {
     if (!trackMouseMovement) return
 
+    const mouseEvent = event as MouseEvent
     const now = Date.now()
     if (now - lastMouseMove.current < throttleMs) return
 
-    const position: Point2D = { x: event.clientX, y: event.clientY }
+    const position: Point2D = { x: mouseEvent.clientX, y: mouseEvent.clientY }
     mousePositions.current.push(position)
     lastMouseMove.current = now
 

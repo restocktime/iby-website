@@ -15,7 +15,7 @@ interface RealTimeMetrics {
   trafficSources: Array<{ source: string; visitors: number }>
 }
 
-export function RealTimeAnalyticsDashboard() {
+function RealTimeAnalyticsDashboard() {
   const [metrics, setMetrics] = useState<RealTimeMetrics | null>(null)
   const [visitors, setVisitors] = useState<RealTimeVisitor[]>([])
   const [heatmapData, setHeatmapData] = useState<HeatmapData[]>([])
@@ -313,3 +313,5 @@ export function RealTimeAnalyticsDashboard() {
     </div>
   )
 }
+
+export default RealTimeAnalyticsDashboard;

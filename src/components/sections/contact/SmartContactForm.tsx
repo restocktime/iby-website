@@ -24,7 +24,7 @@ interface SmartContactFormProps {
   isPriority: boolean
 }
 
-export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartContactFormProps) {
+function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartContactFormProps) {
   const { trackInteraction } = useEngagementTracking()
   const { trackConversion } = useAnalytics()
   const { variant: formVariant, trackConversion: trackABConversion } = useABTest('test_contact_form')
@@ -435,3 +435,5 @@ export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartC
     </motion.div>
   )
 }
+
+export default SmartContactForm;

@@ -50,7 +50,7 @@ export class PerformanceMonitor {
         request_response: navigation.responseEnd - navigation.requestStart,
         dom_processing: navigation.domContentLoadedEventEnd - navigation.responseEnd,
         load_complete: navigation.loadEventEnd - navigation.loadEventStart,
-        total_load_time: navigation.loadEventEnd - navigation.navigationStart,
+        total_load_time: navigation.loadEventEnd - navigation.fetchStart,
       };
 
       Object.entries(metrics).forEach(([key, value]) => {

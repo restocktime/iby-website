@@ -204,6 +204,7 @@ const ParticleSystem = () => {
               count={particleCount}
               array={positions}
               itemSize={3}
+              args={[positions, 3]}
             />
           </bufferGeometry>
           <PointMaterial
@@ -227,6 +228,7 @@ const ParticleSystem = () => {
               count={Math.floor(particleCount * 0.3)}
               array={positions.slice(0, Math.floor(particleCount * 0.3) * 3)}
               itemSize={3}
+              args={[positions.slice(0, Math.floor(particleCount * 0.3) * 3), 3]}
             />
           </bufferGeometry>
           <PointMaterial

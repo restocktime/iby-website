@@ -38,7 +38,7 @@ function getClientIP(req: NextRequest): string {
     return realIP;
   }
   
-  return req.ip || 'unknown';
+  return 'unknown';
 }
 
 function isRateLimited(ip: string, isAdmin: boolean = false): boolean {

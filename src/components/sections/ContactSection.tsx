@@ -10,7 +10,7 @@ import {
 import { useEngagementTracking } from '@/hooks/useEngagementTracking-simple'
 import { AvailabilityIndicator } from './contact/AvailabilityIndicator'
 import { ContactMethodCard } from './contact/ContactMethodCard'
-import { SmartContactForm } from './contact/SmartContactForm'
+import SmartContactForm from './contact/SmartContactForm'
 import { ResponseTimeEstimator } from './contact/ResponseTimeEstimator'
 import { ContactRecommendations } from './contact/ContactRecommendations'
 

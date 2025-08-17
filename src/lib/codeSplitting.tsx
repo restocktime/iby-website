@@ -4,7 +4,7 @@
  */
 
 import dynamic from 'next/dynamic';
-import { ComponentType, ReactElement, Suspense } from 'react';
+import { ComponentType, Suspense } from 'react';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 
 // Loading components for different scenarios
@@ -67,15 +67,18 @@ export const dynamicImportConfigs = {
 export function createDynamicComponent<T = Record<string, unknown>>(
   importFn: () => Promise<{ default: ComponentType<T> }>,
   config: keyof typeof dynamicImportConfigs = 'component',
-  errorFallback?: ReactElement
+  errorFallback?: React.ComponentType<{ error: Error; retry: () => void }>
 ) {
   const DynamicComponent = dynamic(importFn, dynamicImportConfigs[config]);
   
   return function WrappedDynamicComponent(props: T) {
+    const configObj = dynamicImportConfigs[config];
+    const loadingComponent = 'loading' in configObj ? configObj.loading() : <LoadingSpinner />;
+    
     return (
       <ErrorBoundary fallback={errorFallback}>
-        <Suspense fallback={dynamicImportConfigs[config].loading?.() || <LoadingSpinner />}>
-          <DynamicComponent {...props} />
+        <Suspense fallback={loadingComponent}>
+          <DynamicComponent {...(props as any)} />
         </Suspense>
       </ErrorBoundary>
     );
@@ -113,12 +116,12 @@ export const DynamicComponents = {
   
   // Admin components
   AnalyticsDashboard: createDynamicComponent(
-    () => import('@/components/admin/AnalyticsDashboard'),
+    (() => import('@/components/admin/AnalyticsDashboard').then(mod => ({ default: mod.AnalyticsDashboard }))) as any,
     'admin'
   ),
   
   ProjectManager: createDynamicComponent(
-    () => import('@/components/admin/ProjectManager'),
+    (() => import('@/components/admin/ProjectManager').then(mod => ({ default: mod.ProjectManager }))) as any,
     'admin'
   ),
   
@@ -149,12 +152,10 @@ export const DynamicComponents = {
 export function useLazyLoad<T>(
   importFn: () => Promise<{ default: ComponentType<T> }>,
   options: {
-    threshold?: number;
-    rootMargin?: string;
     config?: keyof typeof dynamicImportConfigs;
   } = {}
 ) {
-  const { threshold = 0.1, rootMargin = '50px', config = 'component' } = options;
+  const { config = 'component' } = options;
   
   // This would typically use intersection observer
   // For now, return the dynamic component directly
@@ -199,24 +200,7 @@ export const bundleStrategies = {
   byFeature: {
     hero: () => import('@/components/sections/HeroSection'),
     projects: () => import('@/components/sections/ProjectShowcase'),
-    skills: () => import('@/components/sections/SkillsVisualization'),
     contact: () => import('@/components/sections/ContactSection'),
-  },
-  
-  // Split by technology
-  byTechnology: {
-    threejs: () => import('@/lib/three-components'),
-    charts: () => import('@/lib/chart-components'),
-    forms: () => import('@/lib/form-components'),
-    admin: () => import('@/lib/admin-components'),
-  },
-  
-  // Split by user journey
-  byJourney: {
-    landing: () => import('@/lib/landing-components'),
-    exploration: () => import('@/lib/exploration-components'),
-    engagement: () => import('@/lib/engagement-components'),
-    conversion: () => import('@/lib/conversion-components'),
   },
 };
 

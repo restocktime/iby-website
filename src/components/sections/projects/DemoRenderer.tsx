@@ -12,9 +12,10 @@ import NotificationDemo from './NotificationDemo'
 interface DemoRendererProps {
   liveDemo: LiveDemo
   projectTitle: string
+  projectId: string
 }
 
-export function DemoRenderer({ liveDemo, projectTitle }: DemoRendererProps) {
+export function DemoRenderer({ liveDemo, projectTitle, projectId }: DemoRendererProps) {
   if (liveDemo.type === 'iframe' && liveDemo.url) {
     return (
       <div className="w-full h-full">
@@ -56,7 +57,7 @@ export function DemoRenderer({ liveDemo, projectTitle }: DemoRendererProps) {
         return <ScraperDemo title={projectTitle} />
       
       case 'LiveMetrics':
-        return <LiveMetrics />
+        return <LiveMetrics projectId={projectId} />
       
       case 'AnalyticsShowcase':
         return <AnalyticsShowcase />

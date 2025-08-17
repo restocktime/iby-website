@@ -37,8 +37,8 @@ const SkillsVisualization: React.FC<SkillsVisualizationProps> = ({ className = '
     >
       {/* Header */}
       <div className="text-center">
-        <h2 id="skills-heading" className="text-3xl font-bold text-white mb-4">Skills & Expertise</h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">
+        <h2 id="skills-heading" className="text-3xl font-heading font-bold text-white mb-4">Skills & Expertise</h2>
+        <p className="text-gray-400 max-w-2xl mx-auto font-body">
           Interactive visualization of my technical skills, experience timeline, and real-time GitHub contributions
         </p>
       </div>
@@ -54,7 +54,7 @@ const SkillsVisualization: React.FC<SkillsVisualizationProps> = ({ className = '
             <button
               key={view.id}
               onClick={() => setActiveView(view.id)}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${
+              className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-body font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 ${
                 activeView === view.id
                   ? 'bg-blue-600 text-white shadow-lg'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'

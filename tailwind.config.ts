@@ -66,9 +66,11 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
-        display: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
-        luxury: ['Playfair Display', 'Georgia', 'serif'],
-        modern: ['Montserrat', 'system-ui', 'sans-serif'],
+        display: ['var(--font-cabinet-grotesk)', 'system-ui', 'sans-serif'],
+        luxury: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        modern: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-clash-display)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-general-sans)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],

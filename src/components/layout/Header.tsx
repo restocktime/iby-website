@@ -240,7 +240,7 @@ export default function Header() {
             >
               <Link
                 href="/"
-                className={cn(getLogoClasses(), "relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1")}
+                className={cn(getLogoClasses(), "relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1 font-heading")}
                 onClick={() => handleSectionClick('#hero')}
                 aria-label="Isaac Benyakar - Go to homepage"
               >
@@ -264,7 +264,7 @@ export default function Header() {
             </motion.div>
 
             {/* Desktop Navigation - Clean and Simple */}
-            <div className="hidden md:flex items-center space-x-2" role="menubar">
+            <div className="hidden md:flex items-center space-x-3" role="menubar">
               {navigationSections.map((section) => (
                 <NavigationItem
                   key={section.id}

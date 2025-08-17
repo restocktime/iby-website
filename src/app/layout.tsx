@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, JetBrains_Mono, Playfair_Display, Montserrat } from "next/font/google";
+import { Inter, JetBrains_Mono, Fraunces, DM_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { PerformanceMonitor } from "@/components/ui/PerformanceWrapper";
@@ -18,28 +18,48 @@ const inter = Inter({
   display: "swap",
 });
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
-const playfairDisplay = Playfair_Display({
+// Premium serif for luxury feel
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-luxury",
+  variable: "--font-fraunces",
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-const montserrat = Montserrat({
+// Modern sans-serif for body text
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-modern",
+  variable: "--font-general-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Geometric sans for headings
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-clash-display",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// High-end display font (using Space Grotesk as premium alternative)
+const cabinetGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-cabinet-grotesk",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// Modern body font (using DM Sans as Satoshi alternative)
+const satoshi = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-satoshi",
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
@@ -306,7 +326,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} ${playfairDisplay.variable} ${montserrat.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${dmSans.variable} ${spaceGrotesk.variable} ${cabinetGrotesk.variable} ${satoshi.variable} font-body antialiased`}
       >
         {/* Skip Links */}
         <div className="sr-only focus-within:not-sr-only">

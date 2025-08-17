@@ -20,10 +20,10 @@ const SimpleBanner = () => (
     aria-label="Hero section - Isaac Benyakar introduction"
   >
     <div className="container mx-auto px-8 sm:px-12 lg:px-16 text-center pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24">
-      <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+      <h1 className="text-6xl md:text-8xl font-heading font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent tracking-tight leading-[0.9]">
         Isaac Benyakar
       </h1>
-      <div className="text-2xl md:text-4xl text-white/90 mb-8" role="text" aria-label="Professional title">
+      <div className="text-2xl md:text-4xl text-white/90 mb-8 font-body font-medium" role="text" aria-label="Professional title">
         Full-Stack Developer & Automation Expert
       </div>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -120,12 +120,12 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-luxury font-bold mb-8 sm:mb-10 lg:mb-12 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent tracking-wide leading-none m-0">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-heading font-bold mb-8 sm:mb-10 lg:mb-12 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent tracking-tight leading-[0.85] m-0">
               Isaac Benyakar
             </h1>
             
             <div 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white/90 mb-12 sm:mb-16 lg:mb-20 h-16 sm:h-20 lg:h-24 flex items-center justify-center m-0"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white/90 mb-12 sm:mb-16 lg:mb-20 h-16 sm:h-20 lg:h-24 flex items-center justify-center m-0 font-body font-medium"
               role="text"
               aria-live="polite"
               aria-label="Professional title"

@@ -18,10 +18,48 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-general-sans), 'Inter', system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium Typography Enhancements */
+.font-heading {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "ss02" 1;
+  letter-spacing: -0.025em;
+  text-rendering: optimizeLegibility;
+}
+
+.font-luxury {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "swsh" 1, "ss01" 1;
+  letter-spacing: -0.015em;
+}
+
+.font-body {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  letter-spacing: -0.01em;
+}
+
+.font-display {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "ss02" 1, "ss03" 1;
+  letter-spacing: -0.03em;
+  text-rendering: optimizeLegibility;
+}
+
+/* Enhanced text hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+  text-rendering: optimizeLegibility;
+  line-height: 1.1;
+}
+
+/* Improved readability for body text */
+p, li, span {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
 }
 
 /* Custom scrollbar */

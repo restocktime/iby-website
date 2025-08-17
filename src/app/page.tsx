@@ -51,8 +51,8 @@ export default function Home() {
                     
                     {/* Header Section */}
                     <SectionTransition delay={0.2}>
-                      <header className="mb-12 lg:mb-16">
-                        <h2 id="about-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold text-slate-900 mb-6 tracking-wide">
+                      <header className="mb-12 lg:mb-16 text-center">
+                        <h2 id="about-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-slate-900 mb-6 tracking-tight leading-[0.9] text-center">
                           About Isaac
                         </h2>
                         <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
@@ -61,8 +61,8 @@ export default function Home() {
                     
                     {/* Description Section */}
                     <SectionTransition delay={0.4}>
-                      <div className="mb-16 lg:mb-20">
-                        <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 leading-relaxed font-modern max-w-4xl mx-auto">
+                      <div className="mb-16 lg:mb-20 text-center">
+                        <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 leading-relaxed font-body max-w-4xl mx-auto font-medium text-center">
                           Passionate full-stack developer with expertise in modern web technologies, 
                           automation, and custom business solutions. I specialize in creating 
                           innovative applications that solve real-world problems and drive business growth.
@@ -109,10 +109,10 @@ export default function Home() {
                               {item.icon}
                             </span>
                           </div>
-                          <h3 id={`service-${index}-title`} className="text-xl sm:text-2xl font-modern font-bold mb-4 lg:mb-6 text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+                          <h3 id={`service-${index}-title`} className="text-xl sm:text-2xl font-heading font-bold mb-4 lg:mb-6 text-slate-900 group-hover:text-blue-600 transition-colors duration-300 text-center">
                             {item.title}
                           </h3>
-                          <p className="text-slate-600 leading-relaxed font-modern text-base sm:text-lg">{item.description}</p>
+                          <p className="text-slate-600 leading-relaxed font-body text-base sm:text-lg text-center">{item.description}</p>
                         </Card>
                       ))}
                     </StaggeredList>

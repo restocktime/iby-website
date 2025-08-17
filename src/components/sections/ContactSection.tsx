@@ -92,13 +92,13 @@ export function ContactSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20 px-4"
         >
-          <h2 id="contact-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold text-white mb-8 leading-tight tracking-wide m-0">
+          <h2 id="contact-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tight m-0">
             Let&apos;s Build Something
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 block sm:inline">
               {' '}Amazing
             </span>
           </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-modern">
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-body font-medium">
             Ready to transform your ideas into reality? Choose your preferred way to connect,
             and I&apos;ll get back to you with a personalized response.
           </p>
@@ -108,7 +108,7 @@ export function ContactSection() {
           {/* Contact Methods */}
           <div className="space-y-8 px-4 lg:px-0" role="region" aria-labelledby="contact-methods-heading">
             <div className="flex items-center justify-between mb-10">
-              <h3 id="contact-methods-heading" className="text-2xl lg:text-3xl font-luxury font-semibold text-white">Contact Methods</h3>
+              <h3 id="contact-methods-heading" className="text-2xl lg:text-3xl font-heading font-semibold text-white">Contact Methods</h3>
               <AvailabilityIndicator />
             </div>
 

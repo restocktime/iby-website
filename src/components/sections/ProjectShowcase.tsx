@@ -93,8 +93,8 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
               onClick={() => handleProjectClick(project)}
             >
-              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-              <p className="text-white/80 text-sm mb-4">{project.description}</p>
+              <h3 className="text-xl font-heading font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-white/80 text-sm mb-4 font-body">{project.description}</p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.slice(0, 3).map((tech) => (
                   <span
@@ -122,10 +122,10 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 id="projects-heading" className="text-4xl md:text-5xl font-luxury font-bold text-white mb-4 tracking-wide">
+          <h2 id="projects-heading" className="text-4xl md:text-5xl font-heading font-bold text-white mb-4 tracking-tight">
             Live Project Showcase
           </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed font-body">
             Explore real, working projects with live demos, interactive previews, and detailed technical insights
           </p>
         </motion.div>
@@ -212,7 +212,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               aria-live="polite"
             >
               <div className="text-6xl mb-4" role="img" aria-label="Search icon">🔍</div>
-              <h3 className="text-2xl font-semibold text-white mb-2">
+              <h3 className="text-2xl font-heading font-semibold text-white mb-2">
                 No projects found
               </h3>
               <p className="text-white/70">
@@ -247,7 +247,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <div className="flex justify-between items-start mb-6">
-                      <h2 className="text-2xl font-bold text-white">{selectedProject.title}</h2>
+                      <h2 className="text-2xl font-heading font-bold text-white">{selectedProject.title}</h2>
                       <button
                         onClick={handleCloseModal}
                         className="text-white/60 hover:text-white transition-colors"

@@ -5,22 +5,469 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, textarea, select {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Prevent layout shift from loading fonts */
+.font-display {
+  font-display: swap;
+}
+
+/* Accessibility Styles */
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+}
+
+.high-contrast * {
+  border-color: currentColor !important;
+}
+
+.high-contrast button,
+.high-contrast a {
+  border: 2px solid currentColor !important;
+}
+
+/* Large text mode */
+.large-text {
+  font-size: 1.125rem !important;
+}
+
+.large-text h1 { font-size: 3rem !important; }
+.large-text h2 { font-size: 2.5rem !important; }
+.large-text h3 { font-size: 2rem !important; }
+.large-text h4 { font-size: 1.75rem !important; }
+.large-text h5 { font-size: 1.5rem !important; }
+.large-text h6 { font-size: 1.25rem !important; }
+
+/* Screen reader mode optimizations */
+.screen-reader-mode * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.screen-reader-mode [aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast preferences */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor;
+  }
+  
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Focus management */
+.focus-trap {
+  position: relative;
+}
+
+.focus-trap::before,
+.focus-trap::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Skip link styles */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #0ea5e9;
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  z-index: 1000;
+  transition: top 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Keyboard navigation indicators */
+.keyboard-navigation button:focus,
+.keyboard-navigation a:focus,
+.keyboard-navigation input:focus,
+.keyboard-navigation textarea:focus,
+.keyboard-navigation select:focus {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Ensure interactive elements have minimum touch target size */
+button,
+a,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Color contrast improvements */
+::selection {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+/* Enhanced focus styles for better visibility */
+.focus-visible:focus-visible,
+*:focus-visible {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Improved button focus styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  .high-contrast,
+  html[data-theme="high-contrast"] {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+  }
+  
+  .high-contrast *,
+  html[data-theme="high-contrast"] * {
+    border-color: currentColor !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  
+  .high-contrast button,
+  .high-contrast a,
+  html[data-theme="high-contrast"] button,
+  html[data-theme="high-contrast"] a {
+    border: 2px solid currentColor !important;
+    background-color: transparent !important;
+  }
+  
+  .high-contrast button:hover,
+  .high-contrast a:hover,
+  html[data-theme="high-contrast"] button:hover,
+  html[data-theme="high-contrast"] a:hover {
+    background-color: currentColor !important;
+    color: white !important;
+  }
+}
+
+/* Improved large text mode */
+.large-text,
+html[data-theme="large-text"] {
+  font-size: 1.25rem !important;
+  line-height: 1.7 !important;
+}
+
+.large-text h1,
+html[data-theme="large-text"] h1 { 
+  font-size: 3.5rem !important; 
+  line-height: 1.2 !important;
+}
+
+.large-text h2,
+html[data-theme="large-text"] h2 { 
+  font-size: 2.75rem !important; 
+  line-height: 1.3 !important;
+}
+
+.large-text h3,
+html[data-theme="large-text"] h3 { 
+  font-size: 2.25rem !important; 
+  line-height: 1.4 !important;
+}
+
+.large-text h4,
+html[data-theme="large-text"] h4 { 
+  font-size: 1.875rem !important; 
+  line-height: 1.4 !important;
+}
+
+.large-text h5,
+html[data-theme="large-text"] h5 { 
+  font-size: 1.625rem !important; 
+  line-height: 1.5 !important;
+}
+
+.large-text h6,
+html[data-theme="large-text"] h6 { 
+  font-size: 1.375rem !important; 
+  line-height: 1.5 !important;
+}
+
+.large-text button,
+.large-text a,
+html[data-theme="large-text"] button,
+html[data-theme="large-text"] a {
+  padding: 16px 24px !important;
+  font-size: 1.25rem !important;
+}
+
+/* Screen reader optimizations */
+.screen-reader-mode *,
+html[data-theme="screen-reader"] * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+.screen-reader-mode [aria-hidden="true"],
+html[data-theme="screen-reader"] [aria-hidden="true"] {
+  display: none !important;
+}
+
+.screen-reader-mode .decorative,
+html[data-theme="screen-reader"] .decorative {
+  display: none !important;
+}
+
+/* Keyboard navigation enhancements */
+.keyboard-navigation {
+  --focus-ring-color: #0ea5e9;
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+}
+
+.keyboard-navigation *:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color) !important;
+  outline-offset: var(--focus-ring-offset) !important;
+  border-radius: 4px;
+  z-index: 10;
+  position: relative;
+}
+
+.keyboard-navigation button:focus,
+.keyboard-navigation a:focus {
+  box-shadow: 0 0 0 var(--focus-ring-width) rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Improved touch targets for mobile accessibility */
+@media (max-width: 768px) {
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px;
+  }
+  
+  /* Ensure adequate spacing between touch targets */
+  button + button,
+  a + a,
+  button + a,
+  a + button {
+    margin-left: 8px;
+  }
+}
+
+/* Print styles for accessibility */
+@media print {
+  .no-print,
+  .skip-link,
+  nav,
+  .accessibility-panel {
+    display: none !important;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+  
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+}
+
+/* Animation respect for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+  
+  /* Keep essential animations but make them instant */
+  .loading-spinner {
+    animation: none !important;
+  }
+  
+  .loading-spinner::after {
+    content: "Loading...";
+  }
+}
+
+/* Color scheme support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+  }
+}
+
+/* Ensure sufficient color contrast */
+.text-low-contrast {
+  color: #6b7280;
+}
+
+@media (prefers-contrast: high) {
+  .text-low-contrast {
+    color: #374151;
+  }
+}
+
+/* Focus trap styles */
+.focus-trap-active {
+  position: relative;
+}
+
+.focus-trap-active::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* Announcement region for screen readers */
+.sr-announcement {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.sr-announcement:focus {
+  position: static;
+  width: auto;
+  height: auto;
 }

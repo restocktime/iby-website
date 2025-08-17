@@ -1,103 +1,141 @@
-import Image from "next/image";
+import Layout from '@/components/layout/Layout'
+
+import Card from '@/components/ui/Card'
+import HeroSection from '@/components/sections/HeroSection'
+import { ProjectShowcase } from '@/components/sections/ProjectShowcase'
+import SkillsVisualization from '@/components/sections/SkillsVisualization'
+import { ContactSection } from '@/components/sections/ContactSection'
+import { NavigationProvider } from '@/contexts/NavigationContext'
+import { SectionTransition, StaggeredList } from '@/components/ui/SectionTransition'
+import { ClientWrapper } from '@/components/ClientWrapper'
+import { SEOEnhancements, ServiceStructuredData, FAQStructuredData } from '@/components/seo/SEOEnhancements'
+import { sampleProjects } from '@/data/projects'
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const breadcrumbs = [
+    { name: "Home", url: "https://isaacbenyakar.com" }
+  ]
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  return (
+    <>
+      <SEOEnhancements 
+        breadcrumbs={breadcrumbs}
+      />
+      <ServiceStructuredData />
+      <FAQStructuredData />
+      
+      <NavigationProvider>
+        <ClientWrapper>
+          <Layout>
+            <main id="main-content" role="main" tabIndex={-1}>
+              <HeroSection />
+
+              {/* About Section */}
+              <SectionTransition 
+                id="about" 
+                className="min-h-screen flex items-center py-20 bg-white"
+                role="region"
+                aria-labelledby="about-heading"
+              >
+                <div className="container mx-auto px-6">
+                  <div className="max-w-4xl mx-auto text-center">
+                    <SectionTransition delay={0.2}>
+                      <header>
+                        <h2 id="about-heading" className="text-4xl md:text-5xl font-bold text-neutral-900 mb-8">
+                          About Isaac
+                        </h2>
+                      </header>
+                    </SectionTransition>
+                    
+                    <SectionTransition delay={0.4}>
+                      <p className="text-xl text-neutral-600 mb-12 leading-relaxed">
+                        Passionate full-stack developer with expertise in modern web technologies, 
+                        automation, and custom business solutions. I specialize in creating 
+                        innovative applications that solve real-world problems.
+                      </p>
+                    </SectionTransition>
+                    
+                    <StaggeredList 
+                      className="grid grid-cols-1 md:grid-cols-3 gap-8" 
+                      staggerDelay={0.2}
+                      role="list"
+                      aria-label="Core services offered"
+                    >
+                      {[
+                        {
+                          title: "Web Development",
+                          description: "Modern, responsive applications built with React, Next.js, and cutting-edge technologies",
+                          icon: "🌐"
+                        },
+                        {
+                          title: "Automation & Scraping", 
+                          description: "Custom automation tools, web scrapers, and monitoring systems for business efficiency",
+                          icon: "🤖"
+                        },
+                        {
+                          title: "Custom Solutions",
+                          description: "Tailored CRM systems, analytics dashboards, and business process optimization",
+                          icon: "⚙️"
+                        }
+                      ].map((item, index) => (
+                        <Card 
+                          key={index} 
+                          variant="elevated" 
+                          className="text-center p-8 hover:shadow-xl transition-shadow duration-300"
+                          role="listitem"
+                          aria-labelledby={`service-${index}-title`}
+                        >
+                          <div 
+                            className="text-4xl mb-4" 
+                            role="img" 
+                            aria-label={`${item.title} icon`}
+                          >
+                            {item.icon}
+                          </div>
+                          <h3 id={`service-${index}-title`} className="text-xl font-semibold mb-4">
+                            {item.title}
+                          </h3>
+                          <p className="text-neutral-600">{item.description}</p>
+                        </Card>
+                      ))}
+                    </StaggeredList>
+                  </div>
+                </div>
+              </SectionTransition>
+
+              {/* Projects Section */}
+              <section 
+                id="projects"
+                role="region" 
+                aria-labelledby="projects-heading"
+              >
+                <ProjectShowcase projects={sampleProjects} />
+              </section>
+
+              {/* Skills Section */}
+              <SectionTransition 
+                id="skills" 
+                className="min-h-screen py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900"
+                role="region"
+                aria-labelledby="skills-heading"
+              >
+                <div className="container mx-auto px-6">
+                  <SkillsVisualization />
+                </div>
+              </SectionTransition>
+
+              {/* Contact Section */}
+              <section 
+                id="contact"
+                role="region" 
+                aria-labelledby="contact-heading"
+              >
+                <ContactSection />
+              </section>
+            </main>
+          </Layout>
+        </ClientWrapper>
+      </NavigationProvider>
+    </>
+  )
 }

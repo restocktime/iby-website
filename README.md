@@ -1,36 +1,154 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Isaac Benyakar - Interactive Portfolio Website
 
-## Getting Started
+A cutting-edge, interactive personal portfolio website built with Next.js 14, showcasing web development expertise through innovative design and functionality.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **Animations**: Framer Motion (ready for implementation)
+- **3D Graphics**: Three.js with React Three Fiber (ready for implementation)
+- **State Management**: Zustand (ready for implementation)
+- **Data Fetching**: TanStack Query (ready for implementation)
+- **Fonts**: Inter, Poppins, JetBrains Mono (optimized with Next.js)
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── layout/           # Layout components (Header, Footer, Layout)
+│   ├── sections/         # Page sections (ready for implementation)
+│   └── ui/               # Reusable UI components (Button, Card)
+├── hooks/                # Custom React hooks
+├── lib/                  # Utility functions
+├── types/                # TypeScript type definitions
+└── utils/                # Helper utilities
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Design System
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Colors
+- **Primary**: Blue palette for main branding
+- **Secondary**: Purple palette for accents
+- **Accent**: Orange palette for highlights
+- **Neutral**: Grayscale for text and backgrounds
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Typography
+- **Sans**: Inter (body text)
+- **Display**: Poppins (headings)
+- **Mono**: JetBrains Mono (code)
 
-## Learn More
+### Animations
+Custom keyframes and transitions ready for:
+- Fade in/out effects
+- Slide transitions
+- Float animations
+- Glow effects
+- Physics-based animations
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Getting Started
 
-## Deploy on Vercel
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Run development server**
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Build for production**
+   ```bash
+   npm run build
+   ```
+
+4. **Start production server**
+   ```bash
+   npm start
+   ```
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🎯 Features Ready for Implementation
+
+### Core Infrastructure ✅
+- [x] Next.js 14 with TypeScript
+- [x] Tailwind CSS with custom design tokens
+- [x] Project structure and organization
+- [x] Basic layout components
+- [x] Font optimization
+- [x] Custom hooks for scroll and device detection
+
+### Ready for Next Tasks
+- [ ] Immersive hero section with 3D elements
+- [ ] Interactive project showcase
+- [ ] Real-time data integration
+- [ ] Skills visualization dashboard
+- [ ] Contact and engagement system
+- [ ] Mobile-optimized experience
+- [ ] Performance optimization
+
+## 📋 Requirements Coverage
+
+This foundation addresses the following requirements:
+- **1.1**: Custom animated hero section infrastructure
+- **3.1**: Never-before-seen layouts and interactions foundation
+- **7.1**: Mobile-first responsive design system
+
+## 🔧 Configuration
+
+### Tailwind CSS
+Custom configuration with:
+- Extended color palette
+- Custom font families
+- Animation keyframes
+- Responsive breakpoints
+- Custom spacing scale
+
+### TypeScript
+Comprehensive type definitions for:
+- Project data models
+- User interaction tracking
+- Device capabilities
+- Contact forms
+- Skill categories
+
+## 📝 Next Steps
+
+The project foundation is complete and ready for implementing the interactive features:
+
+1. **Hero Section**: 3D particle system and typewriter effects
+2. **Project Showcase**: Live demos and interactive filtering
+3. **Skills Dashboard**: Radar charts and technology networks
+4. **Real-time Integration**: Live metrics and data feeds
+5. **Advanced Animations**: Physics-based interactions
+
+## 🚀 Deployment
+
+Ready for deployment on Vercel with:
+- Automatic builds and deployments
+- Environment variable support
+- Edge function capabilities
+- Global CDN optimization
+
+---
+
+Built with ❤️ by Isaac Benyakar

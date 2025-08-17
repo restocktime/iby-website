@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button'
 
 // Very simple particle system for testing
 function SimpleParticles() {
-  const meshRef = useRef<any>()
+  const meshRef = useRef<any>(null)
 
   // Simple rotating cube to test if 3D is working
   return (

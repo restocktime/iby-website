@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Play, 
@@ -9,15 +9,11 @@ import {
   Globe, 
   Database, 
   CheckCircle, 
-  AlertCircle,
   Code,
   Search,
-  Download,
-  TrendingUp,
-  Clock,
-  Activity,
-  Zap
+  Activity
 } from 'lucide-react'
+import { JSX } from 'react/jsx-runtime'
 
 interface ScrapingStep {
   id: string
@@ -42,10 +38,10 @@ interface ScrapedProduct {
 }
 
 interface LiveScraperDemoProps {
-  onClose?: () => void
+  // No props needed for now
 }
 
-export function LiveScraperDemo({ onClose }: LiveScraperDemoProps) {
+export function LiveScraperDemo(): JSX.Element {
   const [isRunning, setIsRunning] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [scrapedData, setScrapedData] = useState<ScrapedProduct[]>([])

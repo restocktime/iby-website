@@ -5,6 +5,11 @@ import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { PerformanceMonitor } from "@/components/ui/PerformanceWrapper";
 import { AccessibilityProvider, AccessibilityPanel } from "@/components/ui/AccessibilityProvider";
 import { AccessibilityValidator } from "@/components/ui/AccessibilityValidator";
+import { ServiceWorkerRegistration } from "@/components/pwa/ServiceWorkerRegistration";
+import { PWAInstaller } from "@/components/pwa/PWAInstaller";
+import { OfflineManager } from "@/components/pwa/OfflineManager";
+import { MobileNavigation } from "@/components/mobile/MobileNavigation";
+import { OrientationHandler } from "@/components/mobile/OrientationHandler";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -315,7 +320,14 @@ export default function RootLayout({
           <AccessibilityProvider>
             <ErrorBoundary level="page">
               <PerformanceMonitor>
-                {children}
+                <ServiceWorkerRegistration />
+                <OfflineManager>
+                  <OrientationHandler preferredOrientation="portrait">
+                    {children}
+                    <MobileNavigation />
+                    <PWAInstaller />
+                  </OrientationHandler>
+                </OfflineManager>
               </PerformanceMonitor>
             </ErrorBoundary>
             <AccessibilityPanel />

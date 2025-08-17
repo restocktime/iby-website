@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts'
+import { RealTimeAnalyticsDashboard } from './RealTimeAnalyticsDashboard'
+import { ABTestManager } from './ABTestManager'
 
 interface AnalyticsData {
   visitors: {
@@ -37,6 +39,7 @@ export function AnalyticsDashboard() {
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [timeRange, setTimeRange] = useState('7d')
+  const [activeTab, setActiveTab] = useState<'overview' | 'realtime' | 'abtests'>('overview')
 
   useEffect(() => {
     fetchAnalytics()
@@ -78,17 +81,58 @@ export function AnalyticsDashboard() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold text-gray-900">Analytics Dashboard</h2>
-        <select
-          value={timeRange}
-          onChange={(e) => setTimeRange(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        >
-          <option value="1d">Last 24 hours</option>
-          <option value="7d">Last 7 days</option>
-          <option value="30d">Last 30 days</option>
-          <option value="90d">Last 90 days</option>
-        </select>
+        <div className="flex items-center space-x-4">
+          <div className="flex border border-gray-300 rounded-md">
+            <button
+              onClick={() => setActiveTab('overview')}
+              className={`px-4 py-2 text-sm font-medium ${
+                activeTab === 'overview'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-50'
+              } rounded-l-md border-r border-gray-300`}
+            >
+              Overview
+            </button>
+            <button
+              onClick={() => setActiveTab('realtime')}
+              className={`px-4 py-2 text-sm font-medium ${
+                activeTab === 'realtime'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-50'
+              } border-r border-gray-300`}
+            >
+              Real-Time
+            </button>
+            <button
+              onClick={() => setActiveTab('abtests')}
+              className={`px-4 py-2 text-sm font-medium ${
+                activeTab === 'abtests'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-50'
+              } rounded-r-md`}
+            >
+              A/B Tests
+            </button>
+          </div>
+          {activeTab === 'overview' && (
+            <select
+              value={timeRange}
+              onChange={(e) => setTimeRange(e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="1d">Last 24 hours</option>
+              <option value="7d">Last 7 days</option>
+              <option value="30d">Last 30 days</option>
+              <option value="90d">Last 90 days</option>
+            </select>
+          )}
+        </div>
       </div>
+
+      {activeTab === 'realtime' && <RealTimeAnalyticsDashboard />}
+      {activeTab === 'abtests' && <ABTestManager />}
+      {activeTab === 'overview' && (
+        <div className="space-y-6">
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -219,6 +263,7 @@ export function AnalyticsDashboard() {
           ))}
         </div>
       </div>
+      )}
     </div>
   )
 }

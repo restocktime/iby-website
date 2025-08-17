@@ -14,6 +14,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { ContactForm, ProjectCategory } from '@/types'
 import { useEngagementTracking } from '@/hooks/useEngagementTracking'
+import { useABTest } from '@/hooks/useABTest'
+import { useAnalytics } from '@/components/providers/AnalyticsProvider'
 
 interface SmartContactFormProps {
   selectedMethod: string | null
@@ -23,6 +25,8 @@ interface SmartContactFormProps {
 
 export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartContactFormProps) {
   const { trackInteraction } = useEngagementTracking()
+  const { trackConversion } = useAnalytics()
+  const { variant: formVariant, trackConversion: trackABConversion } = useABTest('test_contact_form')
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
@@ -97,6 +101,13 @@ export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartC
 
       if (response.ok) {
         setSubmitStatus('success')
+        
+        // Track conversion for analytics
+        trackConversion('contact_form', 10, formData)
+        
+        // Track A/B test conversion
+        trackABConversion(10)
+        
         setTimeout(() => {
           onClose()
         }, 3000)

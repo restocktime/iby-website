@@ -1,0 +1,26 @@
+{
+  "passed": [
+    "All required security headers are configured",
+    "HSTS properly configured with 1-year max-age",
+    "All essential CSP directives are present",
+    "No hardcoded secrets detected",
+    ".env files are properly ignored by git",
+    "Secure authentication implementation found",
+    "Input validation libraries detected"
+  ],
+  "failed": [],
+  "warnings": [
+    "Could not run dependency audit: Command failed: npm audit --json",
+    "CSP contains potentially unsafe directives: 'unsafe-inline', 'unsafe-eval', *",
+    ".env.production is world-readable",
+    "package.json is world-readable",
+    "next.config.ts is world-readable",
+    "No explicit CORS configuration found in API routes",
+    "Found 2 uses of dangerouslySetInnerHTML"
+  ],
+  "recommendations": [
+    "Consider using nonces or hashes instead of unsafe-inline/unsafe-eval",
+    "Consider implementing explicit CORS headers for API security",
+    "Review dangerouslySetInnerHTML usage for XSS vulnerabilities"
+  ]
+}

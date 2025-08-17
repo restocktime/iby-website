@@ -104,7 +104,7 @@ export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartC
         setSubmitStatus('success')
         
         // Track conversion for analytics
-        trackConversion('contact_form', 10, formData)
+        trackConversion('contact_form', 10, formData as Record<string, unknown>)
         
         // Track A/B test conversion
         trackABConversion(10)

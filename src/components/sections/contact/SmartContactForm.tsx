@@ -16,6 +16,7 @@ import { ContactForm, ProjectCategory } from '@/types'
 import { useEngagementTracking } from '@/hooks/useEngagementTracking-simple'
 import { useABTest } from '@/hooks/useABTest'
 import { useAnalytics } from '@/components/providers/AnalyticsProvider'
+import Button from '@/components/ui/Button'
 
 interface SmartContactFormProps {
   selectedMethod: string | null
@@ -164,12 +165,14 @@ export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartC
             {isPriority && ' • Priority Response'}
           </p>
         </div>
-        <button
+        <Button
           onClick={onClose}
-          className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+          variant="ghost"
+          size="sm"
+          className="p-2 text-gray-400 hover:text-white"
         >
-          <XMarkIcon className="h-6 w-6 text-gray-400" />
-        </button>
+          <XMarkIcon className="h-6 w-6" />
+        </Button>
       </div>
 
       <AnimatePresence mode="wait">
@@ -201,12 +204,13 @@ export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartC
             <p className="text-gray-300 mb-4">
               Please try again or contact me directly using one of the methods above.
             </p>
-            <button
+            <Button
               onClick={() => setSubmitStatus('idle')}
-              className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+              variant="gradient"
+              size="md"
             >
               Try Again
-            </button>
+            </Button>
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -371,59 +375,60 @@ export function SmartContactForm({ selectedMethod, onClose, isPriority }: SmartC
             <div className="bg-white/5 border border-white/10 rounded-lg p-4">
               <h4 className="text-white font-medium mb-3">Alternative Contact Options</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <button
+                <Button
                   type="button"
                   onClick={() => window.location.href = `mailto:isaac@isaacbenyakar.com?subject=Urgent: ${formData.projectType} Project&body=Hi Isaac,%0A%0AI have an urgent ${formData.projectType} project inquiry.%0A%0AProject Details:%0A${encodeURIComponent(formData.message)}%0A%0ABest regards,%0A${formData.name}`}
-                  className="flex items-center justify-center space-x-2 p-3 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-400/30 rounded-lg text-blue-300 text-sm transition-colors"
+                  variant="glass"
+                  size="sm"
+                  leftIcon={<EnvelopeIcon className="h-4 w-4" />}
+                  className="text-blue-300 border-blue-400/30 hover:bg-blue-600/30"
                 >
-                  <EnvelopeIcon className="h-4 w-4" />
-                  <span>Direct Email</span>
-                </button>
+                  Direct Email
+                </Button>
                 
-                <button
+                <Button
                   type="button"
                   onClick={() => {
                     const message = encodeURIComponent(`Hi Isaac! I'm ${formData.name} and I'm interested in a ${formData.projectType} project. ${formData.message.substring(0, 100)}...`)
                     window.open(`https://wa.me/15550123?text=${message}`, '_blank')
                   }}
-                  className="flex items-center justify-center space-x-2 p-3 bg-green-600/20 hover:bg-green-600/30 border border-green-400/30 rounded-lg text-green-300 text-sm transition-colors"
+                  variant="glass"
+                  size="sm"
+                  leftIcon={<PhoneIcon className="h-4 w-4" />}
+                  className="text-green-300 border-green-400/30 hover:bg-green-600/30"
                 >
-                  <PhoneIcon className="h-4 w-4" />
-                  <span>WhatsApp</span>
-                </button>
+                  WhatsApp
+                </Button>
                 
-                <button
+                <Button
                   type="button"
                   onClick={() => {
                     navigator.clipboard.writeText('isaac#1234').then(() => {
                       alert('Discord username copied! Add me: isaac#1234')
                     })
                   }}
-                  className="flex items-center justify-center space-x-2 p-3 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-400/30 rounded-lg text-purple-300 text-sm transition-colors"
+                  variant="glass"
+                  size="sm"
+                  leftIcon={<ChatBubbleLeftRightIcon className="h-4 w-4" />}
+                  className="text-purple-300 border-purple-400/30 hover:bg-purple-600/30"
                 >
-                  <ChatBubbleLeftRightIcon className="h-4 w-4" />
-                  <span>Discord</span>
-                </button>
+                  Discord
+                </Button>
               </div>
             </div>
 
-            <button
+            <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full flex items-center justify-center space-x-2 px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-300"
+              variant="gradient"
+              size="lg"
+              fullWidth
+              isLoading={isSubmitting}
+              leftIcon={!isSubmitting ? <PaperAirplaneIcon className="h-5 w-5" /> : undefined}
+              className="font-semibold"
             >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                  <span>Sending...</span>
-                </>
-              ) : (
-                <>
-                  <PaperAirplaneIcon className="h-5 w-5" />
-                  <span>Send Message</span>
-                </>
-              )}
-            </button>
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </Button>
           </form>
         )}
       </AnimatePresence>

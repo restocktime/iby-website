@@ -75,6 +75,16 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Analytics events processing error:', error)
+    
+    // In development, return success to prevent UI crashes
+    if (process.env.NODE_ENV === 'development') {
+      return NextResponse.json({
+        success: true,
+        processed: 0,
+        error: 'Development mode - analytics disabled'
+      })
+    }
+    
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

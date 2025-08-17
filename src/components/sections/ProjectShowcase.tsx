@@ -71,26 +71,49 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
       onProjectClick: handleProjectClick
     }
 
-    switch (layoutMode) {
-      case 'grid':
-        return <ProjectGrid {...commonProps} />
-      case 'timeline':
-        return <ProjectTimeline {...commonProps} />
-      case 'network':
-        return <ProjectNetwork {...commonProps} />
-      default:
-        return <ProjectGrid {...commonProps} />
+    try {
+      switch (layoutMode) {
+        case 'grid':
+          return <ProjectGrid {...commonProps} />
+        case 'timeline':
+          return <ProjectTimeline {...commonProps} />
+        case 'network':
+          return <ProjectNetwork {...commonProps} />
+        default:
+          return <ProjectGrid {...commonProps} />
+      }
+    } catch (error) {
+      console.error('Error rendering project layout:', error)
+      // Fallback to simple grid
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
+              onClick={() => handleProjectClick(project)}
+            >
+              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-white/80 text-sm mb-4">{project.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.slice(0, 3).map((tech) => (
+                  <span
+                    key={tech.name}
+                    className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full"
+                  >
+                    {tech.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )
     }
   }
 
   return (
-    <section 
-      id="projects"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800"
-      role="region"
-      aria-labelledby="projects-heading"
-    >
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,10 +122,10 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 id="projects-heading" className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 id="projects-heading" className="text-4xl md:text-5xl font-luxury font-bold text-white mb-4 tracking-wide">
             Live Project Showcase
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
             Explore real, working projects with live demos, interactive previews, and detailed technical insights
           </p>
         </motion.div>
@@ -119,22 +142,52 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
         >
           {/* Layout Toggle */}
           <div className="flex justify-center">
-            <LayoutToggle
-              currentLayout={layoutMode}
-              onLayoutChange={setLayoutMode}
-            />
+            {typeof LayoutToggle !== 'undefined' ? (
+              <LayoutToggle
+                currentLayout={layoutMode}
+                onLayoutChange={setLayoutMode}
+              />
+            ) : (
+              <div className="flex items-center bg-white/10 backdrop-blur-md rounded-xl p-1 shadow-lg border border-white/20">
+                {(['grid', 'timeline', 'network'] as LayoutMode[]).map((layout) => (
+                  <button
+                    key={layout}
+                    onClick={() => setLayoutMode(layout)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      layoutMode === layout
+                        ? 'text-blue-400 bg-blue-500/20'
+                        : 'text-white/80 hover:text-white'
+                    }`}
+                  >
+                    {layout.charAt(0).toUpperCase() + layout.slice(1)}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Filters */}
-          <ProjectFilters
-            projects={projects}
-            selectedCategory={selectedCategory}
-            selectedTechnologies={selectedTechnologies}
-            searchQuery={searchQuery}
-            onCategoryChange={setSelectedCategory}
-            onTechnologiesChange={setSelectedTechnologies}
-            onSearchChange={setSearchQuery}
-          />
+          {typeof ProjectFilters !== 'undefined' ? (
+            <ProjectFilters
+              projects={projects}
+              selectedCategory={selectedCategory}
+              selectedTechnologies={selectedTechnologies}
+              searchQuery={searchQuery}
+              onCategoryChange={setSelectedCategory}
+              onTechnologiesChange={setSelectedTechnologies}
+              onSearchChange={setSearchQuery}
+            />
+          ) : (
+            <div className="flex justify-center">
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-white/60 focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+          )}
         </motion.div>
 
         {/* Project Layout */}
@@ -159,10 +212,10 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               aria-live="polite"
             >
               <div className="text-6xl mb-4" role="img" aria-label="Search icon">🔍</div>
-              <h3 className="text-2xl font-semibold text-slate-700 dark:text-slate-300 mb-2">
+              <h3 className="text-2xl font-semibold text-white mb-2">
                 No projects found
               </h3>
-              <p className="text-slate-500 dark:text-slate-400">
+              <p className="text-white/70">
                 Try adjusting your filters or search query
               </p>
             </motion.div>
@@ -172,13 +225,63 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
         {/* Project Detail Modal */}
         <AnimatePresence>
           {selectedProject && (
-            <ProjectDetailModal
-              project={selectedProject}
-              onClose={handleCloseModal}
-            />
+            <>
+              {typeof ProjectDetailModal !== 'undefined' ? (
+                <ProjectDetailModal
+                  project={selectedProject}
+                  onClose={handleCloseModal}
+                />
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                  onClick={handleCloseModal}
+                >
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    className="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl w-full border border-white/20"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="flex justify-between items-start mb-6">
+                      <h2 className="text-2xl font-bold text-white">{selectedProject.title}</h2>
+                      <button
+                        onClick={handleCloseModal}
+                        className="text-white/60 hover:text-white transition-colors"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <p className="text-white/80 mb-6">{selectedProject.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {selectedProject.technologies.map((tech) => (
+                        <span
+                          key={tech.name}
+                          className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
+                        >
+                          {tech.name}
+                        </span>
+                      ))}
+                    </div>
+                    {selectedProject.liveUrl && (
+                      <a
+                        href={selectedProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        View Live Project
+                      </a>
+                    )}
+                  </motion.div>
+                </motion.div>
+              )}
+            </>
           )}
         </AnimatePresence>
-      </div>
-    </section>
+    </div>
   )
 }

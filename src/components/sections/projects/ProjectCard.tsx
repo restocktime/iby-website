@@ -13,13 +13,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, onClick, index }: ProjectCardProps) {
-  const [showPreview, setShowPreview] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
-
-  const handlePreviewToggle = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setShowPreview(!showPreview)
-  }
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleExternalLink = (e: React.MouseEvent, url: string) => {
     e.stopPropagation()
@@ -43,13 +38,20 @@ export function ProjectCard({ project, onClick, index }: ProjectCardProps) {
 
   return (
     <motion.div
-      className="group relative bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer border border-slate-200 dark:border-slate-700"
-      whileHover={{ y: -4, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      className="group relative bg-white/10 backdrop-blur-md rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer border border-white/20 hover:border-white/40"
+      whileHover={{ y: -8, scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
       onClick={onClick}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ 
+        delay: index * 0.1,
+        type: "spring",
+        stiffness: 200,
+        damping: 20
+      }}
     >
       {/* Featured Badge */}
       {project.featured && (
@@ -91,62 +93,73 @@ export function ProjectCard({ project, onClick, index }: ProjectCardProps) {
         )}
         
         {/* Overlay with Actions */}
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-          {project.liveUrl && (
-            <motion.button
-              onClick={(e) => handlePreviewToggle(e)}
-              className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {showPreview ? <Eye className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-            </motion.button>
-          )}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div
+            className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full border border-white/30"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ 
+              scale: isHovered ? 1 : 0, 
+              opacity: isHovered ? 1 : 0 
+            }}
+            transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+          >
+            <span className="text-sm font-medium">Click to view details</span>
+          </motion.div>
           
-          {project.liveUrl && (
-            <motion.button
-              onClick={(e) => handleExternalLink(e, project.liveUrl!)}
-              className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ExternalLink className="w-5 h-5" />
-            </motion.button>
-          )}
-          
-          {project.githubUrl && (
-            <motion.button
-              onClick={(e) => handleExternalLink(e, project.githubUrl!)}
-              className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Github className="w-5 h-5" />
-            </motion.button>
-          )}
-        </div>
+          <div className="absolute bottom-4 right-4 flex gap-2">
+            {project.liveUrl && (
+              <motion.button
+                onClick={(e) => handleExternalLink(e, project.liveUrl!)}
+                className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors border border-white/30"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ 
+                  scale: isHovered ? 1 : 0, 
+                  opacity: isHovered ? 1 : 0 
+                }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              >
+                <ExternalLink className="w-4 h-4" />
+              </motion.button>
+            )}
+            
+            {project.githubUrl && (
+              <motion.button
+                onClick={(e) => handleExternalLink(e, project.githubUrl!)}
+                className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors border border-white/30"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ 
+                  scale: isHovered ? 1 : 0, 
+                  opacity: isHovered ? 1 : 0 
+                }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+              >
+                <Github className="w-4 h-4" />
+              </motion.button>
+            )}
+          </div>
+        </motion.div>
       </div>
 
-      {/* Live Preview */}
-      {showPreview && project.liveUrl && (
-        <div className="relative h-48 border-t border-slate-200 dark:border-slate-700">
-          <LivePreview
-            url={project.liveUrl}
-            title={project.title}
-            credentials={project.demoCredentials}
-          />
-        </div>
-      )}
+
 
       {/* Project Content */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
-          <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
             {project.title}
           </h3>
         </div>
 
-        <p className="text-slate-600 dark:text-slate-300 text-sm mb-4 line-clamp-2">
+        <p className="text-white/80 text-sm mb-4 line-clamp-2 leading-relaxed">
           {project.description}
         </p>
 
@@ -155,38 +168,53 @@ export function ProjectCard({ project, onClick, index }: ProjectCardProps) {
           {project.technologies.slice(0, 4).map((tech) => (
             <span
               key={tech.name}
-              className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs rounded-lg"
+              className="px-2 py-1 bg-white/10 backdrop-blur-sm text-white/90 text-xs rounded-lg border border-white/20"
             >
               {tech.name}
             </span>
           ))}
           {project.technologies.length > 4 && (
-            <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 text-xs rounded-lg">
+            <span className="px-2 py-1 bg-white/5 backdrop-blur-sm text-white/60 text-xs rounded-lg border border-white/10">
               +{project.technologies.length - 4} more
             </span>
           )}
         </div>
 
         {/* Metrics */}
-        <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+        <div className="flex items-center justify-between text-sm text-white/70">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <TrendingUp className="w-4 h-4" />
+              <TrendingUp className="w-4 h-4 text-green-400" />
               <span>{project.metrics.performanceScore}/10</span>
             </div>
             <div className="flex items-center gap-1">
-              <Users className="w-4 h-4" />
+              <Users className="w-4 h-4 text-blue-400" />
               <span>{project.metrics.userEngagement.monthlyActiveUsers.toLocaleString()}</span>
             </div>
           </div>
-          <div className="text-xs">
+          <div className="text-xs text-white/60">
             Complexity: {project.metrics.technicalComplexity}/10
           </div>
         </div>
       </div>
 
       {/* Hover Effect Border */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-500/20 transition-colors pointer-events-none" />
+      <motion.div 
+        className="absolute inset-0 rounded-2xl border-2 border-transparent pointer-events-none"
+        animate={{ 
+          borderColor: isHovered ? 'rgba(59, 130, 246, 0.5)' : 'transparent',
+          boxShadow: isHovered ? '0 0 30px rgba(59, 130, 246, 0.3)' : '0 0 0px rgba(59, 130, 246, 0)'
+        }}
+        transition={{ duration: 0.3 }}
+      />
+      
+      {/* Shimmer Effect */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 pointer-events-none"
+        initial={{ x: '-100%' }}
+        animate={{ x: isHovered ? '100%' : '-100%' }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+      />
     </motion.div>
   )
 }

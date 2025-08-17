@@ -77,13 +77,13 @@ export function ProjectFilters({
     <div className="space-y-4">
       {/* Search Bar */}
       <div className="relative max-w-md mx-auto">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 w-5 h-5" />
         <input
           type="text"
           placeholder="Search projects..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          className="w-full pl-10 pr-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-white/60 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:bg-white/20 transition-all"
         />
       </div>
 
@@ -97,7 +97,7 @@ export function ProjectFilters({
               px-4 py-2 rounded-lg font-medium transition-all
               ${selectedCategory === 'all'
                 ? 'bg-blue-600 text-white shadow-lg'
-                : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700'
+                : 'bg-white/10 backdrop-blur-md text-white/80 hover:text-white hover:bg-white/20 border border-white/20'
               }
             `}
             whileHover={{ scale: 1.02 }}
@@ -114,7 +114,7 @@ export function ProjectFilters({
                 px-4 py-2 rounded-lg font-medium transition-all
                 ${selectedCategory === category
                   ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-700'
+                  : 'bg-white/10 backdrop-blur-md text-white/80 hover:text-white hover:bg-white/20 border border-white/20'
                 }
               `}
               whileHover={{ scale: 1.02 }}
@@ -128,7 +128,7 @@ export function ProjectFilters({
         {/* Technology Filter Toggle */}
         <motion.button
           onClick={() => setShowTechFilter(!showTechFilter)}
-          className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-white/80 hover:text-white hover:bg-white/20 transition-colors"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >

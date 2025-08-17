@@ -39,7 +39,10 @@ export function ProjectGrid({ projects, onProjectClick }: ProjectGridProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 auto-rows-fr"
+      style={{ 
+        gridTemplateRows: 'masonry' // Enable masonry layout for better alignment
+      }}
     >
       {projects.map((project, index) => (
         <motion.div
@@ -47,7 +50,8 @@ export function ProjectGrid({ projects, onProjectClick }: ProjectGridProps) {
           variants={itemVariants}
           layout
           layoutId={`project-${project.id}`}
-          className="h-full"
+          className="h-full flex flex-col"
+          style={{ minHeight: '400px' }} // Ensure consistent minimum height
         >
           <ProjectCard
             project={project}

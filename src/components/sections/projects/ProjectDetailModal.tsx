@@ -65,25 +65,33 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4"
       onClick={onClose}
+      transition={{ duration: 0.3 }}
     >
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+        initial={{ scale: 0.8, opacity: 0, y: 50 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.8, opacity: 0, y: 50 }}
+        transition={{ 
+          type: "spring", 
+          stiffness: 200, 
+          damping: 25,
+          duration: 0.5
+        }}
+        className="bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 max-w-6xl w-full max-h-[90vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className={`relative bg-gradient-to-r ${getCategoryColor(project.category)} p-6 text-white`}>
-          <button
+          <motion.button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-lg transition-colors"
+            className="absolute top-4 right-4 p-2 hover:bg-white/20 rounded-xl transition-colors backdrop-blur-sm border border-white/20"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <X className="w-6 h-6" />
-          </button>
+          </motion.button>
 
           <div className="flex items-start gap-4">
             {project.screenshots[0] && (

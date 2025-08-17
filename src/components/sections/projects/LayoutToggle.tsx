@@ -17,7 +17,7 @@ export function LayoutToggle({ currentLayout, onLayoutChange }: LayoutToggleProp
   ]
 
   return (
-    <div className="flex items-center bg-white dark:bg-slate-800 rounded-xl p-1 shadow-lg border border-slate-200 dark:border-slate-700">
+    <div className="flex items-center bg-white/10 backdrop-blur-md rounded-xl p-1 shadow-lg border border-white/20">
       {layouts.map(({ id, icon: Icon, label }) => (
         <motion.button
           key={id}
@@ -25,8 +25,8 @@ export function LayoutToggle({ currentLayout, onLayoutChange }: LayoutToggleProp
           className={`
             relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors
             ${currentLayout === id
-              ? 'text-blue-600 dark:text-blue-400'
-              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+              ? 'text-blue-400'
+              : 'text-white/80 hover:text-white'
             }
           `}
           whileHover={{ scale: 1.02 }}
@@ -35,7 +35,7 @@ export function LayoutToggle({ currentLayout, onLayoutChange }: LayoutToggleProp
           {currentLayout === id && (
             <motion.div
               layoutId="activeLayout"
-              className="absolute inset-0 bg-blue-50 dark:bg-blue-900/20 rounded-lg"
+              className="absolute inset-0 bg-blue-500/20 rounded-lg"
               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
             />
           )}

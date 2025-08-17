@@ -25,7 +25,7 @@ class AdvancedAnalyticsService {
   }
 
   private generateSessionId(): string {
-    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    return `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`
   }
 
   private initializeService() {
@@ -60,7 +60,7 @@ class AdvancedAnalyticsService {
     if (typeof window === 'undefined') return
 
     const analyticsEvent: AdvancedAnalyticsEvent = {
-      id: `event_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      id: `event_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`,
       sessionId: this.sessionId,
       userId: this.userId,
       event,
@@ -279,8 +279,16 @@ class AdvancedAnalyticsService {
       return `#${element.id}`
     }
     
-    if (element.className) {
-      const classes = element.className.split(' ').filter(c => c.trim())
+    // Handle className safely - it might be an SVGAnimatedString or other object
+    const className = element.className
+    if (className && typeof className === 'string') {
+      const classes = className.split(' ').filter(c => c.trim())
+      if (classes.length > 0) {
+        return `${element.tagName.toLowerCase()}.${classes.join('.')}`
+      }
+    } else if (className && typeof className === 'object' && 'baseVal' in className) {
+      // Handle SVGAnimatedString
+      const classes = (className as any).baseVal.split(' ').filter((c: string) => c.trim())
       if (classes.length > 0) {
         return `${element.tagName.toLowerCase()}.${classes.join('.')}`
       }

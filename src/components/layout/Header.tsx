@@ -9,6 +9,8 @@ import { useGestureRecognition } from '@/hooks/useGestureRecognition'
 import { useAnimationSettings } from '@/contexts/AnimationContext'
 import { navVariants, springConfigs } from '@/lib/animations'
 import { cn } from '@/lib/utils'
+import NavigationItem from './NavigationItem'
+import CTAButton from './CTAButton'
 
 type NavigationMode = 'minimal' | 'expanded' | 'contextual'
 
@@ -178,11 +180,11 @@ export default function Header() {
           'translate-y-0': scrollDirection === 'up'
         })
       case 'contextual':
-        return cn(baseClasses, 'bg-white/95 backdrop-blur-lg shadow-lg')
+        return cn(baseClasses, 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-white/20')
       case 'expanded':
       default:
         return cn(baseClasses, {
-          'bg-white/80 backdrop-blur-md shadow-lg': scrollPosition > 50,
+          'bg-white/90 backdrop-blur-xl shadow-xl border-b border-white/20': scrollPosition > 50,
           'bg-transparent': scrollPosition <= 50
         })
     }
@@ -223,10 +225,10 @@ export default function Header() {
         role="banner"
         aria-label="Main navigation"
       >
-        <nav className="container mx-auto px-4 sm:px-6" role="navigation" aria-label="Main navigation">
+        <nav className="container mx-auto px-6 sm:px-8" role="navigation" aria-label="Main navigation">
           <div className={cn(
             'flex items-center justify-between transition-all duration-300',
-            navigationMode === 'minimal' ? 'py-2' : 'py-4'
+            navigationMode === 'minimal' ? 'py-3' : 'py-5'
           )}>
             {/* Logo with magnetic effect */}
             <motion.div
@@ -261,95 +263,22 @@ export default function Header() {
               </Link>
             </motion.div>
 
-            {/* Desktop Navigation with enhanced interactions */}
-            <div className="hidden md:flex items-center space-x-1" role="menubar">
-              {navigationSections.map((section, index) => (
-                <motion.div
+            {/* Desktop Navigation - Clean and Simple */}
+            <div className="hidden md:flex items-center space-x-2" role="menubar">
+              {navigationSections.map((section) => (
+                <NavigationItem
                   key={section.id}
-                  className="relative"
-                  onMouseEnter={() => setHoveredItem(section.id)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <motion.button
-                    onClick={() => handleSectionClick(section.href)}
-                    className={cn(
-                      'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-                      activeSection === section.id
-                        ? 'text-blue-600'
-                        : scrollPosition > 50 
-                          ? 'text-neutral-700 hover:text-blue-600' 
-                          : 'text-white/90 hover:text-white'
-                    )}
-                    variants={shouldAnimate ? navVariants : undefined}
-                    initial="hidden"
-                    animate="visible"
-                    whileHover="hover"
-                    whileTap="tap"
-                    transition={{
-                      ...springConfigs.snappy,
-                      delay: shouldAnimate ? index * 0.1 : 0
-                    }}
-                    role="menuitem"
-                    aria-current={activeSection === section.id ? 'page' : undefined}
-                    aria-label={`Navigate to ${section.label} section`}
-                  >
-                    {/* Ripple effect */}
-                    {shouldAnimate && (
-                      <motion.div
-                        className="absolute inset-0 bg-blue-100 rounded-lg"
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileTap={{ scale: 2, opacity: [0, 0.3, 0] }}
-                        transition={{ duration: 0.4 }}
-                      />
-                    )}
-                    
-                    <span className="relative z-10">{section.label}</span>
-                    
-                    {/* Active indicator */}
-                    {activeSection === section.id && (
-                      <motion.div
-                        className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600 rounded-full"
-                        layoutId="activeIndicator"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        style={{ x: '-50%' }}
-                        transition={springConfigs.bouncy}
-                      />
-                    )}
-                    
-                    {/* Hover background */}
-                    {hoveredItem === section.id && shouldAnimate && (
-                      <motion.div
-                        className="absolute inset-0 bg-blue-50 rounded-lg -z-10"
-                        layoutId="hoverBackground"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={springConfigs.snappy}
-                      />
-                    )}
-                  </motion.button>
-                </motion.div>
+                  label={section.label}
+                  href={section.href}
+                  isActive={activeSection === section.id}
+                  isScrolled={scrollPosition > 50}
+                  onClick={() => handleSectionClick(section.href)}
+                />
               ))}
               
-              <motion.button
-                onClick={() => handleSectionClick('#contact')}
-                className="ml-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                whileHover={shouldAnimate ? { scale: 1.05 } : undefined}
-                whileTap={shouldAnimate ? { scale: 0.95 } : undefined}
-                aria-label="Get in touch - Navigate to contact section"
-              >
-                {/* Button ripple effect */}
-                {shouldAnimate && (
-                  <motion.div
-                    className="absolute inset-0 bg-white/20 rounded-lg"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileTap={{ scale: 2, opacity: [0, 0.5, 0] }}
-                    transition={{ duration: 0.5 }}
-                  />
-                )}
-                <span className="relative z-10">Get In Touch</span>
-              </motion.button>
+              <CTAButton onClick={() => handleSectionClick('#contact')}>
+                Get In Touch
+              </CTAButton>
             </div>
 
             {/* Enhanced Mobile Menu Button */}

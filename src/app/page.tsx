@@ -34,31 +34,45 @@ export default function Home() {
               {/* About Section */}
               <SectionTransition 
                 id="about" 
-                className="relative min-h-screen flex items-center py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 overflow-hidden"
+                className="relative w-full min-h-screen flex items-center justify-center py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 overflow-hidden"
                 role="region"
                 aria-labelledby="about-heading"
               >
-                <GlobalParticles density="light" color="#64748b" opacity={0.3} />
-                <div className="container mx-auto px-6 relative z-10">
-                  <div className="max-w-6xl mx-auto text-center">
+                <GlobalParticles 
+                  density="medium" 
+                  color="#3b82f6" 
+                  opacity={0.4} 
+                  variant="gradient" 
+                />
+                
+                {/* Main Content Container */}
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                  <div className="text-center">
+                    
+                    {/* Header Section */}
                     <SectionTransition delay={0.2}>
-                      <header>
-                        <h2 id="about-heading" className="text-4xl md:text-6xl font-luxury font-bold text-slate-900 mb-8 tracking-wide">
+                      <header className="mb-12 lg:mb-16">
+                        <h2 id="about-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-luxury font-bold text-slate-900 mb-6 tracking-wide">
                           About Isaac
                         </h2>
+                        <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
                       </header>
                     </SectionTransition>
                     
+                    {/* Description Section */}
                     <SectionTransition delay={0.4}>
-                      <p className="text-xl md:text-2xl text-slate-700 mb-16 leading-relaxed max-w-4xl mx-auto font-modern">
-                        Passionate full-stack developer with expertise in modern web technologies, 
-                        automation, and custom business solutions. I specialize in creating 
-                        innovative applications that solve real-world problems.
-                      </p>
+                      <div className="mb-16 lg:mb-20">
+                        <p className="text-lg sm:text-xl lg:text-2xl text-slate-700 leading-relaxed font-modern max-w-4xl mx-auto">
+                          Passionate full-stack developer with expertise in modern web technologies, 
+                          automation, and custom business solutions. I specialize in creating 
+                          innovative applications that solve real-world problems and drive business growth.
+                        </p>
+                      </div>
                     </SectionTransition>
                     
+                    {/* Services Grid */}
                     <StaggeredList 
-                      className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto" 
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 xl:gap-12" 
                       staggerDelay={0.2}
                       role="list"
                       aria-label="Core services offered"
@@ -86,19 +100,19 @@ export default function Home() {
                         <Card 
                           key={index} 
                           variant="elevated" 
-                          className="text-center p-8 hover:shadow-2xl transition-all duration-500 hover:scale-105 bg-white/80 backdrop-blur-sm border-0 shadow-lg"
+                          className="w-full h-full text-center p-8 sm:p-10 lg:p-12 hover:shadow-2xl transition-all duration-500 hover:scale-105 bg-white/95 backdrop-blur-lg border border-white/30 shadow-2xl rounded-2xl lg:rounded-3xl group"
                           role="listitem"
                           aria-labelledby={`service-${index}-title`}
                         >
-                          <div className={`w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r ${item.gradient} flex items-center justify-center text-2xl shadow-lg`}>
+                          <div className={`w-16 h-16 sm:w-18 sm:h-18 lg:w-20 lg:h-20 mx-auto mb-6 lg:mb-8 rounded-xl lg:rounded-2xl bg-gradient-to-r ${item.gradient} flex items-center justify-center text-2xl sm:text-3xl shadow-xl group-hover:scale-110 transition-transform duration-300`}>
                             <span role="img" aria-label={`${item.title} icon`}>
                               {item.icon}
                             </span>
                           </div>
-                          <h3 id={`service-${index}-title`} className="text-xl font-modern font-bold mb-4 text-slate-900">
+                          <h3 id={`service-${index}-title`} className="text-xl sm:text-2xl font-modern font-bold mb-4 lg:mb-6 text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
                             {item.title}
                           </h3>
-                          <p className="text-slate-600 leading-relaxed font-modern">{item.description}</p>
+                          <p className="text-slate-600 leading-relaxed font-modern text-base sm:text-lg">{item.description}</p>
                         </Card>
                       ))}
                     </StaggeredList>
@@ -109,12 +123,24 @@ export default function Home() {
               {/* Projects Section */}
               <section 
                 id="projects"
-                className="relative bg-white overflow-hidden"
+                className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-16 sm:py-24 lg:py-32"
                 role="region" 
                 aria-labelledby="projects-heading"
               >
-                <GlobalParticles density="light" color="#64748b" opacity={0.2} />
-                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                {/* Flowing Particle Background */}
+                <div className="absolute inset-0 z-0">
+                  <GlobalParticles 
+                    density="light" 
+                    color="#ffffff" 
+                    opacity={0.3} 
+                    variant="default" 
+                  />
+                </div>
+
+                {/* Background Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20 z-10" />
+
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                   <ProjectShowcase projects={sampleProjects} />
                 </div>
               </section>
@@ -122,12 +148,17 @@ export default function Home() {
               {/* Skills Section */}
               <SectionTransition 
                 id="skills" 
-                className="relative min-h-screen py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden"
+                className="relative w-full min-h-screen flex items-center justify-center py-16 sm:py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden"
                 role="region"
                 aria-labelledby="skills-heading"
               >
-                <GlobalParticles density="medium" color="#ffffff" opacity={0.4} />
-                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                <GlobalParticles 
+                  density="medium" 
+                  color="#ffffff" 
+                  opacity={0.5} 
+                  variant="colorful" 
+                />
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                   <SkillsVisualization />
                 </div>
               </SectionTransition>
@@ -135,12 +166,17 @@ export default function Home() {
               {/* Contact Section */}
               <section 
                 id="contact"
-                className="relative overflow-hidden"
+                className="relative w-full overflow-hidden py-16 sm:py-24 lg:py-32"
                 role="region" 
                 aria-labelledby="contact-heading"
               >
-                <GlobalParticles density="light" color="#64748b" opacity={0.3} />
-                <div className="relative z-10">
+                <GlobalParticles 
+                  density="medium" 
+                  color="#ec4899" 
+                  opacity={0.35} 
+                  variant="gradient" 
+                />
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                   <ContactSection />
                 </div>
               </section>

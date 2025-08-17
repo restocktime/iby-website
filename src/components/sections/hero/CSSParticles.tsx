@@ -36,6 +36,8 @@ const CSSParticles = () => {
         <div
           key={particle.id}
           className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+          role="presentation"
+          aria-hidden="true"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,

@@ -84,7 +84,7 @@ const HeroSection = () => {
           className="absolute inset-0 z-0"
           style={{ y: particlesY }}
         >
-          <ErrorBoundary level="component" fallback={<ParticleLoading />}>
+          <ErrorBoundary level="component" fallback={({ error, retry }) => <ParticleLoading />}>
             <Suspense fallback={<ParticleLoading />}>
               <Canvas
                 camera={{ position: [0, 0, 5], fov: 75 }}

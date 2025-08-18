@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeftIcon, ExternalLinkIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftIcon, ArrowTopRightOnSquareIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
 import { DemoRenderer } from '@/components/sections/projects/DemoRenderer'
 
 export const metadata: Metadata = {
@@ -102,7 +102,7 @@ export default function RestockTimePage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 border border-slate-600 hover:border-slate-500 text-white px-6 py-3 rounded-lg transition-colors"
                   >
-                    <ExternalLinkIcon className="w-4 h-4" />
+                    <ArrowTopRightOnSquareIcon className="w-4 h-4" />
                     View Code
                   </a>
                 )}

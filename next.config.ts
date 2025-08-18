@@ -221,21 +221,6 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
-      {
-        source: '/projects',
-        destination: '/#projects',
-        permanent: true,
-      },
-      {
-        source: '/skills',
-        destination: '/#skills',
-        permanent: true,
-      },
-      {
-        source: '/about',
-        destination: '/#about',
-        permanent: true,
-      },
     ];
   },
 

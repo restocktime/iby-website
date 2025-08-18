@@ -238,6 +238,7 @@ export function useGestureRecognition(
   }, [handleTouchStart, handleTouchMove, handleTouchEnd])
 
   return {
-    isSupported: 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    isSupported: typeof window !== 'undefined' && typeof navigator !== 'undefined' && 
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0)
   }
 }

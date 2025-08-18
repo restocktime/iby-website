@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
@@ -22,17 +23,18 @@ interface NavigationSection {
 }
 
 const navigationSections: NavigationSection[] = [
-  { id: 'hero', label: 'Home', href: '#hero' },
-  { id: 'about', label: 'About', href: '#about' },
-  { id: 'projects', label: 'Projects', href: '#projects' },
-  { id: 'skills', label: 'Skills', href: '#skills' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'home', label: 'Home', href: '/' },
+  { id: 'about', label: 'About', href: '/about' },
+  { id: 'projects', label: 'Projects', href: '/projects' },
+  { id: 'skills', label: 'Skills', href: '/skills' },
+  { id: 'contact', label: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {
+  const pathname = usePathname()
   const [navigationMode, setNavigationMode] = useState<NavigationMode>('expanded')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('hero')
+  const [activeSection, setActiveSection] = useState('home')
   const [scrollProgress, setScrollProgress] = useState(0)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const { scrollPosition, scrollDirection } = useScrollPosition()
@@ -46,6 +48,20 @@ export default function Header() {
   const logoY = useMotionValue(0)
   const logoSpringX = useSpring(logoX, springConfigs.gentle)
   const logoSpringY = useSpring(logoY, springConfigs.gentle)
+
+  // Set active section based on current pathname
+  useEffect(() => {
+    const pathToSection = {
+      '/': 'home',
+      '/about': 'about',
+      '/projects': 'projects',
+      '/skills': 'skills',
+      '/contact': 'contact'
+    }
+    
+    const currentSection = pathToSection[pathname as keyof typeof pathToSection] || 'home'
+    setActiveSection(currentSection)
+  }, [pathname])
 
   // Calculate scroll progress
   useEffect(() => {
@@ -93,16 +109,28 @@ export default function Header() {
     return () => observer.disconnect()
   }, [])
 
-  // Handle smooth scrolling to sections with interaction tracking
+  // Handle navigation with view transitions
   const handleSectionClick = (href: string) => {
-    const targetId = href.replace('#', '')
-    const targetElement = document.getElementById(targetId)
-    
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      })
+    // If it's an anchor link (starts with #), handle as before
+    if (href.startsWith('#')) {
+      const targetId = href.replace('#', '')
+      const targetElement = document.getElementById(targetId)
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    } else {
+      // For page navigation, use view transitions if supported
+      if ('startViewTransition' in document && typeof document.startViewTransition === 'function') {
+        document.startViewTransition(() => {
+          window.location.href = href
+        })
+      } else {
+        window.location.href = href
+      }
     }
     
     setIsMobileMenuOpen(false)
@@ -233,23 +261,40 @@ export default function Header() {
             {/* Logo removed - empty space for cleaner look */}
             <div></div>
 
-            {/* Desktop Navigation - Clean and Simple */}
-            <div className="hidden md:flex items-center space-x-3" role="menubar">
+            {/* Desktop Navigation - Modern Glassmorphism */}
+            <motion.div 
+              className="hidden md:flex items-center gap-2 px-6 py-3 rounded-3xl bg-black/10 backdrop-blur-xl border border-white/10 shadow-2xl"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              role="menubar"
+            >
               {navigationSections.map((section) => (
-                <NavigationItem
-                  key={section.id}
-                  label={section.label}
-                  href={section.href}
-                  isActive={activeSection === section.id}
-                  isScrolled={scrollPosition > 50}
-                  onClick={() => handleSectionClick(section.href)}
-                />
+                <Link key={section.id} href={section.href}>
+                  <NavigationItem
+                    label={section.label}
+                    href={section.href}
+                    isActive={activeSection === section.id}
+                    isScrolled={scrollPosition > 50}
+                    onClick={() => handleSectionClick(section.href)}
+                  />
+                </Link>
               ))}
               
-              <CTAButton onClick={() => handleSectionClick('#contact')}>
-                Get In Touch
-              </CTAButton>
-            </div>
+              {/* Separator */}
+              <motion.div 
+                className="w-px h-6 bg-white/20 mx-2"
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              />
+              
+              <Link href="/contact">
+                <CTAButton onClick={() => handleSectionClick('/contact')}>
+                  Get In Touch
+                </CTAButton>
+              </Link>
+            </motion.div>
 
             {/* Enhanced Mobile Menu Button - Hidden on mobile, only show on tablet */}
             <motion.button
@@ -369,59 +414,62 @@ export default function Header() {
                   } : undefined}
                 >
                   {navigationSections.map((section) => (
-                    <motion.button
-                      key={section.id}
-                      onClick={() => handleSectionClick(section.href)}
-                      className={cn(
-                        'text-left px-4 py-3 rounded-lg text-base font-medium transition-colors relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-                        activeSection === section.id
-                          ? 'text-blue-600 bg-blue-50'
-                          : 'text-neutral-700 hover:text-blue-600 hover:bg-neutral-50'
-                      )}
-                      variants={shouldAnimate ? {
-                        hidden: { opacity: 0, x: 20 },
-                        visible: { opacity: 1, x: 0 }
-                      } : undefined}
-                      whileHover={shouldAnimate ? { scale: 1.02, x: 4 } : undefined}
-                      whileTap={shouldAnimate ? { scale: 0.98 } : undefined}
-                      role="menuitem"
-                      aria-current={activeSection === section.id ? 'page' : undefined}
-                      aria-label={`Navigate to ${section.label} section`}
-                    >
-                      {/* Mobile item ripple effect */}
-                      {shouldAnimate && (
-                        <motion.div
-                          className="absolute inset-0 bg-blue-100 rounded-lg"
-                          initial={{ scale: 0, opacity: 0 }}
-                          whileTap={{ scale: 1.5, opacity: [0, 0.3, 0] }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      )}
-                      <span className="relative z-10">{section.label}</span>
-                    </motion.button>
+                    <Link key={section.id} href={section.href}>
+                      <motion.button
+                        onClick={() => handleSectionClick(section.href)}
+                        className={cn(
+                          'w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+                          activeSection === section.id
+                            ? 'text-blue-600 bg-blue-50'
+                            : 'text-neutral-700 hover:text-blue-600 hover:bg-neutral-50'
+                        )}
+                        variants={shouldAnimate ? {
+                          hidden: { opacity: 0, x: 20 },
+                          visible: { opacity: 1, x: 0 }
+                        } : undefined}
+                        whileHover={shouldAnimate ? { scale: 1.02, x: 4 } : undefined}
+                        whileTap={shouldAnimate ? { scale: 0.98 } : undefined}
+                        role="menuitem"
+                        aria-current={activeSection === section.id ? 'page' : undefined}
+                        aria-label={`Navigate to ${section.label} section`}
+                      >
+                        {/* Mobile item ripple effect */}
+                        {shouldAnimate && (
+                          <motion.div
+                            className="absolute inset-0 bg-blue-100 rounded-lg"
+                            initial={{ scale: 0, opacity: 0 }}
+                            whileTap={{ scale: 1.5, opacity: [0, 0.3, 0] }}
+                            transition={{ duration: 0.4 }}
+                          />
+                        )}
+                        <span className="relative z-10">{section.label}</span>
+                      </motion.button>
+                    </Link>
                   ))}
                   
-                  <motion.button
-                    onClick={() => handleSectionClick('#contact')}
-                    className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                    variants={shouldAnimate ? {
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0 }
-                    } : undefined}
-                    whileTap={shouldAnimate ? { scale: 0.98 } : undefined}
-                    aria-label="Get in touch - Navigate to contact section"
-                  >
-                    {/* CTA button ripple effect */}
-                    {shouldAnimate && (
-                      <motion.div
-                        className="absolute inset-0 bg-white/20 rounded-lg"
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileTap={{ scale: 2, opacity: [0, 0.5, 0] }}
-                        transition={{ duration: 0.5 }}
-                      />
-                    )}
-                    <span className="relative z-10">Get In Touch</span>
-                  </motion.button>
+                  <Link href="/contact">
+                    <motion.button
+                      onClick={() => handleSectionClick('/contact')}
+                      className="mt-4 w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium text-center relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      variants={shouldAnimate ? {
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0 }
+                      } : undefined}
+                      whileTap={shouldAnimate ? { scale: 0.98 } : undefined}
+                      aria-label="Get in touch - Navigate to contact section"
+                    >
+                      {/* CTA button ripple effect */}
+                      {shouldAnimate && (
+                        <motion.div
+                          className="absolute inset-0 bg-white/20 rounded-lg"
+                          initial={{ scale: 0, opacity: 0 }}
+                          whileTap={{ scale: 2, opacity: [0, 0.5, 0] }}
+                          transition={{ duration: 0.5 }}
+                        />
+                      )}
+                      <span className="relative z-10">Get In Touch</span>
+                    </motion.button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>

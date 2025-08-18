@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+/* Custom animations for enhanced components */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* 3D perspective utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* CSS View Transitions for seamless navigation */
+@view-transition {
+  navigation: auto;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -171,6 +203,65 @@ html {
   * {
     scroll-snap-align: none !important;
     scroll-snap-stop: normal !important;
+  }
+}
+
+/* CSS View Transition Styles for Persistent Hero */
+#hero {
+  view-transition-name: main-hero;
+}
+
+#main-content {
+  view-transition-name: main-content;
+}
+
+/* Smooth transitions for the hero section */
+::view-transition-old(main-hero) {
+  animation: none;
+  opacity: 1;
+}
+
+::view-transition-new(main-hero) {
+  animation: none;
+  opacity: 1;
+}
+
+/* Smooth content transitions */
+::view-transition-old(main-content) {
+  animation: slide-out-down 0.3s ease-in-out;
+}
+
+::view-transition-new(main-content) {
+  animation: slide-in-up 0.3s ease-in-out;
+}
+
+@keyframes slide-out-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fallback for browsers that don't support view transitions */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    animation: none;
   }
 }
 

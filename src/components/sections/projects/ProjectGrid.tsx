@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Project } from '@/types'
-import { ProjectCard } from './ProjectCard'
+import { ProjectCardEnhanced } from './ProjectCardEnhanced'
 
 interface ProjectGridProps {
   projects: Project[]
@@ -39,10 +39,7 @@ export function ProjectGrid({ projects, onProjectClick }: ProjectGridProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 auto-rows-fr"
-      style={{ 
-        gridTemplateRows: 'masonry' // Enable masonry layout for better alignment
-      }}
+      className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12"
     >
       {projects.map((project, index) => (
         <motion.div
@@ -50,10 +47,9 @@ export function ProjectGrid({ projects, onProjectClick }: ProjectGridProps) {
           variants={itemVariants}
           layout
           layoutId={`project-${project.id}`}
-          className="h-full flex flex-col"
-          style={{ minHeight: '400px' }} // Ensure consistent minimum height
+          className="h-full"
         >
-          <ProjectCard
+          <ProjectCardEnhanced
             project={project}
             onClick={() => onProjectClick(project)}
             index={index}

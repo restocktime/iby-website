@@ -1,9 +1,14 @@
 'use client'
 
-import { useRef, Suspense } from 'react'
-
+import { useRef, Suspense, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import CSSParticles from './hero/CSSParticles'
+import BoidsParticleSystem from './hero/BoidsParticleSystem'
+import WebGPUBoids from './hero/WebGPUBoids'
+import FlowingParticles from './hero/FlowingParticles'
+import MotionControls from '@/components/ui/MotionControls'
+import { useMotionPreference } from '@/components/ui/MotionControls'
 import TypewriterText from './hero/TypewriterText'
 import FloatingCards from './hero/FloatingCards'
 import ScrollIndicator from './hero/ScrollIndicator'
@@ -12,8 +17,10 @@ import { PerformanceWrapper, AdaptiveComponent } from '@/components/ui/Performan
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary'
 import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities'
 
-// Fallback component for low-performance devices
-const SimpleBanner = () => (
+// Fallback component for low-performance devices  
+const SimpleBanner = () => {
+  const router = useRouter()
+  return (
   <section 
     className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
     role="banner"
@@ -31,12 +38,7 @@ const SimpleBanner = () => (
           size="lg" 
           className="bg-white text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           aria-label="View my portfolio projects"
-          onClick={() => {
-            if (typeof document !== 'undefined') {
-              const projectsSection = document.getElementById('projects');
-              projectsSection?.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
+          onClick={() => router.push('/projects')}
         >
           View My Work
         </Button>
@@ -45,19 +47,15 @@ const SimpleBanner = () => (
           size="lg" 
           className="border-white text-white hover:bg-white hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
           aria-label="Navigate to contact section"
-          onClick={() => {
-            if (typeof document !== 'undefined') {
-              const contactSection = document.getElementById('contact');
-              contactSection?.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
+          onClick={() => router.push('/contact')}
         >
           Get In Touch
         </Button>
       </div>
     </div>
   </section>
-)
+  )
+}
 
 // Loading fallback
 const HeroLoading = () => (
@@ -77,7 +75,11 @@ const HeroLoading = () => (
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLElement>(null)
+  const router = useRouter()
   const { supportsWebGL, performanceLevel } = useDeviceCapabilities()
+  const { motionEnabled } = useMotionPreference()
+  const [useWebGPU, setUseWebGPU] = useState(true)
+  const [boidsEnabled, setBoidsEnabled] = useState(true)
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -99,12 +101,22 @@ const HeroSection = () => {
         role="banner"
         aria-label="Hero section - Isaac Benyakar introduction"
       >
-        {/* Flowing Particle Background */}
+        {/* Flowing Mouse-Following Particles */}
         <motion.div 
           className="absolute inset-0 z-0"
           style={{ y: particlesY }}
         >
-          <CSSParticles />
+          {motionEnabled && boidsEnabled ? (
+            <Suspense fallback={<CSSParticles />}>
+              <FlowingParticles
+                particleCount={performanceLevel === 'low' ? 120 : performanceLevel === 'medium' ? 180 : 250}
+                color="#87CEEB"
+                followMouse={true}
+              />
+            </Suspense>
+          ) : (
+            <CSSParticles />
+          )}
         </motion.div>
 
         {/* Background Gradient Overlay */}
@@ -150,12 +162,7 @@ const HeroSection = () => {
               size="lg" 
               className="bg-white text-blue-900 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               aria-label="View my portfolio projects"
-              onClick={() => {
-                if (typeof document !== 'undefined') {
-                  const projectsSection = document.getElementById('projects');
-                  projectsSection?.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={() => router.push('/projects')}
             >
               View My Work
             </Button>
@@ -164,12 +171,7 @@ const HeroSection = () => {
               size="lg" 
               className="border-white text-white hover:bg-white hover:text-blue-900 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
               aria-label="Navigate to contact section"
-              onClick={() => {
-                if (typeof document !== 'undefined') {
-                  const contactSection = document.getElementById('contact');
-                  contactSection?.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={() => router.push('/contact')}
             >
               Get In Touch
             </Button>
@@ -183,6 +185,11 @@ const HeroSection = () => {
 
         {/* Scroll Indicator */}
         <ScrollIndicator />
+
+        {/* Motion Controls */}
+        <MotionControls 
+          onMotionToggle={(enabled) => setBoidsEnabled(enabled)} 
+        />
       </motion.section>
     </ErrorBoundary>
   )

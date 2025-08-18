@@ -90,15 +90,15 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20 px-4"
+          className="text-center mb-20 w-full flex flex-col items-center justify-center"
         >
-          <h2 id="contact-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tight m-0">
+          <h2 id="contact-heading" className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white mb-8 leading-tight tracking-tight text-center w-full mx-auto">
             Let&apos;s Build Something
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 block sm:inline">
-              {' '}Amazing
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 block">
+              Amazing
             </span>
           </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-body font-medium">
+          <p className="text-2xl sm:text-3xl lg:text-4xl text-gray-300 max-w-6xl mx-auto leading-relaxed font-body font-medium text-center px-4">
             Ready to transform your ideas into reality? Choose your preferred way to connect,
             and I&apos;ll get back to you with a personalized response.
           </p>
@@ -108,7 +108,7 @@ export function ContactSection() {
           {/* Contact Methods */}
           <div className="space-y-8 px-4 lg:px-0" role="region" aria-labelledby="contact-methods-heading">
             <div className="flex items-center justify-between mb-10">
-              <h3 id="contact-methods-heading" className="text-2xl lg:text-3xl font-heading font-semibold text-white">Contact Methods</h3>
+              <h3 id="contact-methods-heading" className="text-2xl lg:text-4xl font-heading font-semibold text-white">Contact Methods</h3>
               <AvailabilityIndicator />
             </div>
 

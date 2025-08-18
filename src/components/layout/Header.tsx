@@ -230,38 +230,8 @@ export default function Header() {
             'flex items-center justify-between transition-all duration-300',
             navigationMode === 'minimal' ? 'py-3' : 'py-5'
           )}>
-            {/* Logo with magnetic effect */}
-            <motion.div
-              style={shouldAnimate ? { x: logoSpringX, y: logoSpringY } : undefined}
-              whileHover={shouldAnimate ? { scale: 1.05 } : undefined}
-              whileTap={shouldAnimate ? { scale: 0.95 } : undefined}
-              onMouseMove={handleLogoMouseMove}
-              onMouseLeave={handleLogoMouseLeave}
-            >
-              <Link
-                href="/"
-                className={cn(getLogoClasses(), "relative focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1 font-heading")}
-                onClick={() => handleSectionClick('#hero')}
-                aria-label="Isaac Benyakar - Go to homepage"
-              >
-                Isaac Benyakar
-                {/* Subtle glow effect */}
-                {shouldAnimate && (
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-lg -z-10"
-                    animate={{
-                      opacity: [0.3, 0.6, 0.3],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 3,
-                      ease: "easeInOut"
-                    }}
-                  />
-                )}
-              </Link>
-            </motion.div>
+            {/* Logo removed - empty space for cleaner look */}
+            <div></div>
 
             {/* Desktop Navigation - Clean and Simple */}
             <div className="hidden md:flex items-center space-x-3" role="menubar">
@@ -281,9 +251,9 @@ export default function Header() {
               </CTAButton>
             </div>
 
-            {/* Enhanced Mobile Menu Button */}
+            {/* Enhanced Mobile Menu Button - Hidden on mobile, only show on tablet */}
             <motion.button
-              className="md:hidden p-2 rounded-lg relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="hidden sm:block md:hidden p-2 rounded-lg relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               onClick={() => {
                 setIsMobileMenuOpen(!isMobileMenuOpen)
                 incrementInteraction()
@@ -345,13 +315,13 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* Enhanced Mobile Menu with gesture support */}
+        {/* Enhanced Mobile Menu with gesture support - Hidden on mobile, only show on tablet */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
               ref={mobileMenuRef}
               id="mobile-menu"
-              className="md:hidden bg-white/95 backdrop-blur-lg border-t border-neutral-200"
+              className="hidden sm:block md:hidden bg-white/95 backdrop-blur-lg border-t border-neutral-200"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}

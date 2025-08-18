@@ -6,6 +6,7 @@ import Header from './Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import { ScrollTracker } from './ScrollTracker'
+import { MobileNavigation } from '../mobile/MobileNavigation'
 import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities'
 import { AnimationProvider } from '@/contexts/AnimationContext'
 
@@ -127,7 +128,7 @@ export default function Layout({ children }: LayoutProps) {
         <Header />
         
         <motion.main 
-          className="flex-1"
+          className={`flex-1 ${isMobile ? 'pb-20' : ''}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -138,6 +139,7 @@ export default function Layout({ children }: LayoutProps) {
         <Footer />
         <ScrollToTop />
         <ScrollTracker />
+        <MobileNavigation />
 
         {/* Mobile Touch Indicator */}
         {isMobile && supportsTouch && (

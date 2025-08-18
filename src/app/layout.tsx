@@ -3,8 +3,7 @@ import { Inter, JetBrains_Mono, Fraunces, DM_Sans, Space_Grotesk } from "next/fo
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 import { PerformanceMonitor } from "@/components/ui/PerformanceWrapper";
-import { AccessibilityProvider, AccessibilityPanel } from "@/components/ui/AccessibilityProvider";
-import { AccessibilityValidator } from "@/components/ui/AccessibilityValidator";
+
 import { ServiceWorkerRegistration } from "@/components/pwa/ServiceWorkerRegistration";
 import { PWAInstaller } from "@/components/pwa/PWAInstaller";
 import { OfflineManager } from "@/components/pwa/OfflineManager";
@@ -350,22 +349,18 @@ export default function RootLayout({
           </a>
         </div>
         <Providers>
-          <AccessibilityProvider>
-            <ErrorBoundary level="page">
-              <PerformanceMonitor>
-                <ServiceWorkerRegistration />
-                <OfflineManager>
-                  <OrientationHandler preferredOrientation="portrait">
-                    {children}
-                    <MobileNavigation />
-                    <PWAInstaller />
-                  </OrientationHandler>
-                </OfflineManager>
-              </PerformanceMonitor>
-            </ErrorBoundary>
-            <AccessibilityPanel />
-            <AccessibilityValidator />
-          </AccessibilityProvider>
+          <ErrorBoundary level="page">
+            <PerformanceMonitor>
+              <ServiceWorkerRegistration />
+              <OfflineManager>
+                <OrientationHandler preferredOrientation="portrait">
+                  {children}
+                  <MobileNavigation />
+                  <PWAInstaller />
+                </OrientationHandler>
+              </OfflineManager>
+            </PerformanceMonitor>
+          </ErrorBoundary>
         </Providers>
       </body>
     </html>

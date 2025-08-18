@@ -70,13 +70,14 @@ export function MobileNavigation() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navigationItems.map(item => item.id)
-      const scrollPosition = window.scrollY + 100
+      const scrollPosition = window.scrollY + 150 // Better offset for mobile
 
-      for (const section of sections) {
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
         const element = document.getElementById(section)
         if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          const { offsetTop } = element
+          if (scrollPosition >= offsetTop - 100) {
             setActiveSection(section)
             break
           }
@@ -84,10 +85,22 @@ export function MobileNavigation() {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    // Throttle scroll events for better performance
+    let ticking = false
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true })
     handleScroll() // Initial check
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', throttledHandleScroll)
   }, [])
 
   const handleNavClick = (href: string, id: string) => {
@@ -95,10 +108,17 @@ export function MobileNavigation() {
     setActiveSection(id)
     setIsOpen(false)
     
-    // Smooth scroll to section
+    // Smooth scroll to section with proper offset for mobile
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      const headerOffset = 80 // Account for mobile header height
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
     }
   }
 

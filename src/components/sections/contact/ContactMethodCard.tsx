@@ -103,17 +103,17 @@ export function ContactMethodCard({
 
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-lg font-semibold text-white">{method.name}</h4>
-            <div className="flex items-center space-x-2 text-sm text-gray-400">
+            <h4 className="text-xl font-semibold text-white">{method.name}</h4>
+            <div className="flex items-center space-x-2 text-base text-gray-400">
               <ClockIcon className="h-4 w-4" />
               <span>{method.responseTime}</span>
             </div>
           </div>
 
-          <p className="text-gray-300 text-sm mb-3">{method.description}</p>
+          <p className="text-gray-300 text-base mb-3 leading-relaxed">{method.description}</p>
 
           <div className="flex items-center justify-between">
-            <div className="text-sm">
+            <div className="text-base">
               <span className="text-gray-400">Contact: </span>
               <span className="text-white font-mono">{method.action}</span>
             </div>

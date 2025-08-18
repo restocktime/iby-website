@@ -36,17 +36,17 @@ const SkillsVisualization: React.FC<SkillsVisualizationProps> = ({ className = '
       aria-labelledby="skills-heading"
     >
       {/* Header */}
-      <div className="text-center">
-        <h2 id="skills-heading" className="text-3xl font-heading font-bold text-white mb-4">Skills & Expertise</h2>
-        <p className="text-gray-400 max-w-2xl mx-auto font-body">
+      <div className="text-center w-full flex flex-col items-center justify-center mb-8">
+        <h2 id="skills-heading" className="text-3xl font-heading font-bold text-white mb-6 text-center w-full">Skills & Expertise</h2>
+        <p className="text-gray-400 max-w-4xl mx-auto font-body text-center leading-relaxed text-xl px-4">
           Interactive visualization of my technical skills, experience timeline, and real-time GitHub contributions
         </p>
       </div>
 
       {/* View Selector */}
-      <div className="flex justify-center">
+      <div className="flex justify-center w-full">
         <div 
-          className="flex space-x-1 bg-gray-800/50 backdrop-blur-sm rounded-lg p-1 border border-gray-700/50"
+          className="flex space-x-1 bg-gray-800/50 backdrop-blur-sm rounded-lg p-1 border border-gray-700/50 mx-auto"
           role="tablist"
           aria-label="Skills visualization views"
         >

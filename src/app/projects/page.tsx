@@ -108,7 +108,7 @@ export default function ProjectsPage() {
                       Modern, responsive applications built with React, Next.js, and cutting-edge technologies.
                     </p>
                     <div className="text-sm text-blue-600 font-medium">
-                      {sampleProjects.filter(p => p.category === 'web-app').length} Projects
+                      {sampleProjects.filter(p => p.category === 'web-development').length} Projects
                     </div>
                   </div>
 
@@ -138,7 +138,7 @@ export default function ProjectsPage() {
                       Tailored CRM systems, analytics dashboards, and business process optimization.
                     </p>
                     <div className="text-sm text-emerald-600 font-medium">
-                      {sampleProjects.filter(p => p.category === 'custom-solution').length} Projects
+                      {sampleProjects.filter(p => p.category === 'crm').length} Projects
                     </div>
                   </div>
                 </div>

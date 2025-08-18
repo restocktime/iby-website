@@ -1,0 +1,148 @@
+
+> interactive-portfolio@0.1.0 dev
+> next dev
+
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/isaac/package-lock.json.
+   Consider removing the lockfiles at:
+   * /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/package-lock.json
+
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.12.179:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 1221ms
+ ✓ Compiled /middleware in 106ms (153 modules)
+ ○ Compiling /skills ...
+ ✓ Compiled /skills in 1721ms (1505 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /skills. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ HEAD / 200 in 2112ms
+ GET /skills 200 in 1914ms
+ ✓ Compiled /about in 296ms (1499 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /about. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /about 200 in 462ms
+ ✓ Compiled /projects in 349ms (1628 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 476ms
+ ✓ Compiled /contact in 191ms (1642 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /contact 200 in 293ms
+ ✓ Compiled /services/web-development in 244ms (1654 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /services/web-development. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /services/web-development 200 in 473ms
+ ✓ Compiled /services/automation in 211ms (1660 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /services/automation. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /services/automation 200 in 357ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /skills. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /skills 200 in 105ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 48ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 75ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 43ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 13ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 71ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /skills. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /skills 200 in 27ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 43ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 111ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /contact 200 in 29ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 14ms
+ ✓ Compiled in 679ms (1650 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 125ms
+ ✓ Compiled in 231ms (1650 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 54ms
+ ✓ Compiled in 153ms (732 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 17ms
+ ✓ Compiled in 153ms (732 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 15ms
+ ✓ Compiled in 142ms (732 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 36ms
+ ✓ Compiled in 123ms (732 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 13ms
+ ✓ Compiled in 120ms (732 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 16ms
+ ✓ Compiled in 286ms (1650 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 38ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /projects. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /projects 200 in 235ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 24ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 77ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /skills. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /skills 200 in 34ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /contact 200 in 29ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /contact 200 in 39ms
+ ✓ Compiled in 536ms (1650 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /contact 200 in 77ms
+ ✓ Compiled in 282ms (1650 modules)
+ GET /contact 200 in 59ms
+ ✓ Compiled in 242ms (732 modules)
+ GET /contact 200 in 13ms
+ ✓ Compiled in 315ms (1650 modules)
+ GET /contact 200 in 33ms
+ ✓ Compiled in 221ms (1650 modules)
+ GET /contact 200 in 25ms
+ ✓ Compiled in 278ms (1650 modules)
+ GET /contact 200 in 26ms
+ ✓ Compiled in 520ms (1650 modules)
+ GET /contact 200 in 76ms
+ ✓ Compiled in 240ms (1650 modules)
+ GET /contact 200 in 46ms

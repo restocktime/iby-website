@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Layout from '@/components/layout/Layout'
 import HeroSection from '@/components/sections/HeroSection'
-import { ContactSection } from '@/components/sections/ContactSection'
+import { SimpleContactSection } from '@/components/sections/SimpleContactSection'
 import GlobalParticles from '@/components/ui/GlobalParticles'
 import { ClientWrapper } from '@/components/ClientWrapper'
 import { ClientOnly } from '@/components/ClientOnly'
@@ -59,7 +59,7 @@ export default function ContactPage() {
               />
               <div className="relative z-10">
                 <ClientOnly>
-                  <ContactSection />
+                  <SimpleContactSection />
                 </ClientOnly>
               </div>
             </div>

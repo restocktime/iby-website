@@ -212,7 +212,7 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
         {viewMode === 'grid' ? (
           <motion.div
             key="grid"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -236,7 +236,7 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
                   }}
                 >
                   <motion.div
-                    className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 border border-slate-700/50 shadow-2xl overflow-hidden"
+                    className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-4 sm:p-6 border border-slate-700/50 shadow-2xl overflow-hidden"
                     whileHover={{ 
                       scale: 1.05, 
                       rotateY: 5,
@@ -254,24 +254,24 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
 
                     {/* Icon */}
                     <motion.div
-                      className={`w-16 h-16 bg-gradient-to-br ${skill.color} rounded-2xl flex items-center justify-center mb-6 shadow-xl relative z-10`}
+                      className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${skill.color} rounded-2xl flex items-center justify-center mb-4 sm:mb-6 shadow-xl relative z-10`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <Icon className="w-8 h-8 text-white" />
+                      <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </motion.div>
 
                     {/* Content */}
-                    <div className="relative z-10">
-                      <h3 className="text-xl font-bold text-white mb-2">{skill.name}</h3>
-                      <p className="text-slate-400 text-sm mb-4">{skill.experience} experience</p>
+                    <div className="relative z-10 min-w-0 px-1">
+                      <h3 className="text-sm sm:text-lg font-bold text-white mb-2 break-words leading-tight">{skill.name}</h3>
+                      <p className="text-slate-400 text-xs mb-3 break-words leading-relaxed">{skill.experience} experience</p>
 
                       {/* Progress Bar */}
-                      <div className="mb-4">
+                      <div className="mb-3 sm:mb-4">
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm text-slate-300">Proficiency</span>
-                          <span className="text-sm font-bold text-white">{skill.level}%</span>
+                          <span className="text-xs text-slate-300 truncate">Proficiency</span>
+                          <span className="text-xs font-bold text-white ml-2">{skill.level}%</span>
                         </div>
-                        <div className="w-full bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                        <div className="w-full bg-slate-700/50 rounded-full h-2 sm:h-3 overflow-hidden">
                           <motion.div
                             className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
                             initial={{ width: 0 }}
@@ -288,9 +288,9 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
                       </div>
 
                       {/* Projects Count */}
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-slate-400">Projects</span>
-                        <span className="font-bold text-white">{skill.projects}</span>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-slate-400 truncate">Projects</span>
+                        <span className="font-bold text-white ml-2">{skill.projects}</span>
                       </div>
                     </div>
 
@@ -330,7 +330,7 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
                 return (
                   <motion.div
                     key={skill.name}
-                    className="flex items-center gap-6 p-4 rounded-2xl hover:bg-slate-700/30 transition-colors"
+                    className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl hover:bg-slate-700/30 transition-colors"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -338,18 +338,18 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
                     onMouseLeave={() => setHoveredSkill(null)}
                   >
                     <motion.div
-                      className={`w-12 h-12 bg-gradient-to-br ${skill.color} rounded-xl flex items-center justify-center shadow-lg`}
+                      className={`w-12 h-12 bg-gradient-to-br ${skill.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0`}
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </motion.div>
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg font-bold text-white">{skill.name}</h3>
-                        <div className="flex items-center gap-4 text-sm text-slate-400">
-                          <span>{skill.experience}</span>
-                          <span>{skill.projects} projects</span>
+                    <div className="flex-1 min-w-0 w-full">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
+                        <h3 className="text-lg font-bold text-white break-words">{skill.name}</h3>
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-400">
+                          <span className="break-words">{skill.experience}</span>
+                          <span className="whitespace-nowrap">{skill.projects} projects</span>
                           <span className="font-bold text-white">{skill.level}%</span>
                         </div>
                       </div>
@@ -384,7 +384,7 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
 
       {/* Stats Summary */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-4 gap-6"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
         transition={{ delay: 1.2, duration: 0.6 }}
@@ -397,21 +397,21 @@ const SkillsVisualizationEnhanced: React.FC<SkillsVisualizationEnhancedProps> = 
         ].map((stat, index) => (
           <motion.div
             key={stat.label}
-            className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-700/50 text-center shadow-xl"
+            className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-slate-700/50 text-center shadow-xl"
             whileHover={{ scale: 1.05, y: -5 }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4 + index * 0.1 }}
           >
             <motion.div
-              className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}
+              className={`text-2xl sm:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1 sm:mb-2`}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 1.6 + index * 0.1, type: "spring", stiffness: 200 }}
             >
               {stat.value}
             </motion.div>
-            <div className="text-slate-400 text-sm font-medium">{stat.label}</div>
+            <div className="text-slate-400 text-xs sm:text-sm font-medium break-words">{stat.label}</div>
           </motion.div>
         ))}
       </motion.div>

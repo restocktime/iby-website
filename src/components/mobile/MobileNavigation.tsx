@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Bars3Icon, 
@@ -13,6 +14,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useDeviceCapabilities } from '@/hooks/useDeviceCapabilities'
 import { MobileGestureHandler, useHapticFeedback } from './MobileGestureHandler'
+import Link from 'next/link'
 
 interface NavigationItem {
   id: string
@@ -27,35 +29,35 @@ const navigationItems: NavigationItem[] = [
     id: 'home',
     label: 'Home',
     icon: HomeIcon,
-    href: '#hero',
+    href: '/',
     color: 'from-blue-500 to-cyan-500'
   },
   {
     id: 'about',
     label: 'About',
     icon: UserIcon,
-    href: '#about',
+    href: '/about',
     color: 'from-purple-500 to-pink-500'
   },
   {
     id: 'projects',
     label: 'Projects',
     icon: BriefcaseIcon,
-    href: '#projects',
+    href: '/projects',
     color: 'from-green-500 to-emerald-500'
   },
   {
     id: 'skills',
     label: 'Skills',
     icon: CogIcon,
-    href: '#skills',
+    href: '/skills',
     color: 'from-orange-500 to-red-500'
   },
   {
     id: 'contact',
     label: 'Contact',
     icon: ChatBubbleLeftRightIcon,
-    href: '#contact',
+    href: '/contact',
     color: 'from-indigo-500 to-purple-500'
   }
 ]
@@ -65,10 +67,26 @@ export function MobileNavigation() {
   const [activeSection, setActiveSection] = useState('home')
   const { isMobile } = useDeviceCapabilities()
   const { triggerHaptic } = useHapticFeedback()
+  const pathname = usePathname()
+  const router = useRouter()
 
-  // Track active section based on scroll position
+  // Set active section based on current pathname
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    const pathToSection = {
+      '/': 'home',
+      '/about': 'about',
+      '/projects': 'projects',
+      '/skills': 'skills',
+      '/contact': 'contact'
+    }
+    
+    const currentSection = pathToSection[pathname as keyof typeof pathToSection] || 'home'
+    setActiveSection(currentSection)
+  }, [pathname])
+
+  // Track active section based on scroll position (only on home page)
+  useEffect(() => {
+    if (typeof window === 'undefined' || pathname !== '/') return
 
     const handleScroll = () => {
       const sections = navigationItems.map(item => item.id)
@@ -103,7 +121,7 @@ export function MobileNavigation() {
     handleScroll() // Initial check
 
     return () => window.removeEventListener('scroll', throttledHandleScroll)
-  }, [])
+  }, [pathname])
 
   const handleNavClick = (href: string, id: string) => {
     triggerHaptic('light')
@@ -112,14 +130,31 @@ export function MobileNavigation() {
     
     if (typeof window === 'undefined') return
     
-    // Use native scrollIntoView for better mobile compatibility
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'auto', // Use auto instead of smooth for mobile
-        block: 'start',
-        inline: 'nearest'
-      })
+    // If it's a page navigation (starts with /), use router
+    if (href.startsWith('/')) {
+      // If we're on home page and trying to navigate to a section, use scroll instead
+      if (pathname === '/' && ['about', 'projects', 'skills', 'contact'].includes(id)) {
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          })
+          return
+        }
+      }
+      router.push(href)
+    } else {
+      // Handle anchor links for backward compatibility
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'auto', // Use auto instead of smooth for mobile
+          block: 'start',
+          inline: 'nearest'
+        })
+      }
     }
   }
 
@@ -188,31 +223,32 @@ export function MobileNavigation() {
                       const isActive = activeSection === item.id
                       
                       return (
-                        <motion.button
-                          key={item.id}
-                          onClick={() => handleNavClick(item.href, item.id)}
-                          className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all duration-200 ${
-                            isActive 
-                              ? 'bg-gradient-to-r ' + item.color + ' text-white shadow-lg' 
-                              : 'text-slate-300 hover:text-white hover:bg-slate-800'
-                          }`}
-                          initial={{ opacity: 0, x: 50 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Icon className="w-5 h-5" />
-                          <span className="font-medium">{item.label}</span>
-                          
-                          {isActive && (
-                            <motion.div
-                              className="ml-auto w-2 h-2 bg-white rounded-full"
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              transition={{ delay: 0.2 }}
-                            />
-                          )}
-                        </motion.button>
+                        <Link key={item.id} href={item.href} className="block">
+                          <motion.button
+                            onClick={() => handleNavClick(item.href, item.id)}
+                            className={`w-full flex items-center gap-4 p-4 rounded-xl transition-all duration-200 ${
+                              isActive 
+                                ? 'bg-gradient-to-r ' + item.color + ' text-white shadow-lg' 
+                                : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                            }`}
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Icon className="w-5 h-5" />
+                            <span className="font-medium">{item.label}</span>
+                            
+                            {isActive && (
+                              <motion.div
+                                className="ml-auto w-2 h-2 bg-white rounded-full"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.2 }}
+                              />
+                            )}
+                          </motion.button>
+                        </Link>
                       )
                     })}
                   </nav>
@@ -226,7 +262,7 @@ export function MobileNavigation() {
                         onClick={() => {
                           triggerHaptic('light')
                           if (typeof window !== 'undefined') {
-                            window.open('mailto:isaac@example.com', '_blank')
+                            window.open('mailto:isaac@isaacbenyakar.com', '_blank')
                           }
                         }}
                         className="p-3 bg-slate-800 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors text-sm"
@@ -269,25 +305,26 @@ export function MobileNavigation() {
             const isActive = activeSection === item.id
             
             return (
-              <motion.button
-                key={item.id}
-                onClick={() => handleNavClick(item.href, item.id)}
-                className="flex flex-col items-center gap-1 p-2 min-w-0 flex-1"
-                whileTap={{ scale: 0.9 }}
-              >
-                <div className={`p-2 rounded-lg transition-all duration-200 ${
-                  isActive 
-                    ? 'bg-gradient-to-r ' + item.color 
-                    : 'text-slate-400'
-                }`}>
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className={`text-xs transition-colors ${
-                  isActive ? 'text-white' : 'text-slate-400'
-                }`}>
-                  {item.label}
-                </span>
-              </motion.button>
+              <Link key={item.id} href={item.href} className="flex-1">
+                <motion.button
+                  onClick={() => handleNavClick(item.href, item.id)}
+                  className="flex flex-col items-center gap-1 p-2 min-w-0 w-full"
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <div className={`p-2 rounded-lg transition-all duration-200 ${
+                    isActive 
+                      ? 'bg-gradient-to-r ' + item.color 
+                      : 'text-slate-400'
+                  }`}>
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className={`text-xs transition-colors ${
+                    isActive ? 'text-white' : 'text-slate-400'
+                  }`}>
+                    {item.label}
+                  </span>
+                </motion.button>
+              </Link>
             )
           })}
         </div>

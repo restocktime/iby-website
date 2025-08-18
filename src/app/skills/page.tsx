@@ -38,8 +38,8 @@ export default function SkillsPage() {
     <>
       <SEOEnhancements 
         breadcrumbs={breadcrumbs}
-        title="Skills & Expertise - Isaac Benyakar | Full Stack Developer"
-        description="Explore Isaac Benyakar's technical skills including React, Next.js, TypeScript, Python, Node.js, and automation tools. Interactive visualizations of experience and capabilities."
+        pageTitle="Skills & Expertise - Isaac Benyakar | Full Stack Developer"
+        pageDescription="Explore Isaac Benyakar's technical skills including React, Next.js, TypeScript, Python, Node.js, and automation tools. Interactive visualizations of experience and capabilities."
       />
       
       <ClientWrapper>

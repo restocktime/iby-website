@@ -38,8 +38,8 @@ export default function AboutPage() {
     <>
       <SEOEnhancements 
         breadcrumbs={breadcrumbs}
-        title="About Isaac Benyakar - Full Stack Developer & Automation Expert"
-        description="Learn about Isaac Benyakar's background, skills, and passion for creating innovative web applications and automation solutions."
+        pageTitle="About Isaac Benyakar - Full Stack Developer & Automation Expert"
+        pageDescription="Learn about Isaac Benyakar's background, skills, and passion for creating innovative web applications and automation solutions."
       />
       
       <ClientWrapper>

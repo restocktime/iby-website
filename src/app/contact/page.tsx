@@ -37,8 +37,8 @@ export default function ContactPage() {
     <>
       <SEOEnhancements 
         breadcrumbs={breadcrumbs}
-        title="Contact Isaac Benyakar - Hire a Full Stack Developer"
-        description="Get in touch with Isaac Benyakar for web development, automation, and custom business solutions. Available for freelance projects and consultations."
+        pageTitle="Contact Isaac Benyakar - Hire a Full Stack Developer"
+        pageDescription="Get in touch with Isaac Benyakar for web development, automation, and custom business solutions. Available for freelance projects and consultations."
       />
       
       <ClientWrapper>

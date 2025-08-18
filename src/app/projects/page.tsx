@@ -39,8 +39,8 @@ export default function ProjectsPage() {
     <>
       <SEOEnhancements 
         breadcrumbs={breadcrumbs}
-        title="Projects - Isaac Benyakar | Full Stack Developer Portfolio"
-        description="Explore Isaac Benyakar's portfolio featuring web development projects, automation solutions, custom CRM systems, and innovative business applications."
+        pageTitle="Projects - Isaac Benyakar | Full Stack Developer Portfolio"
+        pageDescription="Explore Isaac Benyakar's portfolio featuring web development projects, automation solutions, custom CRM systems, and innovative business applications."
       />
       
       <ClientWrapper>

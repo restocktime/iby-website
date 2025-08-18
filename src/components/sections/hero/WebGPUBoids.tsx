@@ -2,6 +2,45 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+// WebGPU type declarations (since they may not be available in all environments)
+declare global {
+  interface Navigator {
+    gpu?: GPU
+  }
+  
+  interface GPU {
+    requestAdapter(options?: any): Promise<GPUAdapter | null>
+    getPreferredCanvasFormat(): any
+  }
+  
+  interface GPUAdapter {
+    requestDevice(descriptor?: any): Promise<GPUDevice>
+  }
+  
+  type GPUDevice = any
+  type GPUCanvasContext = any
+  type GPUComputePipeline = any
+  type GPURenderPipeline = any
+  type GPUBuffer = any
+  type GPUBindGroup = any
+  type GPUCommandEncoder = any
+  type GPURenderPassEncoder = any
+  type GPUComputePassEncoder = any
+  type GPUBindGroupLayout = any
+  type GPUShaderModule = any
+  
+  var GPUBufferUsage: {
+    STORAGE: number
+    COPY_DST: number
+    COPY_SRC: number
+    UNIFORM: number
+    VERTEX: number
+    INDEX: number
+    MAP_READ: number
+    MAP_WRITE: number
+  }
+}
+
 // WebGPU Compute Shader for Boids
 const COMPUTE_SHADER_SOURCE = `
 struct Boid {
@@ -226,7 +265,7 @@ export default function WebGPUBoids({
 }: WebGPUBoidsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const webGPURef = useRef<WebGPUBoids | null>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
   const mouseRef = useRef({ x: 0, y: 0, isActive: false })
   const [initialized, setInitialized] = useState(false)
 
@@ -272,7 +311,7 @@ export default function WebGPUBoids({
         }
 
         const device = await adapter.requestDevice()
-        const context = canvas.getContext('webgpu')!
+        const context = canvas.getContext('webgpu') as GPUCanvasContext
         
         const canvasFormat = navigator.gpu.getPreferredCanvasFormat()
         context.configure({

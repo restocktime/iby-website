@@ -272,7 +272,7 @@ export default function ProjectDetailModalEnhanced({ project, onClose }: Project
                     <div className="bg-slate-800/50 backdrop-blur-md rounded-xl p-4 text-center border border-slate-700/50">
                       <CalendarIcon className="w-6 h-6 text-purple-400 mx-auto mb-2" />
                       <div className="text-xl font-bold text-white">
-                        {new Date(project.endDate || project.startDate).getFullYear()}
+                        {new Date(project.endDate || project.startDate || '2023').getFullYear()}
                       </div>
                       <div className="text-xs text-slate-400">Year</div>
                     </div>

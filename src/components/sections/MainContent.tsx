@@ -38,15 +38,33 @@ const mockProjects: Project[] = [
       performanceScore: 9,
       userEngagement: {
         monthlyActiveUsers: 5420,
-        averageSessionTime: 450,
-        bounceRate: 0.25
+        averageSessionDuration: 450,
+        bounceRate: 0.25,
+        conversionRate: 0.08
       },
-      technicalComplexity: 8,
-      codeQuality: 9
+      businessImpact: {
+        revenueImpact: 150000,
+        costSavings: 75000,
+        efficiencyGain: 0.35,
+        userSatisfactionScore: 4.8
+      },
+      technicalComplexity: 8
     },
     liveDemo: {
       type: 'interactive',
-      component: 'WebsiteMonitorDemo'
+      component: 'WebsiteMonitorDemo',
+      description: 'Interactive demo of RestockTime monitoring system'
+    },
+    caseStudy: {
+      challenge: 'E-commerce businesses struggled with inventory management, leading to stockouts and overstocking issues.',
+      solution: 'Built a comprehensive inventory management system with real-time tracking, automated alerts, and predictive analytics.',
+      results: ['Reduced stockouts by 60%', 'Improved inventory turnover by 35%', 'Saved $75k annually in carrying costs'],
+      testimonial: {
+        content: 'RestockTime transformed our inventory management completely. We went from constant stockouts to perfect availability.',
+        author: 'Sarah Johnson',
+        role: 'Operations Manager',
+        company: 'TechStore Inc.'
+      }
     }
   },
   {
@@ -56,13 +74,13 @@ const mockProjects: Project[] = [
     longDescription: 'Sunday Edge Pro is a sophisticated web scraping platform designed for enterprise-level data extraction with advanced anti-detection mechanisms.',
     category: 'automation',
     technologies: [
-      { name: 'Python', category: 'backend' },
-      { name: 'Scrapy', category: 'backend' },
-      { name: 'React', category: 'frontend' },
-      { name: 'PostgreSQL', category: 'database' }
+      { name: 'Python', category: 'backend', proficiency: 9, yearsOfExperience: 4 },
+      { name: 'Scrapy', category: 'backend', proficiency: 8, yearsOfExperience: 2 },
+      { name: 'React', category: 'frontend', proficiency: 9, yearsOfExperience: 3 },
+      { name: 'PostgreSQL', category: 'database', proficiency: 7, yearsOfExperience: 2 }
     ],
     screenshots: [
-      { url: '/projects/sunday-edge-dashboard.jpg', alt: 'Sunday Edge Dashboard' }
+      { id: 'sunday-edge-1', url: '/projects/sunday-edge-dashboard.jpg', alt: 'Sunday Edge Dashboard', type: 'image' }
     ],
     liveUrl: 'https://demo.sundayedgepro.com',
     githubUrl: 'https://github.com/isaacbenyakar/sunday-edge-pro',
@@ -74,15 +92,33 @@ const mockProjects: Project[] = [
       performanceScore: 10,
       userEngagement: {
         monthlyActiveUsers: 2150,
-        averageSessionTime: 320,
-        bounceRate: 0.18
+        averageSessionDuration: 320,
+        bounceRate: 0.18,
+        conversionRate: 0.12
       },
-      technicalComplexity: 9,
-      codeQuality: 9
+      businessImpact: {
+        revenueImpact: 200000,
+        costSavings: 120000,
+        efficiencyGain: 0.45,
+        userSatisfactionScore: 4.9
+      },
+      technicalComplexity: 9
     },
     liveDemo: {
       type: 'interactive',
-      component: 'LiveScraperDemo'
+      component: 'LiveScraperDemo',
+      description: 'Interactive demo of Sunday Edge Pro scraper'
+    },
+    caseStudy: {
+      challenge: 'Enterprise needed large-scale web scraping with anti-detection capabilities for competitive intelligence.',
+      solution: 'Developed sophisticated web scraping platform with advanced stealth mechanisms and distributed architecture.',
+      results: ['Scraped 10M+ pages daily', 'Zero detection incidents', 'Reduced data acquisition costs by 80%'],
+      testimonial: {
+        content: 'Sunday Edge Pro exceeded our expectations. The anti-detection features are unmatched in the industry.',
+        author: 'Michael Chen',
+        role: 'Head of Data Intelligence',
+        company: 'DataCorp Analytics'
+      }
     }
   },
   {
@@ -92,14 +128,14 @@ const mockProjects: Project[] = [
     longDescription: 'Shuk Online is a comprehensive multi-vendor e-commerce marketplace connecting buyers with sellers in a seamless digital environment.',
     category: 'e-commerce',
     technologies: [
-      { name: 'React', category: 'frontend' },
-      { name: 'Next.js', category: 'frontend' },
-      { name: 'Node.js', category: 'backend' },
-      { name: 'Stripe', category: 'payment' },
-      { name: 'PostgreSQL', category: 'database' }
+      { name: 'React', category: 'frontend', proficiency: 9, yearsOfExperience: 3 },
+      { name: 'Next.js', category: 'frontend', proficiency: 9, yearsOfExperience: 2 },
+      { name: 'Node.js', category: 'backend', proficiency: 8, yearsOfExperience: 3 },
+      { name: 'Stripe', category: 'backend', proficiency: 7, yearsOfExperience: 1 },
+      { name: 'PostgreSQL', category: 'database', proficiency: 7, yearsOfExperience: 2 }
     ],
     screenshots: [
-      { url: '/projects/shuk-online-homepage.jpg', alt: 'Shuk Online Homepage' }
+      { id: 'shuk-online-1', url: '/projects/shuk-online-homepage.jpg', alt: 'Shuk Online Homepage', type: 'image' }
     ],
     liveUrl: 'https://demo.shukonline.com',
     githubUrl: 'https://github.com/isaacbenyakar/shuk-online',
@@ -111,15 +147,33 @@ const mockProjects: Project[] = [
       performanceScore: 8,
       userEngagement: {
         monthlyActiveUsers: 8750,
-        averageSessionTime: 380,
-        bounceRate: 0.22
+        averageSessionDuration: 380,
+        bounceRate: 0.22,
+        conversionRate: 0.06
       },
-      technicalComplexity: 7,
-      codeQuality: 8
+      businessImpact: {
+        revenueImpact: 300000,
+        costSavings: 50000,
+        efficiencyGain: 0.25,
+        userSatisfactionScore: 4.5
+      },
+      technicalComplexity: 7
     },
     liveDemo: {
       type: 'interactive',
-      component: 'CRMShowcase'
+      component: 'CRMShowcase',
+      description: 'Interactive demo of Shuk Online CRM system'
+    },
+    caseStudy: {
+      challenge: 'Startup needed a multi-vendor marketplace to connect local sellers with customers in a competitive market.',
+      solution: 'Created full-featured e-commerce platform with vendor management, payment processing, and mobile optimization.',
+      results: ['Launched with 200+ vendors', 'Processed $300k in first quarter', 'Achieved 4.5/5 user satisfaction'],
+      testimonial: {
+        content: 'Shuk Online gave us the platform we needed to compete with major marketplaces. The vendor tools are exceptional.',
+        author: 'David Rodriguez',
+        role: 'Founder & CEO',
+        company: 'Local Market Solutions'
+      }
     }
   }
 ]

@@ -162,3 +162,173 @@ Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
  GET /contact 200 in 23ms
  ✓ Compiled in 281ms (732 modules)
  GET /contact 200 in 25ms
+ ✓ Compiled in 250ms (732 modules)
+ GET /contact 200 in 18ms
+ ✓ Compiled in 129ms (732 modules)
+ GET /contact 200 in 13ms
+ ✓ Compiled in 127ms (732 modules)
+ GET /contact 200 in 14ms
+ ✓ Compiled in 123ms (732 modules)
+ GET /contact 200 in 15ms
+ ✓ Compiled in 157ms (732 modules)
+ GET /contact 200 in 11ms
+ ✓ Compiled in 120ms (732 modules)
+ GET /contact 200 in 12ms
+ ✓ Compiled in 145ms (732 modules)
+ GET /contact 200 in 10ms
+ ✓ Compiled in 150ms (732 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json',
+  page: '/contact'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 808ms (1972 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 2.136541
+ GET /contact 500 in 2208ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json',
+  page: '/contact'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 0.587459
+ GET /contact 500 in 364ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json',
+  page: '/contact'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 0.446667
+ GET /contact 500 in 359ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json',
+  page: '/contact'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 0.3735
+ GET /contact 500 in 370ms
+ ✓ Compiled in 196ms (887 modules)
+ ✓ Compiled in 670ms (1986 modules)
+ ✓ Compiled /_not-found in 180ms (1977 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 0.771167
+ GET /_next/static/webpack/273d4c9abe718df1.webpack.hot-update.json 500 in 325ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json',
+  page: '/contact'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/server/webpack-runtime.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/server/app/_not-found/page.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/server/require.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/server/load-components.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/build/utils.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/build/swc/options.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/build/swc/index.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/server/config.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/server/next.js
+- /Users/isaac/Desktop/Isaac Platform/interactive-portfolio/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:378)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:425) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Time 0.306167
+ GET /contact 500 in 127ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 0.702667
+Time 0.557916
+Time 0.446167
+ GET /_next/static/chunks/fallback/webpack.js 500 in 284ms
+ GET /_next/static/chunks/fallback/main.js 500 in 285ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 284ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/isaac/Desktop/Isaac Platform/interactive-portfolio/.next/routes-manifest.json'
+}
+Time 0.372125
+Time 0.193208
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 221ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 220ms
+ ✓ Compiled in 162ms (891 modules)
+ ✓ Compiled in 129ms (891 modules)
+ ✓ Compiled in 143ms (891 modules)
+ ✓ Compiled in 190ms (886 modules)
+ ✓ Compiled in 126ms (886 modules)
+ ✓ Compiled in 127ms (886 modules)
+ ✓ Compiled in 133ms (886 modules)
+ ✓ Compiled in 121ms (886 modules)
+ ✓ Compiled in 134ms (886 modules)
+ ✓ Compiled in 126ms (886 modules)
+ ✓ Compiled in 121ms (886 modules)
+ ✓ Compiled in 133ms (886 modules)
+ ✓ Compiled in 139ms (886 modules)
+ ✓ Compiled in 501ms (1899 modules)

@@ -26,7 +26,7 @@ export default function FlowingParticles({
   className = ''
 }: FlowingParticlesProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | undefined>(undefined)
   const mouseRef = useRef({ x: 0, y: 0, isActive: false })
   const [mounted, setMounted] = useState(false)
 

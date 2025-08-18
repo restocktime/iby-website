@@ -2,6 +2,7 @@ export interface Project {
   id: string
   title: string
   description: string
+  longDescription: string
   technologies: Technology[]
   liveUrl?: string
   githubUrl?: string
@@ -13,6 +14,8 @@ export interface Project {
   featured: boolean
   category: ProjectCategory
   liveDemo?: LiveDemo
+  startDate?: string
+  endDate?: string
 }
 
 export interface LiveDemo {

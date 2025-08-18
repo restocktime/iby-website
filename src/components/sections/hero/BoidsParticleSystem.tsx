@@ -39,8 +39,8 @@ export default function BoidsParticleSystem({
   className = ''
 }: BoidsParticleSystemProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
-  const workerRef = useRef<Worker>()
+  const animationRef = useRef<number | undefined>(undefined)
+  const workerRef = useRef<Worker | undefined>(undefined)
   const [webGPUSupported, setWebGPUSupported] = useState(false)
   const [fallbackMode, setFallbackMode] = useState(false)
   const mouseRef = useRef({ x: 0, y: 0, isActive: false })

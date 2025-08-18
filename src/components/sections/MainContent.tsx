@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { Project } from '@/types'
 import HeroSection from './HeroSection'
@@ -137,7 +137,7 @@ const AboutSection = () => (
       >
         <h2 className="text-4xl font-bold text-white mb-6">About Me</h2>
         <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-          I'm a passionate full-stack developer with over 5 years of experience building 
+          I&apos;m a passionate full-stack developer with over 5 years of experience building 
           scalable web applications, automation tools, and custom business solutions. 
           I specialize in modern web technologies and love solving complex problems.
         </p>

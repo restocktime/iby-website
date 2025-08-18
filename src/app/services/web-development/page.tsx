@@ -234,7 +234,7 @@ export default function WebDevelopmentPage() {
         <div className="bg-slate-900 rounded-xl p-8 md:p-12 border border-slate-800 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Something Amazing?</h2>
           <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and create a web solution that drives results for your business.
+            Let&apos;s discuss your project and create a web solution that drives results for your business.
             I offer free consultations to understand your needs and provide the best approach.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

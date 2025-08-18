@@ -215,7 +215,7 @@ export default function HomeNavigation() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Let's Talk
+              Let&apos;s Talk
             </motion.button>
           </Link>
         </motion.div>

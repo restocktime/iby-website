@@ -75,10 +75,10 @@ export function SimpleContactSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Let's Work Together
+            Let&apos;s Work Together
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Ready to bring your project to life? Get in touch and let's discuss how I can help.
+            Ready to bring your project to life? Get in touch and let&apos;s discuss how I can help.
           </p>
         </motion.div>
 
@@ -165,7 +165,7 @@ export function SimpleContactSection() {
                   animate={{ opacity: 1, scale: 1 }}
                 >
                   <CheckIcon className="w-5 h-5 text-green-400" />
-                  <span className="text-green-400">Message sent successfully! I'll get back to you soon.</span>
+                  <span className="text-green-400">Message sent successfully! I&apos;ll get back to you soon.</span>
                 </motion.div>
               )}
 

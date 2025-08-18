@@ -71,8 +71,9 @@ export const metadata: Metadata = {
   description: "Interactive portfolio showcasing web development, automation, custom CRM solutions, web scraping, and business intelligence by Isaac Benyakar. Specializing in React, Next.js, and custom business solutions.",
   viewport: {
     width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
+    initialScale: 1.0,
+    minimumScale: 1.0,
+    maximumScale: 1.0,
     userScalable: false,
     viewportFit: 'cover',
   },
@@ -324,6 +325,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Mobile viewport fix - force proper scaling */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

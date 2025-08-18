@@ -17,10 +17,15 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const { isMobile, supportsTouch } = useDeviceCapabilities()
 
-  // Enable smooth scrolling globally
+  // Enable smooth scrolling globally (but not on mobile)
   useEffect(() => {
-    // Add smooth scrolling behavior to html element
-    document.documentElement.style.scrollBehavior = 'smooth'
+    // Only enable smooth scrolling on desktop
+    if (!isMobile) {
+      document.documentElement.style.scrollBehavior = 'smooth'
+    } else {
+      // Force auto scroll behavior on mobile
+      document.documentElement.style.scrollBehavior = 'auto'
+    }
     
     // Add touch-action optimization for mobile
     if (supportsTouch) {
@@ -28,56 +33,20 @@ export default function Layout({ children }: LayoutProps) {
     }
 
     return () => {
-      document.documentElement.style.scrollBehavior = 'auto'
+      if (!isMobile) {
+        document.documentElement.style.scrollBehavior = 'auto'
+      }
       if (supportsTouch) {
         document.body.style.touchAction = 'auto'
       }
     }
-  }, [supportsTouch])
+  }, [supportsTouch, isMobile])
 
-  // Handle touch gestures for mobile navigation
+  // Handle touch gestures for mobile navigation (DISABLED to fix scroll issues)
   useEffect(() => {
-    if (!supportsTouch) return
-
-    let startY = 0
-    let startTime = 0
-
-    const handleTouchStart = (e: TouchEvent) => {
-      startY = e.touches[0].clientY
-      startTime = Date.now()
-    }
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const endY = e.changedTouches[0].clientY
-      const endTime = Date.now()
-      const deltaY = startY - endY
-      const deltaTime = endTime - startTime
-
-      // Quick downward swipe to scroll to next section
-      if (deltaY < -100 && deltaTime < 300) {
-        const currentSection = getCurrentSection()
-        const nextSection = getNextSection(currentSection)
-        if (nextSection) {
-          nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      }
-      // Quick upward swipe to scroll to previous section
-      else if (deltaY > 100 && deltaTime < 300) {
-        const currentSection = getCurrentSection()
-        const prevSection = getPreviousSection(currentSection)
-        if (prevSection) {
-          prevSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      }
-    }
-
-    document.addEventListener('touchstart', handleTouchStart, { passive: true })
-    document.addEventListener('touchend', handleTouchEnd, { passive: true })
-
-    return () => {
-      document.removeEventListener('touchstart', handleTouchStart)
-      document.removeEventListener('touchend', handleTouchEnd)
-    }
+    // Disable touch gesture navigation on mobile to prevent scroll offset issues
+    // This was causing the scroll jumping behavior
+    return
   }, [supportsTouch])
 
   const getCurrentSection = (): Element | null => {

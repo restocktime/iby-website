@@ -101,7 +101,7 @@ async function getCurrentMetrics() {
   
   try {
     // Get health check data
-    const healthResponse = await fetch(`${process.env.NEXTAUTH_URL}/api/health-check`);
+    const healthResponse = await fetch(`${process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'}/api/health-check`);
     const healthData = await healthResponse.json();
     
     // Calculate metrics based on health data and other sources

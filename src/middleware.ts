@@ -1,4 +1,3 @@
-import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
@@ -105,62 +104,42 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
   return response;
 }
 
-export default withAuth(
-  function middleware(req) {
-    const ip = getClientIP(req);
-    const userAgent = req.headers.get('user-agent') || '';
-    const isAdminRoute = req.nextUrl.pathname.startsWith('/admin');
-    
-    // Block suspicious user agents
-    if (isBlockedUserAgent(userAgent)) {
-      console.log(`Blocked suspicious user agent: ${userAgent} from ${ip}`);
-      return new NextResponse('Forbidden', { status: 403 });
-    }
-    
-    // Validate origin for API routes and admin routes
-    if ((req.nextUrl.pathname.startsWith('/api') || isAdminRoute) && !validateOrigin(req)) {
-      console.log(`Blocked request from invalid origin: ${req.headers.get('origin')} from ${ip}`);
-      return new NextResponse('Forbidden', { status: 403 });
-    }
-    
-    // Rate limiting
-    if (isRateLimited(ip, isAdminRoute)) {
-      console.log(`Rate limited: ${ip} on ${req.nextUrl.pathname}`);
-      return new NextResponse('Too Many Requests', { 
-        status: 429,
-        headers: {
-          'Retry-After': '900', // 15 minutes
-        },
-      });
-    }
-    
-    // Log security events
-    if (isAdminRoute) {
-      console.log(`Admin route access: ${req.nextUrl.pathname} from ${ip} (${userAgent})`);
-    }
-    
-    // Continue with the request
-    const response = NextResponse.next();
-    
-    // Add security headers
-    return addSecurityHeaders(response);
-  },
-  {
-    callbacks: {
-      authorized: ({ token, req }) => {
-        // Protect admin routes
-        if (req.nextUrl.pathname.startsWith("/admin") && !req.nextUrl.pathname.includes("/login")) {
-          return token?.role === "admin"
-        }
-        return true
-      },
-    },
+export function middleware(req: NextRequest) {
+  const ip = getClientIP(req);
+  const userAgent = req.headers.get('user-agent') || '';
+  
+  // Block suspicious user agents
+  if (isBlockedUserAgent(userAgent)) {
+    console.log(`Blocked suspicious user agent: ${userAgent} from ${ip}`);
+    return new NextResponse('Forbidden', { status: 403 });
   }
-)
+  
+  // Validate origin for API routes
+  if (req.nextUrl.pathname.startsWith('/api') && !validateOrigin(req)) {
+    console.log(`Blocked request from invalid origin: ${req.headers.get('origin')} from ${ip}`);
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+  
+  // Rate limiting
+  if (isRateLimited(ip, false)) {
+    console.log(`Rate limited: ${ip} on ${req.nextUrl.pathname}`);
+    return new NextResponse('Too Many Requests', { 
+      status: 429,
+      headers: {
+        'Retry-After': '900', // 15 minutes
+      },
+    });
+  }
+  
+  // Continue with the request
+  const response = NextResponse.next();
+  
+  // Add security headers
+  return addSecurityHeaders(response);
+}
 
 export const config = {
   matcher: [
-    "/admin/:path*",
     "/api/:path*",
     "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|manifest.json).*)",
   ]

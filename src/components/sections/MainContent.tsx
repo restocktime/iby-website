@@ -26,7 +26,7 @@ const mockProjects: Project[] = [
       { name: 'PostgreSQL', category: 'database', proficiency: 7, yearsOfExperience: 2 }
     ],
     screenshots: [
-      { url: '/projects/restocktime-dashboard.jpg', alt: 'RestockTime Dashboard' }
+      { id: 'restocktime-1', url: '/projects/restocktime-dashboard.jpg', alt: 'RestockTime Dashboard', type: 'image' }
     ],
     liveUrl: 'https://demo.restocktime.com',
     githubUrl: 'https://github.com/isaacbenyakar/restocktime',

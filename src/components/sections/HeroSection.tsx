@@ -32,8 +32,10 @@ const SimpleBanner = () => (
           className="bg-white text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           aria-label="View my portfolio projects"
           onClick={() => {
-            const projectsSection = document.getElementById('projects');
-            projectsSection?.scrollIntoView({ behavior: 'smooth' });
+            if (typeof document !== 'undefined') {
+              const projectsSection = document.getElementById('projects');
+              projectsSection?.scrollIntoView({ behavior: 'smooth' });
+            }
           }}
         >
           View My Work
@@ -44,8 +46,10 @@ const SimpleBanner = () => (
           className="border-white text-white hover:bg-white hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
           aria-label="Navigate to contact section"
           onClick={() => {
-            const contactSection = document.getElementById('contact');
-            contactSection?.scrollIntoView({ behavior: 'smooth' });
+            if (typeof document !== 'undefined') {
+              const contactSection = document.getElementById('contact');
+              contactSection?.scrollIntoView({ behavior: 'smooth' });
+            }
           }}
         >
           Get In Touch
@@ -147,8 +151,10 @@ const HeroSection = () => {
               className="bg-white text-blue-900 hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               aria-label="View my portfolio projects"
               onClick={() => {
-                const projectsSection = document.getElementById('projects');
-                projectsSection?.scrollIntoView({ behavior: 'smooth' });
+                if (typeof document !== 'undefined') {
+                  const projectsSection = document.getElementById('projects');
+                  projectsSection?.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
             >
               View My Work
@@ -159,8 +165,10 @@ const HeroSection = () => {
               className="border-white text-white hover:bg-white hover:text-blue-900 transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
               aria-label="Navigate to contact section"
               onClick={() => {
-                const contactSection = document.getElementById('contact');
-                contactSection?.scrollIntoView({ behavior: 'smooth' });
+                if (typeof document !== 'undefined') {
+                  const contactSection = document.getElementById('contact');
+                  contactSection?.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
             >
               Get In Touch

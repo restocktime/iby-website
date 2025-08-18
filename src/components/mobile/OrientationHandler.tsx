@@ -24,7 +24,7 @@ export function OrientationHandler({
   const { isMobile } = useDeviceCapabilities()
 
   useEffect(() => {
-    if (!isMobile) return
+    if (!isMobile || typeof window === 'undefined') return
 
     const updateOrientation = () => {
       const screen = window.screen as any

@@ -47,6 +47,8 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
   })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     // Track initial page view
     analytics.trackPageView()
 
@@ -54,7 +56,7 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
     initializeABTests()
 
     // Set up global error tracking
-    window.addEventListener('error', (event) => {
+    const errorHandler = (event: ErrorEvent) => {
       analytics.trackEvent('javascript_error', {
         message: event.message,
         filename: event.filename,
@@ -62,23 +64,25 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
         colno: event.colno,
         stack: event.error?.stack
       })
-    })
+    }
 
-    // Track unhandled promise rejections
-    window.addEventListener('unhandledrejection', (event) => {
+    const rejectionHandler = (event: PromiseRejectionEvent) => {
       analytics.trackEvent('unhandled_promise_rejection', {
         reason: event.reason?.toString(),
         stack: event.reason?.stack
       })
-    })
+    }
 
-    // Track page visibility changes
-    document.addEventListener('visibilitychange', () => {
+    const visibilityHandler = () => {
       analytics.trackEvent('page_visibility_change', {
         hidden: document.hidden,
         visibilityState: document.visibilityState
       })
-    })
+    }
+
+    window.addEventListener('error', errorHandler)
+    window.addEventListener('unhandledrejection', rejectionHandler)
+    document.addEventListener('visibilitychange', visibilityHandler)
 
     // Track performance metrics
     if ('performance' in window && 'getEntriesByType' in performance) {
@@ -97,11 +101,16 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
     }
 
     return () => {
+      window.removeEventListener('error', errorHandler)
+      window.removeEventListener('unhandledrejection', rejectionHandler)
+      document.removeEventListener('visibilitychange', visibilityHandler)
       analytics.destroy()
     }
   }, [analytics])
 
   const initializeABTests = async () => {
+    if (typeof window === 'undefined') return
+    
     try {
       // Initialize hero CTA test
       const heroVariant = await abTesting.initializeTest('test_hero_cta')
@@ -170,12 +179,14 @@ export function useAnalytics(): AnalyticsContextType {
 
 // Performance metrics helpers
 function getFirstPaint(): number | undefined {
+  if (typeof window === 'undefined' || !('performance' in window)) return undefined
   const paintEntries = performance.getEntriesByType('paint')
   const firstPaint = paintEntries.find(entry => entry.name === 'first-paint')
   return firstPaint?.startTime
 }
 
 function getFirstContentfulPaint(): number | undefined {
+  if (typeof window === 'undefined' || !('performance' in window)) return undefined
   const paintEntries = performance.getEntriesByType('paint')
   const firstContentfulPaint = paintEntries.find(entry => entry.name === 'first-contentful-paint')
   return firstContentfulPaint?.startTime
@@ -183,26 +194,27 @@ function getFirstContentfulPaint(): number | undefined {
 
 function getLargestContentfulPaint(): Promise<number | undefined> {
   return new Promise((resolve) => {
-    if ('PerformanceObserver' in window) {
-      const observer = new PerformanceObserver((list) => {
-        const entries = list.getEntries()
-        const lastEntry = entries[entries.length - 1]
-        resolve(lastEntry?.startTime)
-        observer.disconnect()
-      })
+    if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {
+      resolve(undefined)
+      return
+    }
+    
+    const observer = new PerformanceObserver((list) => {
+      const entries = list.getEntries()
+      const lastEntry = entries[entries.length - 1]
+      resolve(lastEntry?.startTime)
+      observer.disconnect()
+    })
+    
+    try {
+      observer.observe({ entryTypes: ['largest-contentful-paint'] })
       
-      try {
-        observer.observe({ entryTypes: ['largest-contentful-paint'] })
-        
-        // Fallback timeout
-        setTimeout(() => {
-          observer.disconnect()
-          resolve(undefined)
-        }, 5000)
-      } catch (error) {
+      // Fallback timeout
+      setTimeout(() => {
+        observer.disconnect()
         resolve(undefined)
-      }
-    } else {
+      }, 5000)
+    } catch (error) {
       resolve(undefined)
     }
   })

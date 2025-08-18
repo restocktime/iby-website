@@ -37,6 +37,8 @@ export function OfflineManager({
 
   useEffect(() => {
     const updateConnectionInfo = () => {
+      if (typeof navigator === 'undefined') return
+      
       const connection = (navigator as any).connection || 
                         (navigator as any).mozConnection || 
                         (navigator as any).webkitConnection
@@ -66,19 +68,23 @@ export function OfflineManager({
     // Initial setup
     updateConnectionInfo()
 
-    // Event listeners
-    window.addEventListener('online', handleOnline)
-    window.addEventListener('offline', handleOffline)
+    // Event listeners (only on client side)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', handleOnline)
+      window.addEventListener('offline', handleOffline)
+    }
 
     // Connection change listener
-    const connection = (navigator as any).connection
+    const connection = typeof navigator !== 'undefined' ? (navigator as any).connection : null
     if (connection) {
       connection.addEventListener('change', updateConnectionInfo)
     }
 
     return () => {
-      window.removeEventListener('online', handleOnline)
-      window.removeEventListener('offline', handleOffline)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('online', handleOnline)
+        window.removeEventListener('offline', handleOffline)
+      }
       if (connection) {
         connection.removeEventListener('change', updateConnectionInfo)
       }
@@ -133,6 +139,8 @@ export function OfflineManager({
   }
 
   const retryConnection = () => {
+    if (typeof window === 'undefined') return
+    
     // Force a network request to check connectivity
     fetch('/api/health-check', { 
       method: 'HEAD',
@@ -251,9 +259,11 @@ export function OfflineManager({
 // Hook for managing offline actions
 export function useOfflineActions() {
   const [pendingActions, setPendingActions] = useState<any[]>([])
-  const [isOnline, setIsOnline] = useState(navigator.onLine)
+  const [isOnline, setIsOnline] = useState(typeof navigator !== 'undefined' ? navigator.onLine : true)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const handleOnline = () => setIsOnline(true)
     const handleOffline = () => setIsOnline(false)
 

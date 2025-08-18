@@ -44,7 +44,7 @@ export function MobileContactForm() {
       id: 'email',
       name: 'Email',
       icon: EnvelopeIcon,
-      action: () => window.open('mailto:isaac@isaacbenyakar.com', '_blank'),
+      action: () => typeof window !== 'undefined' && window.open('mailto:isaac@isaacbenyakar.com', '_blank'),
       color: 'from-blue-500 to-cyan-500',
       description: 'Professional inquiries'
     },
@@ -52,7 +52,7 @@ export function MobileContactForm() {
       id: 'whatsapp',
       name: 'WhatsApp',
       icon: ChatBubbleLeftRightIcon,
-      action: () => window.open('https://wa.me/1234567890', '_blank'),
+      action: () => typeof window !== 'undefined' && window.open('https://wa.me/1234567890', '_blank'),
       color: 'from-green-500 to-emerald-500',
       description: 'Quick chat'
     },
@@ -60,7 +60,7 @@ export function MobileContactForm() {
       id: 'phone',
       name: 'Call',
       icon: PhoneIcon,
-      action: () => window.open('tel:+1234567890', '_blank'),
+      action: () => typeof window !== 'undefined' && window.open('tel:+1234567890', '_blank'),
       color: 'from-purple-500 to-pink-500',
       description: 'Direct call'
     }

@@ -29,8 +29,8 @@ class AdvancedAnalyticsService {
   }
 
   private initializeService() {
-    // Check online status
-    if (typeof window !== 'undefined') {
+    // Check online status (only on client side)
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
       this.isOnline = navigator.onLine
       window.addEventListener('online', () => {
         this.isOnline = true

@@ -20,15 +20,17 @@ export function ContactSection() {
   const { trackInteraction, getEngagementScore, metrics } = useEngagementTracking()
 
   useEffect(() => {
-    // Only track on client side to avoid hydration mismatch
-    if (typeof window === 'undefined') return
+    // Track interaction only on client side
+    const timer = setTimeout(() => {
+      trackInteraction({
+        eventType: 'scroll',
+        element: 'contact-section',
+        timestamp: new Date(),
+        duration: 0
+      })
+    }, 100)
     
-    trackInteraction({
-      eventType: 'scroll',
-      element: 'contact-section',
-      timestamp: new Date(),
-      duration: 0
-    })
+    return () => clearTimeout(timer)
   }, [trackInteraction])
 
   const engagementScore = getEngagementScore()

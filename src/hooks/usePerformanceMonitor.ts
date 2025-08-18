@@ -27,11 +27,13 @@ export function usePerformanceMonitor(options: PerformanceMonitorOptions = {}) {
 
   const [performanceLevel, setPerformanceLevel] = useState<PerformanceLevel>('high')
   const frameCountRef = useRef(0)
-  const lastTimeRef = useRef(performance.now())
+  const lastTimeRef = useRef(typeof performance !== 'undefined' ? performance.now() : Date.now())
   const animationFrameRef = useRef<number | null>(null)
 
   // FPS monitoring
   const measureFPS = useCallback(() => {
+    if (typeof performance === 'undefined' || typeof requestAnimationFrame === 'undefined') return
+    
     const now = performance.now()
     frameCountRef.current++
 
@@ -49,6 +51,8 @@ export function usePerformanceMonitor(options: PerformanceMonitorOptions = {}) {
 
   // Memory monitoring
   const measureMemory = useCallback(() => {
+    if (typeof window === 'undefined') return
+    
     const performance = window.performance as any
     if (performance.memory) {
       const memoryUsage = performance.memory.usedJSHeapSize
@@ -73,8 +77,10 @@ export function usePerformanceMonitor(options: PerformanceMonitorOptions = {}) {
 
   // Load time measurement
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return
+    
     const measureLoadTime = () => {
-      if (typeof window !== 'undefined' && window.performance) {
+      if (window.performance) {
         const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
         if (navigation) {
           const loadTime = navigation.loadEventEnd - navigation.fetchStart
@@ -93,6 +99,8 @@ export function usePerformanceMonitor(options: PerformanceMonitorOptions = {}) {
 
   // Start monitoring
   useEffect(() => {
+    if (typeof requestAnimationFrame === 'undefined') return
+    
     // Start FPS monitoring
     animationFrameRef.current = requestAnimationFrame(measureFPS)
 
@@ -123,8 +131,8 @@ export function usePerformanceMonitor(options: PerformanceMonitorOptions = {}) {
   }, [metrics.fps, fpsThreshold, onPerformanceDrop, metrics])
 
   const forceGarbageCollection = useCallback(() => {
-    if (window.gc) {
-      window.gc()
+    if (typeof window !== 'undefined' && (window as any).gc) {
+      (window as any).gc()
     }
   }, [])
 

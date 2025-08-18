@@ -23,7 +23,7 @@ export function PWAInstaller() {
   }, [])
 
   useEffect(() => {
-    if (!isClient) return
+    if (!isClient || typeof window === 'undefined') return
 
     // Check if already installed
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches
@@ -31,7 +31,7 @@ export function PWAInstaller() {
     setIsInstalled(isStandalone || isInWebAppiOS)
 
     // Detect iOS
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
     setIsIOS(iOS)
 
     // Listen for the beforeinstallprompt event

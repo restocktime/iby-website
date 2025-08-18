@@ -9,6 +9,7 @@ import { NavigationProvider } from '@/contexts/NavigationContext'
 import { SectionTransition, StaggeredList } from '@/components/ui/SectionTransition'
 import GlobalParticles from '@/components/ui/GlobalParticles'
 import { ClientWrapper } from '@/components/ClientWrapper'
+import { ClientOnly } from '@/components/ClientOnly'
 import { SEOEnhancements, ServiceStructuredData, FAQStructuredData } from '@/components/seo/SEOEnhancements'
 import { sampleProjects } from '@/data/projects'
 
@@ -29,7 +30,9 @@ export default function Home() {
         <ClientWrapper>
           <Layout>
             <main id="main-content" role="main" tabIndex={-1}>
-              <HeroSection />
+              <ClientOnly>
+                <HeroSection />
+              </ClientOnly>
 
               {/* About Section */}
               <SectionTransition 
@@ -169,7 +172,9 @@ export default function Home() {
                   variant="colorful" 
                 />
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                  <SkillsVisualization />
+                  <ClientOnly>
+                    <SkillsVisualization />
+                  </ClientOnly>
                 </div>
               </SectionTransition>
 
@@ -182,7 +187,9 @@ export default function Home() {
                   variant="colorful" 
                 />
                 <div className="relative z-10">
-                  <ContactSection />
+                  <ClientOnly>
+                    <ContactSection />
+                  </ClientOnly>
                 </div>
               </div>
             </main>

@@ -219,6 +219,8 @@ class ABTestingService {
   }
 
   private loadActiveTests(): void {
+    if (typeof window === 'undefined') return
+    
     try {
       const stored = localStorage.getItem('ab_tests')
       if (stored) {
@@ -233,6 +235,8 @@ class ABTestingService {
   }
 
   private loadUserVariants(): void {
+    if (typeof window === 'undefined') return
+    
     try {
       const stored = localStorage.getItem('ab_user_variants')
       if (stored) {
@@ -247,6 +251,8 @@ class ABTestingService {
   }
 
   private saveUserVariants(): void {
+    if (typeof window === 'undefined') return
+    
     try {
       const variants: Record<string, string> = {}
       this.userVariants.forEach((variantId, testId) => {

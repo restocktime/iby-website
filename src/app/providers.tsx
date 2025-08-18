@@ -4,8 +4,8 @@ import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <AnalyticsProvider>
+    <>
       {children}
-    </AnalyticsProvider>
+    </>
   )
 }

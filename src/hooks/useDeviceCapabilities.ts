@@ -40,6 +40,8 @@ export function useDeviceCapabilities(): ExtendedDeviceCapabilities {
   })
 
   const detectPerformanceLevel = useCallback((): PerformanceLevel => {
+    if (typeof navigator === 'undefined') return 'medium'
+    
     const { hardwareConcurrency, deviceMemory } = navigator as any
     const cores = hardwareConcurrency || 4
     const memory = deviceMemory || 4
@@ -64,15 +66,17 @@ export function useDeviceCapabilities(): ExtendedDeviceCapabilities {
       else if (connection.effectiveType === '3g') score += 1
     }
 
-    // WebGL capabilities scoring
-    const canvas = document.createElement('canvas')
-    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
-    if (gl) {
-      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info')
-      if (debugInfo) {
-        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
-        if (renderer.includes('NVIDIA') || renderer.includes('AMD')) score += 2
-        else if (renderer.includes('Intel')) score += 1
+    // WebGL capabilities scoring (only on client side)
+    if (typeof document !== 'undefined') {
+      const canvas = document.createElement('canvas')
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
+      if (gl) {
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info')
+        if (debugInfo) {
+          const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+          if (renderer.includes('NVIDIA') || renderer.includes('AMD')) score += 2
+          else if (renderer.includes('Intel')) score += 1
+        }
       }
     }
 
@@ -82,6 +86,8 @@ export function useDeviceCapabilities(): ExtendedDeviceCapabilities {
   }, [])
 
   const getBatteryLevel = useCallback(async (): Promise<number | undefined> => {
+    if (typeof navigator === 'undefined') return undefined
+    
     try {
       const battery = await (navigator as any).getBattery?.()
       return battery?.level
@@ -91,6 +97,8 @@ export function useDeviceCapabilities(): ExtendedDeviceCapabilities {
   }, [])
 
   const getMemoryInfo = useCallback(() => {
+    if (typeof window === 'undefined') return undefined
+    
     const performance = window.performance as any
     if (performance.memory) {
       return {
@@ -104,6 +112,9 @@ export function useDeviceCapabilities(): ExtendedDeviceCapabilities {
 
   useEffect(() => {
     const updateCapabilities = async () => {
+      // Only run on client side
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return
+
       const width = window.innerWidth
       const height = window.innerHeight
       const pixelRatio = window.devicePixelRatio || 1
@@ -172,24 +183,34 @@ export function useDeviceCapabilities(): ExtendedDeviceCapabilities {
     }
 
     updateCapabilities()
-    window.addEventListener('resize', updateCapabilities)
+    
+    // Only add event listeners on client side
+    let motionQuery: MediaQueryList | null = null
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', updateCapabilities)
+      
+      // Listen for motion preference changes
+      motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      motionQuery.addEventListener('change', updateCapabilities)
+    }
     
     // Listen for connection changes
-    const connection = (navigator as any).connection
+    const connection = typeof navigator !== 'undefined' ? (navigator as any).connection : null
     if (connection) {
       connection.addEventListener('change', updateCapabilities)
     }
 
-    // Listen for motion preference changes
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    motionQuery.addEventListener('change', updateCapabilities)
-
     return () => {
-      window.removeEventListener('resize', updateCapabilities)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', updateCapabilities)
+      }
       if (connection) {
         connection.removeEventListener('change', updateCapabilities)
       }
-      motionQuery.removeEventListener('change', updateCapabilities)
+      if (motionQuery) {
+        motionQuery.removeEventListener('change', updateCapabilities)
+      }
     }
   }, [detectPerformanceLevel, getBatteryLevel, getMemoryInfo])
 

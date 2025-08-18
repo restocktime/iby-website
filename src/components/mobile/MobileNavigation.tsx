@@ -68,6 +68,8 @@ export function MobileNavigation() {
 
   // Track active section based on scroll position
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const handleScroll = () => {
       const sections = navigationItems.map(item => item.id)
       const scrollPosition = window.scrollY + 150 // Better offset for mobile
@@ -107,6 +109,8 @@ export function MobileNavigation() {
     triggerHaptic('light')
     setActiveSection(id)
     setIsOpen(false)
+    
+    if (typeof window === 'undefined') return
     
     // Smooth scroll to section with proper offset for mobile
     const element = document.querySelector(href)
@@ -224,7 +228,9 @@ export function MobileNavigation() {
                       <motion.button
                         onClick={() => {
                           triggerHaptic('light')
-                          window.open('mailto:isaac@example.com', '_blank')
+                          if (typeof window !== 'undefined') {
+                            window.open('mailto:isaac@example.com', '_blank')
+                          }
                         }}
                         className="p-3 bg-slate-800 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors text-sm"
                         whileTap={{ scale: 0.95 }}
@@ -235,7 +241,9 @@ export function MobileNavigation() {
                       <motion.button
                         onClick={() => {
                           triggerHaptic('light')
-                          window.open('https://wa.me/1234567890', '_blank')
+                          if (typeof window !== 'undefined') {
+                            window.open('https://wa.me/1234567890', '_blank')
+                          }
                         }}
                         className="p-3 bg-slate-800 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700 transition-colors text-sm"
                         whileTap={{ scale: 0.95 }}

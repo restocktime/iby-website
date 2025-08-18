@@ -291,7 +291,7 @@ export default function ProjectDetailModalEnhanced({ project, onClose }: Project
                   return (
                     <motion.button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
+                      onClick={() => setActiveTab(tab.id as 'overview' | 'technical' | 'demo')}
                       className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
                         isActive
                           ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'

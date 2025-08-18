@@ -17,7 +17,7 @@ const mockProjects: Project[] = [
     title: 'RestockTime - Inventory Management',
     description: 'Advanced inventory management system with real-time tracking, automated alerts, and comprehensive analytics for e-commerce businesses.',
     longDescription: 'RestockTime is a comprehensive inventory management solution designed for modern e-commerce businesses. The system provides real-time inventory tracking, automated restock alerts, supplier management, and detailed analytics.',
-    category: 'web-app',
+    category: 'web-development',
     technologies: [
       { name: 'React', category: 'frontend' },
       { name: 'Next.js', category: 'frontend' },

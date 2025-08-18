@@ -180,7 +180,8 @@ export default function RestockTimePage() {
               <DemoRenderer 
                 liveDemo={{
                   type: 'interactive',
-                  component: 'WebsiteMonitorDemo'
+                  component: 'WebsiteMonitorDemo',
+                  description: 'Interactive demo of RestockTime monitoring system'
                 }}
                 projectTitle={project.title}
                 projectId="restocktime"

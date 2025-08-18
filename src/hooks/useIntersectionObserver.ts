@@ -54,7 +54,7 @@ export function useIntersectionObserver(
   }, [triggerOnce])
 
   useEffect(() => {
-    if (skip) return
+    if (skip || typeof window === 'undefined' || !('IntersectionObserver' in window)) return
 
     const element = elementRef.current
     if (!element) return
@@ -126,7 +126,7 @@ export function useMultipleIntersectionObserver(
   }, [triggerOnce])
 
   const observe = useCallback((element: HTMLElement, id: string) => {
-    if (skip) return
+    if (skip || typeof window === 'undefined' || !('IntersectionObserver' in window)) return
 
     if (!observerRef.current) {
       observerRef.current = new IntersectionObserver(handleIntersection, {
@@ -168,6 +168,8 @@ export function useSectionIntersection(sectionIds: string[]) {
   const [activeSection, setActiveSection] = useState<string | null>(null)
 
   useEffect(() => {
+    if (typeof document === 'undefined') return
+    
     sectionIds.forEach(id => {
       const element = document.getElementById(id)
       if (element) {

@@ -241,7 +241,7 @@ export function ParallaxSection({
   const { shouldAnimate } = useAnimationSettings()
 
   const getParallaxY = () => {
-    if (!entry || !shouldAnimate) return 0
+    if (!entry || !shouldAnimate || typeof window === 'undefined') return 0
     
     const elementTop = entry.boundingClientRect.top
     const elementHeight = entry.boundingClientRect.height

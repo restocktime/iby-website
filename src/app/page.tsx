@@ -13,6 +13,9 @@ import { ClientOnly } from '@/components/ClientOnly'
 import { SEOEnhancements, ServiceStructuredData, FAQStructuredData } from '@/components/seo/SEOEnhancements'
 import { sampleProjects } from '@/data/projects'
 
+// Force dynamic rendering to avoid SSG issues during development
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   const breadcrumbs = [
     { name: "Home", url: "https://isaacbenyakar.com" }
@@ -154,7 +157,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/30 to-pink-900/20 z-10" />
 
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-                  <ProjectShowcase projects={sampleProjects} />
+                  <ClientOnly>
+                    <ProjectShowcase projects={sampleProjects} />
+                  </ClientOnly>
                 </div>
               </section>
 

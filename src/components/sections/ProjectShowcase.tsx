@@ -7,7 +7,7 @@ import { ProjectGrid } from './projects/ProjectGrid'
 import { ProjectTimeline } from './projects/ProjectTimeline'
 import { ProjectNetwork } from './projects/ProjectNetwork'
 import { ProjectFilters } from './projects/ProjectFilters'
-import ProjectDetailModal from './projects/ProjectDetailModal'
+import ProjectDetailModalEnhanced from './projects/ProjectDetailModalEnhanced'
 import { LayoutToggle } from './projects/LayoutToggle'
 
 export type LayoutMode = 'grid' | 'timeline' | 'network'
@@ -225,61 +225,10 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
         {/* Project Detail Modal */}
         <AnimatePresence>
           {selectedProject && (
-            <>
-              {typeof ProjectDetailModal !== 'undefined' ? (
-                <ProjectDetailModal
-                  project={selectedProject}
-                  onClose={handleCloseModal}
-                />
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-                  onClick={handleCloseModal}
-                >
-                  <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.9, opacity: 0 }}
-                    className="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl w-full border border-white/20"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className="flex justify-between items-start mb-6">
-                      <h2 className="text-2xl font-heading font-bold text-white">{selectedProject.title}</h2>
-                      <button
-                        onClick={handleCloseModal}
-                        className="text-white/60 hover:text-white transition-colors"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                    <p className="text-white/80 mb-6">{selectedProject.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {selectedProject.technologies.map((tech) => (
-                        <span
-                          key={tech.name}
-                          className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
-                        >
-                          {tech.name}
-                        </span>
-                      ))}
-                    </div>
-                    {selectedProject.liveUrl && (
-                      <a
-                        href={selectedProject.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                      >
-                        View Live Project
-                      </a>
-                    )}
-                  </motion.div>
-                </motion.div>
-              )}
-            </>
+            <ProjectDetailModalEnhanced
+              project={selectedProject}
+              onClose={handleCloseModal}
+            />
           )}
         </AnimatePresence>
     </div>

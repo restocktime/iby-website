@@ -5,8 +5,9 @@ import { motion } from 'framer-motion'
 import { Project } from '@/types'
 import HeroSection from './HeroSection'
 import { ProjectShowcase } from './ProjectShowcase'
+import FeaturedWorkSection from './FeaturedWorkSection'
 import SkillsVisualizationEnhanced from './SkillsVisualizationEnhanced'
-import ContactSection from './ContactSection'
+import { ContactSection } from './ContactSection'
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary'
 
 // Mock data for projects - replace with real data
@@ -192,23 +193,15 @@ export default function MainContent() {
         <AboutSection />
       </ErrorBoundary>
 
+      {/* Featured Work Section */}
+      <ErrorBoundary level="section">
+        <FeaturedWorkSection />
+      </ErrorBoundary>
+
       {/* Projects Section */}
       <ErrorBoundary level="section">
         <section id="projects" className="py-24 bg-gradient-to-br from-slate-950 to-slate-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl font-bold text-white mb-6">Featured Projects</h2>
-              <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-                A showcase of my recent work including web applications, automation tools, and custom business solutions.
-              </p>
-            </motion.div>
-
             <Suspense fallback={<div className="text-white text-center">Loading projects...</div>}>
               <ProjectShowcase projects={mockProjects} />
             </Suspense>

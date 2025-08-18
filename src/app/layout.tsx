@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Fraunces, DM_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
@@ -63,20 +63,21 @@ const satoshi = DM_Sans({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  minimumScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: false,
+  viewportFit: 'cover',
+}
+
 export const metadata: Metadata = {
   title: {
     default: "Isaac Benyakar - Full Stack Developer & Automation Expert",
     template: "%s | Isaac Benyakar"
   },
   description: "Interactive portfolio showcasing web development, automation, custom CRM solutions, web scraping, and business intelligence by Isaac Benyakar. Specializing in React, Next.js, and custom business solutions.",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1.0,
-    minimumScale: 1.0,
-    maximumScale: 1.0,
-    userScalable: false,
-    viewportFit: 'cover',
-  },
   keywords: [
     "Isaac Benyakar",
     "Full Stack Developer",

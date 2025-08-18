@@ -184,7 +184,8 @@ export default function ShukOnlinePage() {
               <DemoRenderer 
                 liveDemo={{
                   type: 'interactive',
-                  component: 'CRMShowcase'
+                  component: 'CRMShowcase',
+                  description: 'Interactive demo of Shuk Online CRM system'
                 }}
                 projectTitle={project.title}
                 projectId="shuk-online"

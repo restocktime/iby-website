@@ -182,7 +182,8 @@ export default function SundayEdgeProPage() {
               <DemoRenderer 
                 liveDemo={{
                   type: 'interactive',
-                  component: 'LiveScraperDemo'
+                  component: 'LiveScraperDemo',
+                  description: 'Interactive demo of Sunday Edge Pro scraper'
                 }}
                 projectTitle={project.title}
                 projectId="sunday-edge-pro"

@@ -25,6 +25,16 @@ export function useSmoothScroll() {
 
     if (!targetElement) return
 
+    // Check if mobile device
+    const isMobile = window.innerWidth < 768
+    
+    if (isMobile || duration === 0) {
+      // Use instant scroll on mobile to prevent scroll jumping
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset
+      window.scrollTo(0, targetPosition)
+      return
+    }
+
     const startPosition = window.pageYOffset
     const targetPosition = targetElement.getBoundingClientRect().top + startPosition - offset
     const distance = targetPosition - startPosition

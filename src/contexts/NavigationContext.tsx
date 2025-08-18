@@ -76,7 +76,12 @@ export function NavigationProvider({
   }, [])
 
   const navigateToSection = (sectionId: string) => {
-    scrollToSection(sectionId, { duration: 800, offset: 80 })
+    // Use different scroll behavior for mobile vs desktop
+    const isMobile = window.innerWidth < 768
+    scrollToSection(sectionId, { 
+      duration: isMobile ? 0 : 800, // No smooth scroll on mobile
+      offset: 80 
+    })
   }
 
   // Update sections with active state

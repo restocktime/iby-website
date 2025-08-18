@@ -69,6 +69,13 @@ export const metadata: Metadata = {
     template: "%s | Isaac Benyakar"
   },
   description: "Interactive portfolio showcasing web development, automation, custom CRM solutions, web scraping, and business intelligence by Isaac Benyakar. Specializing in React, Next.js, and custom business solutions.",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+  },
   keywords: [
     "Isaac Benyakar",
     "Full Stack Developer",

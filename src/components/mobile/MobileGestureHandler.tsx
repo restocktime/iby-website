@@ -118,19 +118,20 @@ export function MobileGestureHandler({
     const container = containerRef.current
     if (!container || !supportsTouch) return
 
-    // Prevent default touch behaviors that might interfere
+    // Prevent default touch behaviors that might interfere with scrolling
     const preventDefaultTouch = (e: TouchEvent) => {
+      // Only prevent default for multi-touch (pinch/zoom)
+      // Allow single touch for natural scrolling
       if (e.touches.length > 1) {
         e.preventDefault() // Prevent pinch-to-zoom on multi-touch
       }
     }
 
     container.addEventListener('touchstart', preventDefaultTouch, { passive: false })
-    container.addEventListener('touchmove', preventDefaultTouch, { passive: false })
-
+    // Don't prevent touchmove to allow natural scrolling
+    
     return () => {
       container.removeEventListener('touchstart', preventDefaultTouch)
-      container.removeEventListener('touchmove', preventDefaultTouch)
     }
   }, [supportsTouch])
 
@@ -144,7 +145,7 @@ export function MobileGestureHandler({
       ref={containerRef}
       className={`touch-manipulation select-none ${className}`}
       style={{
-        touchAction: 'pan-x pan-y pinch-zoom',
+        touchAction: 'pan-y', // Only allow vertical scrolling
         WebkitTouchCallout: 'none',
         WebkitUserSelect: 'none',
         userSelect: 'none'

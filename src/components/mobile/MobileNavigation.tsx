@@ -112,16 +112,13 @@ export function MobileNavigation() {
     
     if (typeof window === 'undefined') return
     
-    // Smooth scroll to section with proper offset for mobile
+    // Use native scrollIntoView for better mobile compatibility
     const element = document.querySelector(href)
     if (element) {
-      const headerOffset = 80 // Account for mobile header height
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+      element.scrollIntoView({
+        behavior: 'auto', // Use auto instead of smooth for mobile
+        block: 'start',
+        inline: 'nearest'
       })
     }
   }

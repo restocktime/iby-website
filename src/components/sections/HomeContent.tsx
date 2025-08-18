@@ -374,7 +374,7 @@ export default function HomeContent() {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and create a custom solution that drives results
+              Let&apos;s discuss your project and create a custom solution that drives results
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">

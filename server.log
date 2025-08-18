@@ -146,3 +146,7 @@ Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
  GET /contact 200 in 76ms
  ✓ Compiled in 240ms (1650 modules)
  GET /contact 200 in 46ms
+ ✓ Compiled in 241ms (732 modules)
+ GET /contact 200 in 24ms
+ ✓ Compiled in 128ms (732 modules)
+ GET /contact 200 in 12ms

@@ -405,7 +405,7 @@ export default function ProjectDetailModalEnhanced({ project, onClose }: Project
                           <div>
                             <div className="text-sm text-slate-400">Started</div>
                             <div className="text-white font-medium">
-                              {new Date(project.startDate).toLocaleDateString()}
+                              {new Date(project.startDate || '2023').toLocaleDateString()}
                             </div>
                           </div>
                           <div className="flex-1 mx-8">

@@ -5,6 +5,7 @@ export const sampleProjects: Project[] = [
     id: 'sunday-edge-pro',
     title: 'Sunday Edge Pro',
     description: 'Advanced sports betting analytics platform with 89.3% prediction accuracy and real-time odds tracking across multiple sportsbooks.',
+    longDescription: 'Sunday Edge Pro is a comprehensive sports betting analytics platform that leverages machine learning algorithms and real-time data processing to provide users with highly accurate predictions. The platform aggregates odds from multiple sportsbooks, analyzes historical performance data, and applies advanced statistical models to deliver 89.3% prediction accuracy. Features include real-time odds comparison, automated betting strategies, risk management tools, and detailed performance analytics to help both casual and professional bettors make informed decisions.',
     technologies: [
       { name: 'Next.js', category: 'frontend', proficiency: 9, yearsOfExperience: 4 },
       { name: 'TypeScript', category: 'frontend', proficiency: 9, yearsOfExperience: 5 },
@@ -78,6 +79,7 @@ export const sampleProjects: Project[] = [
     id: 'restocktime',
     title: 'Restocktime',
     description: 'E-commerce inventory management and restock prediction system helping retailers optimize their supply chain and reduce stockouts.',
+    longDescription: 'Restocktime is an AI-powered inventory management solution designed specifically for e-commerce retailers. The platform uses predictive analytics to forecast demand patterns, optimize restock timing, and prevent both stockouts and overstock situations. Key features include automated supplier communications, multi-channel inventory sync, seasonal demand forecasting, and comprehensive reporting dashboards. The system integrates with popular e-commerce platforms and provides actionable insights to improve inventory turnover and reduce carrying costs.',
     technologies: [
       { name: 'React', category: 'frontend', proficiency: 9, yearsOfExperience: 5 },
       { name: 'Node.js', category: 'backend', proficiency: 8, yearsOfExperience: 4 },
@@ -129,6 +131,7 @@ export const sampleProjects: Project[] = [
     id: 'shuk-online',
     title: 'Shuk Online',
     description: 'Modern e-commerce platform for Middle Eastern grocery delivery with real-time inventory and multi-language support.',
+    longDescription: 'Shuk Online is a specialized e-commerce marketplace tailored for Middle Eastern grocery delivery services. The platform features real-time inventory management for perishable goods, multi-language support (Arabic, Hebrew, English), and integrated delivery logistics. Built with cultural preferences in mind, it includes features like halal product filtering, bulk ordering options, and flexible payment methods including cash on delivery. The platform serves both individual consumers and restaurants, with specialized wholesale pricing and inventory management tools.',
     technologies: [
       { name: 'Next.js', category: 'frontend', proficiency: 9, yearsOfExperience: 4 },
       { name: 'Prisma', category: 'database', proficiency: 8, yearsOfExperience: 2 },
@@ -180,6 +183,7 @@ export const sampleProjects: Project[] = [
     id: 'google-scraper-suite',
     title: 'Google Scraper Suite',
     description: 'Comprehensive web scraping toolkit for Google services including Search, Maps, Shopping, and Images with anti-detection measures.',
+    longDescription: 'Google Scraper Suite is a professional-grade web scraping toolkit designed for large-scale data extraction from Google services. The suite includes specialized scrapers for Google Search, Maps, Shopping, and Images, all equipped with sophisticated anti-detection mechanisms. Features include rotating proxy support, CAPTCHA solving integration, intelligent rate limiting, and distributed scraping architecture. The platform provides APIs for easy integration, real-time monitoring dashboards, and data export in multiple formats. Built for businesses requiring reliable, large-scale data collection while maintaining compliance with terms of service.',
     technologies: [
       { name: 'Python', category: 'backend', proficiency: 9, yearsOfExperience: 6 },
       { name: 'Selenium', category: 'tool', proficiency: 8, yearsOfExperience: 4 },
@@ -231,6 +235,7 @@ export const sampleProjects: Project[] = [
     id: 'website-monitor-pro',
     title: 'Website Monitor Pro',
     description: 'Advanced website monitoring system with real-time alerts, performance tracking, and automated incident response.',
+    longDescription: 'Website Monitor Pro is a comprehensive monitoring solution that provides 24/7 surveillance of website uptime, performance, and security. The platform offers real-time alerting through multiple channels (Discord, email, SMS), detailed performance analytics, and automated incident response capabilities. Features include synthetic transaction monitoring, SSL certificate tracking, DNS monitoring, and integration with popular communication platforms. The system provides detailed SLA reporting, historical performance data, and customizable dashboards for technical teams and stakeholders.',
     technologies: [
       { name: 'Node.js', category: 'backend', proficiency: 8, yearsOfExperience: 4 },
       { name: 'React', category: 'frontend', proficiency: 9, yearsOfExperience: 5 },
@@ -292,6 +297,7 @@ export const sampleProjects: Project[] = [
     id: 'custom-crm-healthcare',
     title: 'Healthcare CRM Solution',
     description: 'HIPAA-compliant CRM system for healthcare providers with patient management, appointment scheduling, and billing integration.',
+    longDescription: 'Healthcare CRM Solution is a specialized customer relationship management system designed specifically for healthcare providers. The platform ensures full HIPAA compliance while providing comprehensive patient management, appointment scheduling, and integrated billing capabilities. Features include secure patient portals, automated appointment reminders, insurance verification, treatment planning tools, and detailed reporting for practice management. The system includes role-based access controls, audit trails, and encrypted data storage to meet strict healthcare privacy requirements while improving operational efficiency.',
     technologies: [
       { name: 'React', category: 'frontend', proficiency: 9, yearsOfExperience: 5 },
       { name: 'Node.js', category: 'backend', proficiency: 8, yearsOfExperience: 4 },

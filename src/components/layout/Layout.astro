@@ -84,6 +84,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <a href="/" class="text-xl font-bold text-blue-400 hover:text-blue-300 transition-colors">
             Isaac Benyakar
           </a>
+          
+          <!-- Desktop Menu -->
           <div class="hidden md:flex space-x-8">
             <a href="/" class="hover:text-blue-400 transition-colors">Home</a>
             <a href="/projects" class="hover:text-blue-400 transition-colors">Projects</a>
@@ -92,6 +94,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             <a href="/locations" class="hover:text-blue-400 transition-colors">Locations</a>
             <a href="/blog" class="hover:text-blue-400 transition-colors">Blog</a>
             <a href="/contact" class="hover:text-blue-400 transition-colors">Contact</a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button 
+            id="mobile-menu-button"
+            class="md:hidden flex items-center px-3 py-2 border border-slate-600 rounded text-slate-300 hover:text-blue-400 hover:border-blue-400 transition-colors"
+            aria-label="Toggle mobile menu"
+          >
+            <svg class="fill-current h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+          <div class="flex flex-col space-y-4">
+            <a href="/" class="text-slate-300 hover:text-blue-400 transition-colors py-2 border-b border-slate-700">Home</a>
+            <a href="/projects" class="text-slate-300 hover:text-blue-400 transition-colors py-2 border-b border-slate-700">Projects</a>
+            <a href="/services/seo-optimization" class="text-slate-300 hover:text-blue-400 transition-colors py-2 border-b border-slate-700">SEO Services</a>
+            <a href="/industries" class="text-slate-300 hover:text-blue-400 transition-colors py-2 border-b border-slate-700">Industries</a>
+            <a href="/locations" class="text-slate-300 hover:text-blue-400 transition-colors py-2 border-b border-slate-700">Locations</a>
+            <a href="/blog" class="text-slate-300 hover:text-blue-400 transition-colors py-2 border-b border-slate-700">Blog</a>
+            <a href="/contact" class="text-slate-300 hover:text-blue-400 transition-colors py-2">Contact</a>
           </div>
         </div>
       </nav>
@@ -168,5 +194,48 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
       }
     </style>
+
+    <!-- Mobile Menu JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Update button appearance
+            const svg = mobileMenuButton.querySelector('svg');
+            if (mobileMenu.classList.contains('hidden')) {
+              // Hamburger icon
+              svg.innerHTML = '<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>';
+            } else {
+              // X icon
+              svg.innerHTML = '<path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>';
+            }
+          });
+          
+          // Close mobile menu when clicking on links
+          const mobileLinks = mobileMenu.querySelectorAll('a');
+          mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+              mobileMenu.classList.add('hidden');
+              const svg = mobileMenuButton.querySelector('svg');
+              svg.innerHTML = '<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>';
+            });
+          });
+          
+          // Close mobile menu when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+              mobileMenu.classList.add('hidden');
+              const svg = mobileMenuButton.querySelector('svg');
+              svg.innerHTML = '<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>';
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

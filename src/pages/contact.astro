@@ -115,7 +115,7 @@ import Layout from '../components/layout/Layout.astro';
                 Prefer Email? Send a Message
               </h3>
               
-              <form class="space-y-4" action="https://formspree.io/f/xpznqbng" method="post">
+              <form class="space-y-4" action="https://formsubmit.co/iby@isaacbenyakar.com" method="POST">
                 <div>
                   <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
                   <input 
@@ -223,10 +223,12 @@ import Layout from '../components/layout/Layout.astro';
                   <a href="mailto:iby@isaacbenyakar.com" class="text-blue-400 hover:text-blue-300">iby@isaacbenyakar.com</a>
                 </p>
                 
+                <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_next" value="https://isaacbenyakar.com/contact-success">
                 <input type="hidden" name="_subject" value="New Contact Form - isaacbenyakar.com">
-                <input type="hidden" name="_replyto" value="email">
-                <input type="hidden" name="_format" value="html">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_autoresponse" value="Thank you for contacting Isaac Benyakar! I'll get back to you within 24 hours.">
               </form>
             </div>
           </div>

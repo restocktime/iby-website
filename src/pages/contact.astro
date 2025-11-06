@@ -100,7 +100,19 @@ import Layout from '../components/layout/Layout.astro';
             <div class="bg-white rounded-xl overflow-hidden">
               <!-- Calendly inline widget begin -->
               <div class="calendly-inline-widget" data-url="https://calendly.com/iby-isaacbenyakar/30min" style="min-width:320px;height:700px;"></div>
-              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              
+              <!-- Load Calendly script -->
+              <script>
+                window.addEventListener('DOMContentLoaded', function() {
+                  if (!window.Calendly) {
+                    var script = document.createElement('script');
+                    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    document.head.appendChild(script);
+                  }
+                });
+              </script>
               <!-- Calendly inline widget end -->
             </div>
             

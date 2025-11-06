@@ -97,20 +97,76 @@ import Layout from '../components/layout/Layout.astro';
           <!-- Enhanced Booking Options -->
           <div class="grid md:grid-cols-2 gap-8">
             <!-- Calendly Embed -->
-            <div class="bg-white rounded-xl overflow-hidden">
+            <div class="bg-white rounded-xl overflow-hidden relative">
               <!-- Calendly inline widget begins -->
-              <div class="calendly-inline-widget" 
+              <div id="calendly-widget" class="calendly-inline-widget" 
                    data-url="https://calendly.com/iby-isaacbenyakar/30min" 
                    style="min-width:320px;height:700px;"></div>
-              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-              <!-- Calendly inline widget ends -->
               
-              <!-- Fallback for when Calendly is not available -->
+              <!-- Loading state -->
+              <div id="calendly-loading" class="absolute inset-0 bg-slate-100 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+                  <p class="text-slate-600">Loading calendar...</p>
+                </div>
+              </div>
+              
+              <!-- Error fallback -->
+              <div id="calendly-error" class="hidden absolute inset-0 bg-slate-800 p-8 rounded-xl text-center flex items-center justify-center flex-col">
+                <div class="text-4xl mb-4">📅</div>
+                <h3 class="text-xl font-bold text-white mb-4">Calendar Loading Issue</h3>
+                <p class="text-slate-300 mb-6">
+                  Having trouble loading the calendar? No problem! Click below to schedule directly.
+                </p>
+                <a 
+                  href="https://calendly.com/iby-isaacbenyakar/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mb-4"
+                >
+                  Schedule on Calendly →
+                </a>
+                <p class="text-slate-400 text-sm">
+                  Or call directly: <a href="tel:+13053933009" class="text-blue-400 hover:text-blue-300">(305) 393-3009</a>
+                </p>
+              </div>
+              
+              <!-- Calendly script with error handling -->
+              <script>
+                (function() {
+                  const script = document.createElement('script');
+                  script.src = 'https://assets.calendly.com/assets/external/widget.js';
+                  script.async = true;
+                  
+                  script.onload = function() {
+                    // Hide loading state when Calendly loads
+                    document.getElementById('calendly-loading').style.display = 'none';
+                  };
+                  
+                  script.onerror = function() {
+                    // Show error state if Calendly fails to load
+                    document.getElementById('calendly-loading').style.display = 'none';
+                    document.getElementById('calendly-error').classList.remove('hidden');
+                  };
+                  
+                  document.head.appendChild(script);
+                  
+                  // Fallback timeout in case Calendly takes too long
+                  setTimeout(function() {
+                    if (document.getElementById('calendly-loading').style.display !== 'none') {
+                      document.getElementById('calendly-loading').style.display = 'none';
+                      document.getElementById('calendly-error').classList.remove('hidden');
+                    }
+                  }, 10000); // 10 second timeout
+                })();
+              </script>
+              
+              <!-- Noscript fallback -->
               <noscript>
                 <div class="bg-slate-800 p-8 rounded-xl text-center h-full flex items-center justify-center flex-col">
                   <h3 class="text-xl font-bold text-white mb-4">Schedule Your Consultation</h3>
                   <p class="text-slate-300 mb-6">
-                    Please enable JavaScript to use the scheduling widget, or use the contact form.
+                    Please enable JavaScript to use the scheduling widget.
                   </p>
                   <a 
                     href="https://calendly.com/iby-isaacbenyakar/30min"

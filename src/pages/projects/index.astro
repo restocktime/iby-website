@@ -94,39 +94,107 @@ const currentCategory = category ? categories[category] : null;
       </div>
     </section>
 
-    <!-- Projects Grid -->
-    <section class="bg-slate-900 py-20">
+    <!-- Projects Grid with Coming Soon Overlay -->
+    <section class="bg-slate-900 py-20 relative">
       <div class="container mx-auto px-4">
-        {displayedProjects.length === 0 ? (
-          <div class="text-center py-20">
-            <div class="text-4xl mb-4">🔍</div>
-            <h2 class="text-2xl font-bold text-white mb-4">No Projects Found</h2>
-            <p class="text-slate-300 mb-8">No projects match the current filter criteria.</p>
-            <a 
-              href="/projects"
-              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-            >
-              View All Projects
-            </a>
-          </div>
-        ) : (
-          <div>
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold text-white mb-4">
-                {currentCategory ? `${currentCategory.name} Portfolio` : 'Complete Portfolio'}
-              </h2>
-              <p class="text-slate-300">
-                {displayedProjects.length} project{displayedProjects.length === 1 ? '' : 's'} showcasing measurable business impact
-              </p>
+        <div class="relative">
+          {displayedProjects.length === 0 ? (
+            <div class="text-center py-20">
+              <div class="text-4xl mb-4">🔍</div>
+              <h2 class="text-2xl font-bold text-white mb-4">No Projects Found</h2>
+              <p class="text-slate-300 mb-8">No projects match the current filter criteria.</p>
+              <a 
+                href="/projects"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                View All Projects
+              </a>
             </div>
+          ) : (
+            <div>
+              <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                  {currentCategory ? `${currentCategory.name} Portfolio` : 'Complete Portfolio'}
+                </h2>
+                <p class="text-slate-300">
+                  {displayedProjects.length} project{displayedProjects.length === 1 ? '' : 's'} showcasing measurable business impact
+                </p>
+              </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {displayedProjects.map((project) => (
-                <ProjectCard project={project} />
-              ))}
+              <!-- Projects Grid with Blur Effect -->
+              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 filter blur-sm opacity-40 pointer-events-none">
+                {displayedProjects.map((project) => (
+                  <ProjectCard project={project} />
+                ))}
+              </div>
+            </div>
+          )}
+          
+          <!-- Coming Soon Overlay -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-blue-900/95 backdrop-blur-lg rounded-2xl border border-slate-600/50 p-12 max-w-lg mx-4 text-center transform hover:scale-105 transition-all duration-300 shadow-2xl">
+              <!-- Animated Icon -->
+              <div class="relative mb-8">
+                <div class="text-6xl mb-4 animate-pulse">
+                  🚀
+                </div>
+                <div class="absolute -top-2 -right-2 w-4 h-4 bg-blue-500 rounded-full animate-ping"></div>
+                <div class="absolute -bottom-1 -left-1 w-3 h-3 bg-purple-500 rounded-full animate-ping delay-1000"></div>
+              </div>
+              
+              <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Coming Soon
+              </h3>
+              
+              <p class="text-slate-300 mb-6 leading-relaxed">
+                I'm currently crafting detailed case studies showcasing the technical deep-dives, business metrics, and client testimonials for each project.
+              </p>
+              
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center text-slate-400 text-sm">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+                  Detailed technical breakdowns
+                </div>
+                <div class="flex items-center text-slate-400 text-sm">
+                  <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3 animate-pulse delay-300"></div>
+                  Performance metrics & ROI data
+                </div>
+                <div class="flex items-center text-slate-400 text-sm">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse delay-500"></div>
+                  Client testimonials & feedback
+                </div>
+                <div class="flex items-center text-slate-400 text-sm">
+                  <div class="w-2 h-2 bg-purple-400 rounded-full mr-3 animate-pulse delay-700"></div>
+                  Interactive project demos
+                </div>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a 
+                  href="/contact"
+                  class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Discuss Your Project
+                </a>
+                <a 
+                  href="/services/seo-optimization"
+                  class="border border-slate-500 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-6 py-3 rounded-lg font-semibold transition-colors"
+                >
+                  View Services
+                </a>
+              </div>
+              
+              <!-- Progress Indicator -->
+              <div class="mt-6 pt-6 border-t border-slate-600/50">
+                <p class="text-xs text-slate-500 mb-3">Portfolio completion progress</p>
+                <div class="w-full bg-slate-700 rounded-full h-2">
+                  <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full animate-pulse" style="width: 75%"></div>
+                </div>
+                <p class="text-xs text-slate-500 mt-2">75% complete</p>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
 

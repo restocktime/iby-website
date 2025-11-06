@@ -1,5 +1,6 @@
 ---
 import Layout from '../../components/layout/Layout.astro';
+import ComingSoonOverlay from '../../components/ui/ComingSoonOverlay.astro';
 import { projects } from '../../data/projects.ts';
 
 const project = projects.find(p => p.id === 'restocktime');
@@ -201,4 +202,11 @@ if (!project) {
       </div>
     </section>
   </article>
+
+  <!-- Coming Soon Overlay -->
+  <ComingSoonOverlay 
+    title="Detailed Case Study Coming Soon"
+    description="I'm crafting an in-depth case study of Restocktime's 7+ year success story, including technical architecture, growth metrics, and lessons learned from serving thousands of users."
+    progress={85}
+  />
 </Layout>

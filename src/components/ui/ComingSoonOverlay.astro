@@ -1,0 +1,89 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  progress?: number;
+  showProgress?: boolean;
+}
+
+const { 
+  title = "Coming Soon", 
+  description = "This detailed case study is currently being crafted with technical deep-dives, performance metrics, and client testimonials.", 
+  progress = 75,
+  showProgress = true 
+} = Astro.props;
+---
+
+<!-- Coming Soon Overlay -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+  <div class="bg-gradient-to-br from-slate-800/95 via-slate-900/95 to-blue-900/95 backdrop-blur-lg rounded-2xl border border-slate-600/50 p-8 md:p-12 max-w-lg w-full text-center transform hover:scale-105 transition-all duration-300 shadow-2xl">
+    <!-- Animated Icon -->
+    <div class="relative mb-8">
+      <div class="text-6xl mb-4 animate-pulse">
+        🚧
+      </div>
+      <div class="absolute -top-2 -right-2 w-4 h-4 bg-blue-500 rounded-full animate-ping"></div>
+      <div class="absolute -bottom-1 -left-1 w-3 h-3 bg-purple-500 rounded-full animate-ping delay-1000"></div>
+    </div>
+    
+    <h3 class="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+      {title}
+    </h3>
+    
+    <p class="text-slate-300 mb-6 leading-relaxed">
+      {description}
+    </p>
+    
+    <div class="space-y-4 mb-8">
+      <div class="flex items-center text-slate-400 text-sm">
+        <div class="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+        Technical architecture details
+      </div>
+      <div class="flex items-center text-slate-400 text-sm">
+        <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3 animate-pulse delay-300"></div>
+        Performance metrics & results
+      </div>
+      <div class="flex items-center text-slate-400 text-sm">
+        <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse delay-500"></div>
+        Client testimonials
+      </div>
+      <div class="flex items-center text-slate-400 text-sm">
+        <div class="w-2 h-2 bg-purple-400 rounded-full mr-3 animate-pulse delay-700"></div>
+        Interactive demos
+      </div>
+    </div>
+    
+    <div class="flex flex-col sm:flex-row gap-3 mb-6">
+      <a 
+        href="/projects"
+        class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
+      >
+        Back to Projects
+      </a>
+      <a 
+        href="/contact"
+        class="border border-slate-500 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-6 py-3 rounded-lg font-semibold transition-colors"
+      >
+        Contact Me
+      </a>
+    </div>
+    
+    {showProgress && (
+      <!-- Progress Indicator -->
+      <div class="pt-6 border-t border-slate-600/50">
+        <p class="text-xs text-slate-500 mb-3">Case study completion</p>
+        <div class="w-full bg-slate-700 rounded-full h-2">
+          <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full animate-pulse" style={`width: ${progress}%`}></div>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">{progress}% complete</p>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  /* Prevent body scrolling when overlay is active */
+  body {
+    overflow: hidden;
+  }
+</style>

@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://isaacbenyakar.com',
-  output: 'static',
+  output: 'hybrid',
   integrations: [
     tailwind(),
     sitemap(),

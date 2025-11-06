@@ -4,7 +4,53 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": null,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
+    {
+      "source": "/projects",
+      "destination": "/projects/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/miami",
+      "destination": "/miami/index.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy/index.html"
+    },
+    {
+      "source": "/services/(.*)",
+      "destination": "/services/$1/index.html"
+    },
+    {
+      "source": "/industries/(.*)",
+      "destination": "/industries/$1/index.html"
+    },
+    {
+      "source": "/locations/(.*)",
+      "destination": "/locations/$1/index.html"
+    },
+    {
+      "source": "/blog/(.*)",
+      "destination": "/blog/$1/index.html"
+    },
+    {
+      "source": "/projects/(.*)",
+      "destination": "/projects/$1/index.html"
+    },
     {
       "source": "/sitemap.xml",
       "destination": "/sitemap.xml"
@@ -12,13 +58,6 @@
     {
       "source": "/robots.txt", 
       "destination": "/robots.txt"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/locations/(.*)",
-      "destination": "/locations/$1",
-      "permanent": true
     }
   ],
   "headers": [

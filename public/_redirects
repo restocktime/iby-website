@@ -1,0 +1,28 @@
+# Netlify redirects file for clean URLs
+# This file goes in the public/ directory and gets copied to dist/ during build
+
+# Handle clean URLs - redirect to proper directory structure
+/about              /about/index.html           200
+/contact            /contact/index.html          200
+/projects           /projects/index.html         200
+/blog               /blog/index.html             200
+/miami              /miami/index.html            200
+/privacy-policy     /privacy-policy/index.html   200
+
+# Services pages
+/services/*         /services/:splat/index.html  200
+
+# Industries pages  
+/industries/*       /industries/:splat/index.html 200
+
+# Location pages
+/locations/*        /locations/:splat/index.html 200
+
+# Blog posts
+/blog/*            /blog/:splat/index.html       200
+
+# Project pages
+/projects/*        /projects/:splat/index.html   200
+
+# 404 fallback
+/*                 /404/index.html               404

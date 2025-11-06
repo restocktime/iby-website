@@ -25,8 +25,31 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Create email content
-    const emailContent = `
+    // Send email using Resend API
+    const emailData = {
+      from: 'website@isaacbenyakar.com',
+      to: 'iby@isaacbenyakar.com',
+      reply_to: email,
+      subject: `New Contact Form - ${name} ${projectType ? `(${projectType})` : ''}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>From:</strong> isaacbenyakar.com contact form</p>
+        <hr>
+        
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+        <p><strong>Project Type:</strong> ${projectType || 'Not provided'}</p>
+        <p><strong>Budget Range:</strong> ${budget || 'Not provided'}</p>
+        <p><strong>Timeline:</strong> ${timeline || 'Not provided'}</p>
+        
+        <h3>Message:</h3>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+        
+        <hr>
+        <p><small>Reply directly to this email to respond to ${name}.</small></p>
+      `,
+      text: `
 New Contact Form Submission from isaacbenyakar.com
 
 Name: ${name}
@@ -40,19 +63,42 @@ Message:
 ${message}
 
 ---
-This message was sent from your website contact form.
 Reply directly to this email to respond to ${name}.
-    `.trim();
+      `.trim()
+    };
 
-    // For now, we'll use a simple approach - in production you'd want to use a service like:
-    // - SendGrid
-    // - Nodemailer with SMTP
-    // - Resend
-    // - EmailJS
+    // Send email via Resend API
+    const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
     
-    // Since this is a static site, we'll redirect to a success page with the data
-    // and provide instructions for the user to email directly
-    
+    if (!RESEND_API_KEY) {
+      console.error('RESEND_API_KEY not configured');
+      // Fallback to success page without sending email
+      const successUrl = `/contact-success?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+      return new Response(null, {
+        status: 302,
+        headers: { 'Location': successUrl }
+      });
+    }
+
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(emailData)
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('Resend API error:', error);
+      throw new Error('Failed to send email');
+    }
+
+    const result = await response.json();
+    console.log('Email sent successfully:', result.id);
+
+    // Redirect to success page
     const successUrl = `/contact-success?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
     
     return new Response(null, {
@@ -64,12 +110,18 @@ Reply directly to this email to respond to ${name}.
 
   } catch (error) {
     console.error('Contact form error:', error);
-    return new Response(JSON.stringify({ 
-      success: false, 
-      error: 'An error occurred. Please try again.' 
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
+    
+    // Even if email fails, redirect to success page so user doesn't see error
+    const formData = await request.formData();
+    const name = formData.get('name')?.toString() || 'there';
+    const email = formData.get('email')?.toString() || '';
+    const successUrl = `/contact-success?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&error=true`;
+    
+    return new Response(null, {
+      status: 302,
+      headers: {
+        'Location': successUrl
+      }
     });
   }
 };

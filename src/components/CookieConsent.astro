@@ -1,0 +1,238 @@
+---
+// Cookie Consent Component for GDPR/CCPA compliance
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 p-4 z-50 transform translate-y-full transition-transform duration-300">
+  <div class="container mx-auto max-w-6xl">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex-1">
+        <p class="text-sm text-slate-300">
+          We use cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. 
+          By clicking "Accept All", you consent to our use of cookies. 
+          <a href="/privacy-policy" class="text-blue-400 hover:text-blue-300 underline">Learn more</a>
+        </p>
+      </div>
+      <div class="flex gap-2">
+        <button 
+          id="accept-cookies" 
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-semibold transition-colors"
+        >
+          Accept All
+        </button>
+        <button 
+          id="reject-cookies" 
+          class="border border-slate-400 hover:border-slate-300 text-slate-300 hover:text-white px-4 py-2 rounded text-sm font-semibold transition-colors"
+        >
+          Reject
+        </button>
+        <button 
+          id="customize-cookies" 
+          class="text-slate-300 hover:text-white px-4 py-2 rounded text-sm font-semibold transition-colors underline"
+        >
+          Customize
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookie-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+  <div class="bg-slate-800 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-white">Cookie Preferences</h2>
+        <button id="close-modal" class="text-slate-400 hover:text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="space-y-4">
+        <div class="border-b border-slate-600 pb-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold text-white">Essential Cookies</h3>
+              <p class="text-sm text-slate-300">Required for the website to function properly</p>
+            </div>
+            <input type="checkbox" checked disabled class="rounded">
+          </div>
+        </div>
+        
+        <div class="border-b border-slate-600 pb-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold text-white">Analytics Cookies</h3>
+              <p class="text-sm text-slate-300">Help us understand how visitors interact with our website</p>
+            </div>
+            <input type="checkbox" id="analytics-cookies" class="rounded">
+          </div>
+        </div>
+        
+        <div class="border-b border-slate-600 pb-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold text-white">Marketing Cookies</h3>
+              <p class="text-sm text-slate-300">Used to deliver relevant advertisements and track campaign performance</p>
+            </div>
+            <input type="checkbox" id="marketing-cookies" class="rounded">
+          </div>
+        </div>
+        
+        <div class="flex gap-2 pt-4">
+          <button id="save-preferences" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded font-semibold flex-1">
+            Save Preferences
+          </button>
+          <button id="accept-all-modal" class="border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white px-4 py-2 rounded font-semibold">
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cookie consent functionality
+  function initializeCookieConsent() {
+    const banner = document.getElementById('cookie-banner');
+    const modal = document.getElementById('cookie-modal');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+    const customizeBtn = document.getElementById('customize-cookies');
+    const closeModalBtn = document.getElementById('close-modal');
+    const savePrefsBtn = document.getElementById('save-preferences');
+    const acceptAllModalBtn = document.getElementById('accept-all-modal');
+    
+    // Check if consent has been given
+    const cookieConsent = localStorage.getItem('cookie-consent');
+    if (!cookieConsent) {
+      setTimeout(() => {
+        banner?.classList.remove('translate-y-full');
+      }, 1000);
+    }
+    
+    // Accept all cookies
+    acceptBtn?.addEventListener('click', () => {
+      acceptAllCookies();
+      hideBanner();
+    });
+    
+    // Reject all non-essential cookies
+    rejectBtn?.addEventListener('click', () => {
+      rejectCookies();
+      hideBanner();
+    });
+    
+    // Show customization modal
+    customizeBtn?.addEventListener('click', () => {
+      showModal();
+    });
+    
+    // Close modal
+    closeModalBtn?.addEventListener('click', () => {
+      hideModal();
+    });
+    
+    // Save custom preferences
+    savePrefsBtn?.addEventListener('click', () => {
+      saveCustomPreferences();
+      hideModal();
+      hideBanner();
+    });
+    
+    // Accept all from modal
+    acceptAllModalBtn?.addEventListener('click', () => {
+      acceptAllCookies();
+      hideModal();
+      hideBanner();
+    });
+    
+    function acceptAllCookies() {
+      const consent = {
+        essential: true,
+        analytics: true,
+        marketing: true,
+        timestamp: Date.now()
+      };
+      localStorage.setItem('cookie-consent', JSON.stringify(consent));
+      loadAnalytics();
+      loadMarketing();
+    }
+    
+    function rejectCookies() {
+      const consent = {
+        essential: true,
+        analytics: false,
+        marketing: false,
+        timestamp: Date.now()
+      };
+      localStorage.setItem('cookie-consent', JSON.stringify(consent));
+    }
+    
+    function saveCustomPreferences() {
+      const analyticsChecked = document.getElementById('analytics-cookies')?.checked || false;
+      const marketingChecked = document.getElementById('marketing-cookies')?.checked || false;
+      
+      const consent = {
+        essential: true,
+        analytics: analyticsChecked,
+        marketing: marketingChecked,
+        timestamp: Date.now()
+      };
+      localStorage.setItem('cookie-consent', JSON.stringify(consent));
+      
+      if (analyticsChecked) loadAnalytics();
+      if (marketingChecked) loadMarketing();
+    }
+    
+    function loadAnalytics() {
+      // Google Analytics 4
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted'
+        });
+      }
+    }
+    
+    function loadMarketing() {
+      // Marketing/Advertising scripts
+      if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
+        });
+      }
+    }
+    
+    function hideBanner() {
+      banner?.classList.add('translate-y-full');
+    }
+    
+    function showModal() {
+      modal?.classList.remove('hidden');
+      modal?.classList.add('flex');
+    }
+    
+    function hideModal() {
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+    }
+    
+    // Load existing preferences if they exist
+    if (cookieConsent) {
+      const consent = JSON.parse(cookieConsent);
+      if (consent.analytics) loadAnalytics();
+      if (consent.marketing) loadMarketing();
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCookieConsent);
+  } else {
+    initializeCookieConsent();
+  }
+</script>

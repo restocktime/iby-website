@@ -1,0 +1,110 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { projects } from '../../data/projects.ts';
+
+const project = projects.find(p => p.id === 'im-workflow');
+---
+
+<Layout 
+  title="IM-Workflow AutoBusiness Case Study"
+  description="AI-powered business process automation platform with custom workflow builder for enterprise clients."
+>
+  <div class="pt-8">
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">IM-Workflow AutoBusiness</h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">AI-Powered Workflow Automation Platform</p>
+          
+          <!-- Live Website Preview -->
+          <div class="bg-slate-800 p-4 rounded-xl mb-8">
+            <div class="aspect-video bg-slate-700 rounded-lg flex items-center justify-center mb-4">
+              <iframe 
+                src="https://im-workflow.com" 
+                class="w-full h-full rounded-lg"
+                title="IM-Workflow Live Preview"
+                sandbox="allow-scripts allow-same-origin"
+              ></iframe>
+            </div>
+            <p class="text-slate-300 text-sm">Live platform preview - <a href="https://im-workflow.com" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300">Visit im-workflow.com</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-8 text-white text-center">Enterprise Workflow Automation</h2>
+          
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 class="text-2xl font-bold mb-4 text-indigo-400">The Challenge</h3>
+              <p class="text-slate-300 mb-6">
+                Businesses needed a sophisticated platform to automate complex workflows 
+                without requiring technical expertise, while maintaining enterprise-grade 
+                security and scalability.
+              </p>
+              
+              <h3 class="text-2xl font-bold mb-4 text-blue-400">The Solution</h3>
+              <p class="text-slate-300">
+                Built an AI-powered platform with visual workflow builder, intelligent 
+                optimization suggestions, and seamless integration with popular business tools.
+              </p>
+            </div>
+            
+            <div class="bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-xl font-bold mb-6 text-green-400">Business Impact</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-300">Process Efficiency</span>
+                  <span class="text-green-400 font-bold">+300%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-300">Setup Time Reduction</span>
+                  <span class="text-green-400 font-bold">-90%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-300">User Adoption Rate</span>
+                  <span class="text-green-400 font-bold">92%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-12 grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-indigo-400">Platform Features</h3>
+              <ul class="text-slate-300 space-y-2">
+                <li>• Visual workflow builder</li>
+                <li>• AI-powered process optimization</li>
+                <li>• Integration with popular business tools</li>
+                <li>• Real-time analytics dashboard</li>
+                <li>• Enterprise security & compliance</li>
+                <li>• Custom API development</li>
+              </ul>
+            </div>
+            
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-purple-400">Technologies Used</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">React</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">Node.js</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">Python</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">AI/ML</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">AWS</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center mt-12">
+            <a href="/contact" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+              Build Your Automation Platform
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

@@ -1,0 +1,53 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="constructionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#constructionGradient)"/>
+  <text x="40" y="45" fill="#fb923c" font-family="Arial, sans-serif" font-size="28" font-weight="bold">The CitiPros</text>
+  <text x="40" y="70" fill="#fdba74" font-family="Arial, sans-serif" font-size="14">Construction Project Management</text>
+  
+  <rect x="40" y="100" width="720" height="320" fill="#292524" rx="12"/>
+  <text x="60" y="130" fill="#f5f5f4" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Project Dashboard</text>
+  
+  <rect x="60" y="150" width="200" height="240" fill="#44403c" rx="8"/>
+  <text x="70" y="175" fill="#f5f5f4" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Active Projects</text>
+  
+  <rect x="70" y="190" width="180" height="35" fill="#57534e" rx="4"/>
+  <text x="80" y="210" fill="#fbbf24" font-family="Arial, sans-serif" font-size="11">Kitchen Renovation - Smith Residence</text>
+  <text x="80" y="220" fill="#a8a29e" font-family="Arial, sans-serif" font-size="9">Due: Dec 15, 2024</text>
+  
+  <rect x="70" y="235" width="180" height="35" fill="#57534e" rx="4"/>
+  <text x="80" y="255" fill="#34d399" font-family="Arial, sans-serif" font-size="11">Bathroom Remodel - Johnson Home</text>
+  <text x="80" y="265" fill="#a8a29e" font-family="Arial, sans-serif" font-size="9">Due: Jan 8, 2025</text>
+  
+  <rect x="70" y="280" width="180" height="35" fill="#57534e" rx="4"/>
+  <text x="80" y="300" fill="#60a5fa" font-family="Arial, sans-serif" font-size="11">Office Build-out - TechCorp</text>
+  <text x="80" y="310" fill="#a8a29e" font-family="Arial, sans-serif" font-size="9">Due: Feb 20, 2025</text>
+  
+  <rect x="280" y="150" width="460" height="240" fill="#44403c" rx="8"/>
+  <text x="300" y="175" fill="#f5f5f4" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Project Timeline & Features</text>
+  
+  <line x1="320" y1="200" x2="320" y2="350" stroke="#78716c" stroke-width="2"/>
+  <circle cx="320" cy="210" r="5" fill="#ea580c"/>
+  <text x="335" y="215" fill="#fbbf24" font-family="Arial, sans-serif" font-size="11">Project Started</text>
+  
+  <circle cx="320" cy="240" r="5" fill="#ea580c"/>
+  <text x="335" y="245" fill="#34d399" font-family="Arial, sans-serif" font-size="11">Materials Delivered</text>
+  
+  <circle cx="320" cy="270" r="5" fill="#6b7280"/>
+  <text x="335" y="275" fill="#9ca3af" font-family="Arial, sans-serif" font-size="11">Inspection Scheduled</text>
+  
+  <rect x="480" y="200" width="240" height="150" fill="#57534e" rx="6"/>
+  <text x="490" y="220" fill="#fbbf24" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Automation Features:</text>
+  <text x="490" y="240" fill="#d6d3d1" font-family="Arial, sans-serif" font-size="10">• Automated client notifications</text>
+  <text x="490" y="255" fill="#d6d3d1" font-family="Arial, sans-serif" font-size="10">• Photo documentation system</text>
+  <text x="490" y="270" fill="#d6d3d1" font-family="Arial, sans-serif" font-size="10">• Invoice generation</text>
+  <text x="490" y="285" fill="#d6d3d1" font-family="Arial, sans-serif" font-size="10">• Resource scheduling</text>
+  <text x="490" y="300" fill="#d6d3d1" font-family="Arial, sans-serif" font-size="10">• Progress tracking</text>
+  
+  <rect x="490" y="320" width="200" height="25" fill="#ea580c" rx="4"/>
+  <text x="575" y="335" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">20+ Hours Saved Weekly</text>
+</svg>

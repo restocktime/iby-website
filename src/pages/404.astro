@@ -1,0 +1,73 @@
+---
+import Layout from '../components/layout/Layout.astro';
+---
+
+<Layout 
+  title="Page Not Found - Isaac Benyakar"
+  description="The page you're looking for doesn't exist. Explore Isaac Benyakar's portfolio of automation and development projects."
+>
+  <div class="pt-8 min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-8xl mb-8 text-blue-400 font-mono">{ }</div>
+        <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          404
+        </h1>
+        <h2 class="text-2xl font-bold mb-6 text-white">
+          Automation Error: Page Not Found
+        </h2>
+        <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+          Looks like this page got automated away! Don't worry, my AI systems are already 
+          working to redirect you to something more useful.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a 
+            href="/"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            Return Home
+          </a>
+          <a 
+            href="/projects"
+            class="border border-slate-400 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            View Projects
+          </a>
+          <a 
+            href="/contact"
+            class="border border-slate-400 hover:border-purple-400 text-slate-300 hover:text-purple-400 px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            Contact Me
+          </a>
+        </div>
+        
+        <div class="bg-slate-800 p-6 rounded-xl">
+          <h3 class="text-xl font-bold mb-4 text-blue-400">Popular Destinations</h3>
+          <div class="grid md:grid-cols-2 gap-4 text-left">
+            <div>
+              <h4 class="font-semibold text-slate-300 mb-2">Case Studies</h4>
+              <ul class="space-y-1 text-sm text-slate-300">
+                <li><a href="/projects/restocktime" class="hover:text-blue-400 transition-colors">Restocktime - 7-Year Success Story</a></li>
+                <li><a href="/projects?category=e-commerce" class="hover:text-blue-400 transition-colors">E-commerce Projects</a></li>
+                <li><a href="/projects?category=automation" class="hover:text-blue-400 transition-colors">Automation Solutions</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold text-slate-300 mb-2">Learn More</h4>
+              <ul class="space-y-1 text-sm text-slate-300">
+                <li><a href="/about" class="hover:text-blue-400 transition-colors">About Isaac</a></li>
+                <li><a href="/contact" class="hover:text-blue-400 transition-colors">Schedule Consultation</a></li>
+                <li><a href="mailto:iby@isaacbenyakar.com" class="hover:text-blue-400 transition-colors">Send Email</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8 text-slate-300 text-sm">
+          <p>Error Code: 404 | Automation Status: Optimizing User Experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

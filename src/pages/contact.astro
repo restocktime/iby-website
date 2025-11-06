@@ -1,0 +1,481 @@
+---
+import Layout from '../components/layout/Layout.astro';
+---
+
+<Layout 
+  title="Contact Isaac Benyakar - Schedule Your Free Consultation"
+  description="Ready to transform your business with automation? Schedule a free consultation with Isaac Benyakar to discuss your project and explore how intelligent automation can drive growth."
+>
+  <div class="pt-8">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Let's Build Something Amazing
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">
+            Ready to transform your business operations with intelligent automation? 
+            Let's discuss your project and explore the possibilities.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="#consultation" 
+              class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Schedule Free Consultation
+            </a>
+            <a 
+              href="#contact-methods" 
+              class="border border-slate-400 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Other Contact Methods
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Benefits -->
+    <section class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+              What You'll Get in Our Free 30-Minute Consultation
+            </h2>
+            <p class="text-xl text-slate-300">
+              No sales pitch. Just actionable insights and a clear roadmap for your project.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-slate-700 p-8 rounded-xl text-center">
+              <div class="text-4xl mb-4 text-blue-400">●</div>
+              <h3 class="text-xl font-bold mb-4 text-blue-400">Strategic Assessment</h3>
+              <p class="text-slate-300">
+                We'll analyze your current processes and identify the highest-impact automation opportunities 
+                that could save you time and money.
+              </p>
+            </div>
+            
+            <div class="bg-slate-700 p-8 rounded-xl text-center">
+              <div class="text-4xl mb-4 text-purple-400">●</div>
+              <h3 class="text-xl font-bold mb-4 text-purple-400">Custom Roadmap</h3>
+              <p class="text-slate-300">
+                Get a personalized development roadmap with timeline estimates, technology recommendations, 
+                and clear next steps for your project.
+              </p>
+            </div>
+            
+            <div class="bg-slate-700 p-8 rounded-xl text-center">
+              <div class="text-4xl mb-4 text-green-400">●</div>
+              <h3 class="text-xl font-bold mb-4 text-green-400">ROI Projections</h3>
+              <p class="text-slate-300">
+                Understand the potential return on investment with concrete metrics and realistic 
+                projections based on similar client projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendly Integration -->
+    <section id="consultation" class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white mb-4">
+              Schedule Your Free Consultation
+            </h2>
+            <p class="text-slate-300 text-lg">
+              Choose a time that works for you. All consultations are completely free with no obligations.
+            </p>
+          </div>
+          
+          <!-- Enhanced Booking Options -->
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Calendly Embed -->
+            <div class="bg-white rounded-xl overflow-hidden">
+              <!-- Calendly inline widget begins -->
+              <div class="calendly-inline-widget" 
+                   data-url="https://calendly.com/iby-isaacbenyakar/30min" 
+                   style="min-width:320px;height:700px;"></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              <!-- Calendly inline widget ends -->
+              
+              <!-- Fallback for when Calendly is not available -->
+              <noscript>
+                <div class="bg-slate-800 p-8 rounded-xl text-center h-full flex items-center justify-center flex-col">
+                  <h3 class="text-xl font-bold text-white mb-4">Schedule Your Consultation</h3>
+                  <p class="text-slate-300 mb-6">
+                    Please enable JavaScript to use the scheduling widget, or use the contact form.
+                  </p>
+                  <a 
+                    href="https://calendly.com/iby-isaacbenyakar/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
+                  >
+                    Open Calendly in New Tab
+                  </a>
+                </div>
+              </noscript>
+            </div>
+            
+            <!-- Alternative Contact Form -->
+            <div class="bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-xl font-bold text-white mb-6">
+                Prefer Email? Send a Message
+              </h3>
+              
+              <form class="space-y-4" action="mailto:iby@isaacbenyakar.com" method="post" enctype="text/plain">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name"
+                    required
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Your full name"
+                  />
+                </div>
+                
+                <div>
+                  <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    required
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                
+                <div>
+                  <label for="company" class="block text-sm font-medium text-slate-300 mb-2">Company</label>
+                  <input 
+                    type="text" 
+                    id="company" 
+                    name="company"
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Your company name (optional)"
+                  />
+                </div>
+                
+                <div>
+                  <label for="project-type" class="block text-sm font-medium text-slate-300 mb-2">Project Type</label>
+                  <select 
+                    id="project-type" 
+                    name="project-type"
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select project type...</option>
+                    <option value="e-commerce">E-commerce Development</option>
+                    <option value="automation">Business Automation</option>
+                    <option value="saas">SaaS Platform Development</option>
+                    <option value="construction">Construction/Service Management</option>
+                    <option value="other">Other/Not Sure</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label for="budget" class="block text-sm font-medium text-slate-300 mb-2">Budget Range</label>
+                  <select 
+                    id="budget" 
+                    name="budget"
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select budget range...</option>
+                    <option value="5k-15k">$5K - $15K</option>
+                    <option value="15k-30k">$15K - $30K</option>
+                    <option value="30k-50k">$30K - $50K</option>
+                    <option value="50k+">$50K+</option>
+                    <option value="discuss">Let's discuss</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label for="timeline" class="block text-sm font-medium text-slate-300 mb-2">Timeline</label>
+                  <select 
+                    id="timeline" 
+                    name="timeline"
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select timeline...</option>
+                    <option value="asap">ASAP (Rush Job)</option>
+                    <option value="1-2-months">1-2 Months</option>
+                    <option value="3-6-months">3-6 Months</option>
+                    <option value="6+-months">6+ Months</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Project Details</label>
+                  <textarea 
+                    id="message" 
+                    name="message"
+                    rows="4"
+                    required
+                    class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Tell me about your project, goals, and any specific requirements..."
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit"
+                  class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                >
+                  Send Message
+                </button>
+                
+                <p class="text-xs text-slate-300 text-center">
+                  This will open your default email client. You can also email me directly at 
+                  <a href="mailto:iby@isaacbenyakar.com" class="text-blue-400 hover:text-blue-300">iby@isaacbenyakar.com</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alternative Contact Methods -->
+    <section id="contact-methods" class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Other Ways to Connect
+            </h2>
+            <p class="text-xl text-slate-300">
+              Prefer email or want to explore my work first? Here are other ways to get in touch.
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Email -->
+            <div class="bg-slate-700 p-6 rounded-xl text-center hover:bg-slate-600 transition-colors">
+              <div class="text-3xl mb-4 text-blue-400 font-mono">@</div>
+              <h3 class="text-lg font-bold mb-2 text-blue-400">Email</h3>
+              <p class="text-slate-300 text-sm mb-4">For detailed project discussions</p>
+              <a 
+                href="mailto:iby@isaacbenyakar.com"
+                class="text-blue-400 hover:text-blue-300 font-semibold text-sm"
+              >
+                iby@isaacbenyakar.com
+              </a>
+            </div>
+            
+            <!-- GitHub -->
+            <div class="bg-slate-700 p-6 rounded-xl text-center hover:bg-slate-600 transition-colors">
+              <div class="text-3xl mb-4 text-purple-400 font-mono"><></div>
+              <h3 class="text-lg font-bold mb-2 text-purple-400">GitHub</h3>
+              <p class="text-slate-300 text-sm mb-4">Explore my code and contributions</p>
+              <a 
+                href="https://github.com/isaacbenyakar"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-purple-400 hover:text-purple-300 font-semibold text-sm"
+              >
+                @isaacbenyakar
+              </a>
+            </div>
+            
+            <!-- LinkedIn -->
+            <div class="bg-slate-700 p-6 rounded-xl text-center hover:bg-slate-600 transition-colors">
+              <div class="text-3xl mb-4 text-green-400 font-mono">[+]</div>
+              <h3 class="text-lg font-bold mb-2 text-green-400">LinkedIn</h3>
+              <p class="text-slate-300 text-sm mb-4">Professional networking</p>
+              <a 
+                href="https://linkedin.com/in/isaacbenyakar"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-green-400 hover:text-green-300 font-semibold text-sm"
+              >
+                Connect with me
+              </a>
+            </div>
+            
+            <!-- Twitter -->
+            <div class="bg-slate-700 p-6 rounded-xl text-center hover:bg-slate-600 transition-colors">
+              <div class="text-3xl mb-4 text-yellow-400 font-mono">#</div>
+              <h3 class="text-lg font-bold mb-2 text-yellow-400">Twitter</h3>
+              <p class="text-slate-300 text-sm mb-4">Follow my journey and insights</p>
+              <a 
+                href="https://twitter.com/RestockTime"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-yellow-400 hover:text-yellow-300 font-semibold text-sm"
+              >
+                @RestockTime
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Types -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-white mb-6">
+              Perfect Fit Projects
+            </h2>
+            <p class="text-slate-300 text-lg">
+              I specialize in these types of projects and deliver exceptional results
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-blue-400">✨ Ideal Projects</h3>
+              <ul class="space-y-3 text-slate-300">
+                <li class="flex items-start">
+                  <span class="text-green-400 mr-2">✓</span>
+                  E-commerce automation and optimization
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-400 mr-2">✓</span>
+                  Business process automation
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-400 mr-2">✓</span>
+                  Custom SaaS platform development
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-400 mr-2">✓</span>
+                  API integrations and workflow automation
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-400 mr-2">✓</span>
+                  Performance optimization and scaling
+                </li>
+                <li class="flex items-start">
+                  <span class="text-green-400 mr-2">✓</span>
+                  AI/ML integration for business intelligence
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-red-400">🤔 Might Not Be a Fit</h3>
+              <ul class="space-y-3 text-slate-300">
+                <li class="flex items-start">
+                  <span class="text-red-400 mr-2">✗</span>
+                  Simple WordPress websites or blogs
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-400 mr-2">✗</span>
+                  Basic graphic design or branding projects
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-400 mr-2">✗</span>
+                  Mobile app development (iOS/Android)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-400 mr-2">✗</span>
+                  Legacy system maintenance without modernization
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-400 mr-2">✗</span>
+                  Projects with budgets under $5,000
+                </li>
+                <li class="flex items-start">
+                  <span class="text-red-400 mr-2">✗</span>
+                  Rush jobs needed within a few days
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="text-center mt-12">
+            <p class="text-slate-300 mb-6">
+              Not sure if your project is a good fit? Let's talk anyway! 
+              I may be able to refer you to someone who specializes in your needs.
+            </p>
+            <a 
+              href="#consultation"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            >
+              Schedule a Call
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Response Time Expectation -->
+    <section class="bg-slate-800 py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto text-center">
+          <div class="bg-slate-700 p-8 rounded-xl">
+            <div class="text-3xl mb-4 text-blue-400 font-mono">!</div>
+            <h3 class="text-xl font-bold mb-4 text-blue-400">Quick Response Guarantee</h3>
+            <p class="text-slate-300 mb-4">
+              I respond to all consultation requests and emails within 24 hours during business days. 
+              Usually much faster!
+            </p>
+            <div class="text-sm text-slate-300">
+              Business hours: Monday-Friday, 9 AM - 6 PM PST
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Calendly styling and optimization -->
+  <style>
+    /* Optimize Calendly widget appearance */
+    .calendly-inline-widget {
+      border-radius: 12px;
+    }
+    
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Loading state for Calendly */
+    .calendly-inline-widget:empty::after {
+      content: "Loading scheduling calendar...";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 400px;
+      color: #64748b;
+      background: #1e293b;
+      border-radius: 12px;
+    }
+  </style>
+
+  <!-- JSON-LD Structured Data for Contact Page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Isaac Benyakar",
+    "description": "Schedule a free consultation with Isaac Benyakar to discuss your automation and development project needs.",
+    "url": "https://isaacbenyakar.com/contact",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Isaac Benyakar",
+      "jobTitle": "Full-Stack Developer & Automation Specialist",
+      "email": "iby@isaacbenyakar.com",
+      "url": "https://isaacbenyakar.com",
+      "sameAs": [
+        "https://github.com/isaacbenyakar",
+        "https://linkedin.com/in/isaacbenyakar",
+        "https://twitter.com/RestockTime"
+      ]
+    }
+  }
+  </script>
+</Layout>

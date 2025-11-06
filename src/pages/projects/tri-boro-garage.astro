@@ -1,0 +1,109 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { projects } from '../../data/projects.ts';
+
+const project = projects.find(p => p.id === 'tri-boro-garage');
+---
+
+<Layout 
+  title="Tri-Boro Garage Doors Case Study"
+  description="Service scheduling platform with automated customer communication and inventory tracking for garage door services."
+>
+  <div class="pt-8">
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-orange-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">Tri-Boro Garage Doors</h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">Digital Transformation for Service Operations</p>
+          
+          <!-- Live Website Preview -->
+          <div class="bg-slate-800 p-4 rounded-xl mb-8">
+            <div class="aspect-video bg-slate-700 rounded-lg flex items-center justify-center mb-4">
+              <iframe 
+                src="https://triborogaragedoors.com" 
+                class="w-full h-full rounded-lg"
+                title="Tri-Boro Garage Doors Live Preview"
+                sandbox="allow-scripts allow-same-origin"
+              ></iframe>
+            </div>
+            <p class="text-slate-300 text-sm">Live website preview - <a href="https://triborogaragedoors.com" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-300">Visit triborogaragedoors.com</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-8 text-white text-center">Service Business Automation</h2>
+          
+          <div class="grid md:grid-cols-2 gap-12">
+            <div>
+              <h3 class="text-2xl font-bold mb-4 text-orange-400">The Challenge</h3>
+              <p class="text-slate-300 mb-6">
+                Traditional garage door service company struggling with manual scheduling, 
+                paper-based inventory tracking, and inefficient customer communication leading 
+                to missed appointments and customer satisfaction issues.
+              </p>
+              
+              <h3 class="text-2xl font-bold mb-4 text-blue-400">The Solution</h3>
+              <p class="text-slate-300">
+                Developed a comprehensive digital platform with online booking, automated 
+                notifications, inventory management, and customer portal for service history.
+              </p>
+            </div>
+            
+            <div class="bg-slate-800 p-8 rounded-xl">
+              <h3 class="text-xl font-bold mb-6 text-green-400">Key Results</h3>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-300">Booking Efficiency</span>
+                  <span class="text-green-400 font-bold">+150%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-300">Customer Satisfaction</span>
+                  <span class="text-green-400 font-bold">95%</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-300">Missed Appointments</span>
+                  <span class="text-green-400 font-bold">-80%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-12 grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-orange-400">Features Delivered</h3>
+              <ul class="text-slate-300 space-y-2">
+                <li>• Online service booking system</li>
+                <li>• Automated email confirmations</li>
+                <li>• Inventory tracking for parts</li>
+                <li>• Customer portal for service history</li>
+                <li>• Mobile-responsive design</li>
+                <li>• Payment processing integration</li>
+              </ul>
+            </div>
+            
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-purple-400">Technologies Used</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">WordPress</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">PHP</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">MySQL</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">API Integration</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center mt-12">
+            <a href="/contact" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+              Transform Your Service Business
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

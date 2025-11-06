@@ -1,0 +1,175 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import ProjectCard from '../../components/ui/ProjectCard.astro';
+import { projects, getProjectsByCategory } from '../../data/projects';
+
+// Get URL parameters for filtering
+const url = Astro.url;
+const category = url.searchParams.get('category') as 'e-commerce' | 'construction' | 'saas' | 'automation' | null;
+
+// Filter projects based on category
+const displayedProjects = category ? getProjectsByCategory(category) : projects;
+
+// Category display names and colors
+const categories = {
+  'e-commerce': { name: 'E-commerce', color: 'blue', icon: '◉' },
+  'construction': { name: 'Construction', color: 'orange', icon: '◉' },
+  'saas': { name: 'SaaS & Analytics', color: 'purple', icon: '◉' },
+  'automation': { name: 'Automation', color: 'green', icon: '◉' }
+};
+
+const currentCategory = category ? categories[category] : null;
+---
+
+<Layout 
+  title={currentCategory ? `${currentCategory.name} Projects - Isaac Benyakar` : "Projects & Case Studies - Isaac Benyakar"}
+  description={currentCategory ? `Explore Isaac Benyakar's ${currentCategory.name.toLowerCase()} projects and case studies with proven results and metrics.` : "Browse Isaac Benyakar's portfolio of full-stack development, automation, and e-commerce projects with detailed case studies and measurable results."}
+>
+  <div class="pt-8">
+    <!-- Header Section -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          {currentCategory ? (
+            <div>
+              <div class="text-6xl mb-4">{currentCategory.icon}</div>
+              <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+                {currentCategory.name} Projects
+              </h1>
+              <p class="text-xl text-slate-300 mb-8">
+                Specialized solutions delivering measurable business value in {currentCategory.name.toLowerCase()}.
+              </p>
+            </div>
+          ) : (
+            <div>
+              <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Projects & Case Studies
+              </h1>
+              <p class="text-xl text-slate-300 mb-8">
+                Real projects, real results. Explore detailed case studies with metrics, testimonials, and technical deep-dives.
+              </p>
+            </div>
+          )}
+          
+          <div class="flex justify-center">
+            <a 
+              href="/contact"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Discuss Your Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Navigation -->
+    <section class="bg-slate-800 py-8 border-b border-slate-700">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-4">
+          <a 
+            href="/projects"
+            class={`px-6 py-3 rounded-lg font-semibold transition-colors ${!category ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'}`}
+          >
+            All Projects ({projects.length})
+          </a>
+          {Object.entries(categories).map(([key, cat]) => {
+            const count = getProjectsByCategory(key as any).length;
+            const isActive = category === key;
+            return (
+              <a 
+                href={`/projects?category=${key}`}
+                class={`px-6 py-3 rounded-lg font-semibold transition-colors flex items-center ${
+                  isActive 
+                    ? `bg-${cat.color}-600 text-white` 
+                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              >
+                <span class="mr-2">{cat.icon}</span>
+                {cat.name} ({count})
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        {displayedProjects.length === 0 ? (
+          <div class="text-center py-20">
+            <div class="text-4xl mb-4">🔍</div>
+            <h2 class="text-2xl font-bold text-white mb-4">No Projects Found</h2>
+            <p class="text-slate-300 mb-8">No projects match the current filter criteria.</p>
+            <a 
+              href="/projects"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            >
+              View All Projects
+            </a>
+          </div>
+        ) : (
+          <div>
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold text-white mb-4">
+                {currentCategory ? `${currentCategory.name} Portfolio` : 'Complete Portfolio'}
+              </h2>
+              <p class="text-slate-300">
+                {displayedProjects.length} project{displayedProjects.length === 1 ? '' : 's'} showcasing measurable business impact
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {displayedProjects.map((project) => (
+                <ProjectCard project={project} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6 text-white">
+          Ready to Start Your Next Project?
+        </h2>
+        <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          Let's discuss how I can help transform your business operations with custom development and intelligent automation.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/contact"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            Schedule Free Consultation
+          </a>
+          <a 
+            href="/about"
+            class="border border-slate-400 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            Learn More About Me
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<script>
+  // Add client-side interactivity for smooth transitions
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.group');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-4px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  });
+</script>

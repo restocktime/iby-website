@@ -1,0 +1,27 @@
+# Cloudflare Pages redirects and rewrites
+
+# Redirect old portfolio URLs (if migrating from existing site)
+/portfolio/* /projects/:splat 301
+/work/* /projects/:splat 301
+/case-studies/* /projects/:splat 301
+
+# Redirect common misspellings or alternative paths
+/isaacbenyakar /about 301
+/cv /about 301
+/resume /about 301
+/hire /contact 301
+/book /contact 301
+/schedule /contact 301
+
+# Handle service-specific redirects
+/automation /projects?category=automation 301
+/ecommerce /projects?category=e-commerce 301
+/shopify /projects?category=e-commerce 301
+
+# Social media redirects
+/github https://github.com/isaacbenyakar 301
+/linkedin https://linkedin.com/in/isaacbenyakar 301
+/twitter https://twitter.com/RestockTime 301
+
+# 404 fallback - serve custom 404 page
+/* /404 404

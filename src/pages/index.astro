@@ -1,0 +1,62 @@
+---
+import Layout from '../components/layout/Layout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import ICPSection from '../components/sections/ICPSection.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import ProcessSection from '../components/sections/ProcessSection.astro';
+import TechStackSection from '../components/sections/TechStackSection.astro';
+import SEOResultsSection from '../components/sections/SEOResultsSection.astro';
+import StructuredData from '../components/seo/StructuredData.astro';
+import ComprehensiveSEO from '../components/seo/ComprehensiveSEO.astro';
+---
+
+<Layout title="Miami SEO Expert & Full-Stack Developer | Isaac Benyakar | 347% Traffic Growth" description="Miami's top SEO expert and full-stack developer. Proven 347% organic traffic growth, 156% lead increases. Serving Miami, Austin, Charlotte + nationwide. Free consultation.">
+  <HeroSection />
+  <ICPSection />
+  <SEOResultsSection />
+  <TestimonialsSection />
+  <ProcessSection />
+  <TechStackSection />
+  
+  <!-- Final CTA Section -->
+  <section class="bg-gradient-to-r from-slate-900 to-blue-900 py-20">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+          Ready to Automate Your Success?
+        </h2>
+        <p class="text-xl text-slate-300 mb-8">
+          Join the businesses that have transformed their operations with intelligent automation. 
+          Let's discuss how I can help you build systems that work while you sleep.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/contact"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors text-lg"
+          >
+            Schedule Free Consultation
+          </a>
+          <a 
+            href="/projects/restocktime"
+            class="border border-slate-400 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-8 py-4 rounded-lg font-semibold transition-colors text-lg"
+          >
+            See My Success Story
+          </a>
+        </div>
+        <p class="text-slate-400 mt-6 text-sm">
+          Free 30-minute consultation • No obligations • 90-day ROI guarantee
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Comprehensive SEO & Structured Data -->
+  <ComprehensiveSEO />
+  <StructuredData type="person" />
+  <StructuredData type="organization" />
+  <StructuredData type="website" />
+  <StructuredData type="service" data={{
+    name: "Full-Stack Development & Business Automation",
+    description: "Specialized development services for e-commerce optimization, business process automation, and SaaS platform creation with proven ROI results."
+  }} />
+</Layout>

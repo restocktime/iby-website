@@ -1,0 +1,31 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+---
+
+<Layout 
+  title="E-commerce Development Services - Isaac Benyakar"
+  description="Specialized e-commerce development services including Shopify optimization, automation, and custom solutions that drive conversions and growth."
+>
+  <div class="pt-8 min-h-screen">
+    <!-- Redirect to projects with e-commerce filter -->
+    <script>
+      window.location.href = '/projects?category=e-commerce';
+    </script>
+    
+    <!-- Fallback content for no-JS users -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-6 text-white">E-commerce Solutions</h1>
+        <p class="text-xl text-slate-300 mb-8">
+          Redirecting you to our e-commerce projects...
+        </p>
+        <a 
+          href="/projects?category=e-commerce"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+        >
+          View E-commerce Projects
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

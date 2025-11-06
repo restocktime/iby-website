@@ -1,0 +1,258 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+
+const blogPosts = [
+  {
+    title: "Local SEO Guide: How Miami Businesses Increased Leads by 156%",
+    slug: "miami-local-seo-guide-156-lead-increase",
+    excerpt: "Complete case study showing how Miami businesses dominate local search results and generate more qualified leads through strategic local SEO optimization.",
+    date: "2024-01-15",
+    category: "Local SEO",
+    readTime: "12 min",
+    featured: true
+  },
+  {
+    title: "E-commerce SEO: 347% Traffic Growth Case Study",
+    slug: "ecommerce-seo-347-traffic-growth-case-study", 
+    excerpt: "Detailed breakdown of how an e-commerce client achieved 347% organic traffic growth and $180K additional revenue through strategic SEO implementation.",
+    date: "2024-01-10",
+    category: "E-commerce SEO",
+    readTime: "15 min",
+    featured: true
+  },
+  {
+    title: "Google My Business Optimization: Complete 2024 Guide",
+    slug: "google-my-business-optimization-complete-guide-2024",
+    excerpt: "Step-by-step guide to optimizing your Google My Business profile for maximum local visibility, including real examples from successful campaigns.",
+    date: "2024-01-08",
+    category: "Local SEO", 
+    readTime: "10 min",
+    featured: false
+  },
+  {
+    title: "Technical SEO Checklist: Core Web Vitals & Page Speed",
+    slug: "technical-seo-checklist-core-web-vitals-page-speed",
+    excerpt: "Essential technical SEO optimizations that improved client Core Web Vitals scores and search rankings. Includes code examples and tools.",
+    date: "2024-01-05",
+    category: "Technical SEO",
+    readTime: "8 min", 
+    featured: false
+  },
+  {
+    title: "Small Business Automation: ROI-Driven Process Optimization",
+    slug: "small-business-automation-roi-driven-process-optimization",
+    excerpt: "How small businesses save 20+ hours weekly through intelligent automation. Real examples and implementation strategies included.",
+    date: "2024-01-03",
+    category: "Business Automation",
+    readTime: "11 min",
+    featured: false
+  },
+  {
+    title: "Shopify SEO: Complete Optimization Guide for Higher Rankings",
+    slug: "shopify-seo-complete-optimization-guide-higher-rankings",
+    excerpt: "Comprehensive Shopify SEO guide covering technical optimization, content strategy, and conversion improvements. Based on real client results.",
+    date: "2024-01-01",
+    category: "E-commerce SEO",
+    readTime: "14 min",
+    featured: false
+  }
+];
+---
+
+<Layout 
+  title="SEO & Web Development Blog | Isaac Benyakar | Expert Insights & Case Studies"
+  description="Expert SEO and web development insights from Isaac Benyakar. Real case studies, proven strategies, and actionable tips for business growth."
+>
+  <div class="pt-8">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-green-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+            SEO & Development Insights
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">
+            Real case studies, proven strategies, and actionable insights from 7+ years 
+            of helping businesses grow through SEO and intelligent automation.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/contact"
+              class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Get Your Free SEO Audit
+            </a>
+            <a 
+              href="/projects"
+              class="border border-slate-400 hover:border-green-400 text-slate-300 hover:text-green-400 px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              View Case Studies
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Featured Articles
+            </h2>
+            <p class="text-xl text-slate-300">
+              In-depth case studies and proven strategies that drive real business results
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8 mb-16">
+            {blogPosts.filter(post => post.featured).map((post) => (
+              <article class="bg-slate-700 rounded-xl overflow-hidden hover:bg-slate-600 transition-colors">
+                <div class="p-8">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      {post.category}
+                    </span>
+                    <span class="text-slate-400 text-sm">{post.readTime} read</span>
+                  </div>
+                  <h3 class="text-xl font-bold mb-4 text-white hover:text-green-400 transition-colors">
+                    <a href={`/blog/${post.slug}`}>{post.title}</a>
+                  </h3>
+                  <p class="text-slate-300 mb-6 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-slate-400 text-sm">{post.date}</span>
+                    <a 
+                      href={`/blog/${post.slug}`}
+                      class="text-green-400 hover:text-green-300 font-semibold text-sm"
+                    >
+                      Read Full Article →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Posts -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+              All Articles
+            </h2>
+            <p class="text-xl text-slate-300">
+              Expert insights on SEO, web development, and business automation
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-8">
+            {blogPosts.filter(post => !post.featured).map((post) => (
+              <article class="bg-slate-800 rounded-xl overflow-hidden hover:bg-slate-700 transition-colors">
+                <div class="p-6">
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      {post.category}
+                    </span>
+                    <span class="text-slate-400 text-sm">{post.readTime}</span>
+                  </div>
+                  <h3 class="text-lg font-bold mb-3 text-white hover:text-blue-400 transition-colors">
+                    <a href={`/blog/${post.slug}`}>{post.title}</a>
+                  </h3>
+                  <p class="text-slate-300 text-sm mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-slate-400 text-xs">{post.date}</span>
+                    <a 
+                      href={`/blog/${post.slug}`}
+                      class="text-blue-400 hover:text-blue-300 font-semibold text-sm"
+                    >
+                      Read More →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="bg-gradient-to-r from-green-600 to-blue-600 p-12 rounded-xl">
+            <h2 class="text-3xl font-bold mb-4 text-white">
+              Get Weekly SEO & Development Insights
+            </h2>
+            <p class="text-green-100 mb-8 text-lg">
+              Join 500+ business owners receiving actionable strategies, case studies, 
+              and industry insights delivered to your inbox every Tuesday.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <input 
+                type="email" 
+                placeholder="Your email address"
+                class="flex-1 px-4 py-3 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+              />
+              <button class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                Subscribe Free
+              </button>
+            </div>
+            <p class="text-green-100 text-sm mt-4">
+              No spam. Unsubscribe anytime. 100% free.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Blog-Specific Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Isaac Benyakar SEO & Development Blog",
+    "description": "Expert insights on SEO, web development, and business automation from Isaac Benyakar. Real case studies and proven strategies.",
+    "url": "https://isaacbenyakar.com/blog",
+    "publisher": {
+      "@type": "Person",
+      "name": "Isaac Benyakar",
+      "url": "https://isaacbenyakar.com"
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Local SEO Guide: How Miami Businesses Increased Leads by 156%",
+        "url": "https://isaacbenyakar.com/blog/miami-local-seo-guide-156-lead-increase",
+        "datePublished": "2024-01-15",
+        "author": {
+          "@type": "Person", 
+          "name": "Isaac Benyakar"
+        },
+        "description": "Complete case study showing how Miami businesses dominate local search results and generate more qualified leads through strategic local SEO optimization."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "E-commerce SEO: 347% Traffic Growth Case Study", 
+        "url": "https://isaacbenyakar.com/blog/ecommerce-seo-347-traffic-growth-case-study",
+        "datePublished": "2024-01-10",
+        "author": {
+          "@type": "Person",
+          "name": "Isaac Benyakar"  
+        },
+        "description": "Detailed breakdown of how an e-commerce client achieved 347% organic traffic growth and $180K additional revenue through strategic SEO implementation."
+      }
+    ]
+  }
+  </script>
+</Layout>

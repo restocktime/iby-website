@@ -1,0 +1,230 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+
+// Small to medium cities that would benefit from SEO and web development services
+const cities = [
+  // Florida
+  { name: 'Tampa', state: 'FL', population: '385K', slug: 'tampa-florida' },
+  { name: 'Jacksonville', state: 'FL', population: '911K', slug: 'jacksonville-florida' },
+  { name: 'Orlando', state: 'FL', population: '307K', slug: 'orlando-florida' },
+  { name: 'St. Petersburg', state: 'FL', population: '258K', slug: 'st-petersburg-florida' },
+  { name: 'Fort Lauderdale', state: 'FL', population: '183K', slug: 'fort-lauderdale-florida' },
+  
+  // Texas  
+  { name: 'Austin', state: 'TX', population: '978K', slug: 'austin-texas' },
+  { name: 'Fort Worth', state: 'TX', population: '918K', slug: 'fort-worth-texas' },
+  { name: 'El Paso', state: 'TX', population: '695K', slug: 'el-paso-texas' },
+  { name: 'Arlington', state: 'TX', population: '398K', slug: 'arlington-texas' },
+  { name: 'Plano', state: 'TX', population: '288K', slug: 'plano-texas' },
+  
+  // California
+  { name: 'Sacramento', state: 'CA', population: '525K', slug: 'sacramento-california' },
+  { name: 'Long Beach', state: 'CA', population: '466K', slug: 'long-beach-california' },
+  { name: 'Oakland', state: 'CA', population: '433K', slug: 'oakland-california' },
+  { name: 'Bakersfield', state: 'CA', population: '384K', slug: 'bakersfield-california' },
+  { name: 'Anaheim', state: 'CA', population: '346K', slug: 'anaheim-california' },
+  
+  // North Carolina
+  { name: 'Charlotte', state: 'NC', population: '874K', slug: 'charlotte-north-carolina' },
+  { name: 'Raleigh', state: 'NC', population: '474K', slug: 'raleigh-north-carolina' },
+  { name: 'Greensboro', state: 'NC', population: '296K', slug: 'greensboro-north-carolina' },
+  { name: 'Durham', state: 'NC', population: '283K', slug: 'durham-north-carolina' },
+  { name: 'Winston-Salem', state: 'NC', population: '249K', slug: 'winston-salem-north-carolina' },
+  
+  // Georgia
+  { name: 'Atlanta', state: 'GA', population: '498K', slug: 'atlanta-georgia' },
+  { name: 'Augusta', state: 'GA', population: '197K', slug: 'augusta-georgia' },
+  { name: 'Columbus', state: 'GA', population: '194K', slug: 'columbus-georgia' },
+  { name: 'Savannah', state: 'GA', population: '147K', slug: 'savannah-georgia' },
+  { name: 'Athens', state: 'GA', population: '128K', slug: 'athens-georgia' },
+  
+  // Arizona
+  { name: 'Phoenix', state: 'AZ', population: '1.6M', slug: 'phoenix-arizona' },
+  { name: 'Tucson', state: 'AZ', population: '548K', slug: 'tucson-arizona' },
+  { name: 'Mesa', state: 'AZ', population: '518K', slug: 'mesa-arizona' },
+  { name: 'Chandler', state: 'AZ', population: '275K', slug: 'chandler-arizona' },
+  { name: 'Scottsdale', state: 'AZ', population: '258K', slug: 'scottsdale-arizona' }
+];
+---
+
+<Layout 
+  title="Local SEO & Web Development Services Across the United States"
+  description="Professional SEO and web development services available in cities nationwide. Helping small to medium businesses dominate local search results and grow online."
+>
+  <div class="pt-8">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            Local SEO Services Nationwide
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">
+            Helping businesses across the United States dominate local search results 
+            and grow their online presence with proven SEO strategies.
+          </p>
+          <a 
+            href="/contact"
+            class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+          >
+            Get Your Local SEO Audit
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cities Grid -->
+    <section class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Cities We Serve
+            </h2>
+            <p class="text-xl text-slate-300">
+              Professional SEO and web development services available in these growing markets
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {cities.map((city) => (
+              <a 
+                href={`/locations/${city.slug}`}
+                class="bg-slate-700 p-6 rounded-xl hover:bg-slate-600 transition-colors group"
+              >
+                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                  {city.name}, {city.state}
+                </h3>
+                <p class="text-slate-400 text-sm mb-4">
+                  Population: {city.population}
+                </p>
+                <div class="text-purple-400 text-sm font-medium">
+                  View SEO Services →
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+              Local SEO Services for Every Market
+            </h2>
+            <p class="text-xl text-slate-300">
+              Customized strategies for small to medium businesses in competitive local markets
+            </p>
+          </div>
+          
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-slate-800 p-8 rounded-xl">
+              <div class="text-3xl mb-4 text-purple-400 font-mono">◉</div>
+              <h3 class="text-xl font-bold mb-4 text-purple-400">Google My Business Optimization</h3>
+              <p class="text-slate-300 mb-4">
+                Dominate local search results with optimized GMB profiles, photos, posts, and review management.
+              </p>
+              <ul class="text-sm text-slate-400 space-y-1">
+                <li>• Complete profile optimization</li>
+                <li>• Local keyword integration</li>
+                <li>• Review generation strategies</li>
+                <li>• Local citation building</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-800 p-8 rounded-xl">
+              <div class="text-3xl mb-4 text-blue-400 font-mono">◉</div>
+              <h3 class="text-xl font-bold mb-4 text-blue-400">Location-Based Landing Pages</h3>
+              <p class="text-slate-300 mb-4">
+                Custom landing pages targeting specific neighborhoods and service areas for maximum visibility.
+              </p>
+              <ul class="text-sm text-slate-400 space-y-1">
+                <li>• Neighborhood-specific content</li>
+                <li>• Local keyword optimization</li>
+                <li>• Service area mapping</li>
+                <li>• Local testimonials integration</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-800 p-8 rounded-xl">
+              <div class="text-3xl mb-4 text-green-400 font-mono">◉</div>
+              <h3 class="text-xl font-bold mb-4 text-green-400">Local Link Building</h3>
+              <p class="text-slate-300 mb-4">
+                Build authority through local partnerships, sponsorships, and community involvement.
+              </p>
+              <ul class="text-sm text-slate-400 space-y-1">
+                <li>• Local business partnerships</li>
+                <li>• Chamber of commerce listings</li>
+                <li>• Community event sponsorships</li>
+                <li>• Local PR and media outreach</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-purple-600 to-blue-600 py-20">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-6 text-white">
+            Don't See Your City Listed?
+          </h2>
+          <p class="text-xl text-purple-100 mb-8">
+            I work with businesses nationwide. Get a free consultation to discuss 
+            how local SEO can help your business dominate your local market.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/contact"
+              class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+            >
+              Get Your Free Local SEO Audit
+            </a>
+            <a 
+              href="tel:+13053933009"
+              class="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors"
+            >
+              Call (305) 393-3009
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Structured Data for Location Services -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService", 
+    "name": "Isaac Benyakar Local SEO Services",
+    "description": "Professional local SEO and web development services for small to medium businesses across the United States",
+    "url": "https://isaacbenyakar.com/locations",
+    "telephone": "+1-305-393-3009",
+    "email": "iby@isaacbenyakar.com",
+    "areaServed": [
+      "United States",
+      "Florida", 
+      "Texas",
+      "California", 
+      "North Carolina",
+      "Georgia",
+      "Arizona"
+    ],
+    "serviceType": [
+      "Local SEO Services",
+      "Google My Business Optimization", 
+      "Local Link Building",
+      "Citation Management",
+      "Review Management",
+      "Local Content Marketing"
+    ]
+  }
+  </script>
+</Layout>

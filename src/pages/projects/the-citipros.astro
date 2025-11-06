@@ -1,0 +1,221 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { projects } from '../../data/projects.ts';
+
+const project = projects.find(p => p.id === 'the-citipros');
+if (!project) {
+  throw new Error('The CitiPros project not found');
+}
+---
+
+<Layout 
+  title="The CitiPros Case Study - Construction Management Platform"
+  description="See how Isaac Benyakar built a comprehensive project management solution for construction companies with automated workflows and client communication."
+  type="article"
+>
+  <article class="pt-8">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-orange-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="inline-block bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            Construction Tech
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+            The CitiPros
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">
+            Comprehensive construction project management platform that revolutionized how teams coordinate projects, communicate with clients, and manage resources.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Visit Live Platform
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Image -->
+    <section class="bg-slate-800 py-12">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <img 
+            src="/projects/citipros-hero.jpg" 
+            alt="The CitiPros Project Management Platform"
+            class="w-full rounded-xl shadow-2xl"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          
+          <!-- The Problem -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-red-400">The Challenge</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-red-400">
+              <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                The CitiPros was managing multiple construction projects using a combination of spreadsheets, phone calls, 
+                and paper forms. This led to communication delays, missed deadlines, budget overruns, and frustrated clients 
+                who couldn't track project progress.
+              </p>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-red-400 mb-3">Key Pain Points:</h4>
+                  <ul class="space-y-2 text-slate-300">
+                    <li>• Manual project scheduling and resource allocation</li>
+                    <li>• No real-time communication with clients</li>
+                    <li>• Paper-based documentation and photo storage</li>
+                    <li>• Delayed invoice generation and billing</li>
+                    <li>• No visibility into project profitability</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-red-400 mb-3">Business Impact:</h4>
+                  <ul class="space-y-2 text-slate-300">
+                    <li>• 20+ hours weekly on administrative tasks</li>
+                    <li>• 15% project delays due to poor coordination</li>
+                    <li>• Client satisfaction issues from lack of visibility</li>
+                    <li>• Difficulty scaling beyond 5 concurrent projects</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Solution -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-orange-400">The Solution</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-orange-400">
+              <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                Built a comprehensive web-based project management platform tailored specifically for construction workflows. 
+                The system automates routine tasks, provides real-time client updates, and gives project managers complete 
+                visibility into every aspect of their projects.
+              </p>
+              <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div>
+                  <h4 class="font-semibold text-orange-400 mb-4">Core Features:</h4>
+                  <ul class="space-y-2">
+                    {project.features.map((feature) => (
+                      <li class="flex items-start text-slate-300">
+                        <svg class="w-5 h-5 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-orange-400 mb-4">Technology Stack:</h4>
+                  <div class="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-green-400">Results & Impact</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-green-400">
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-green-400 mb-2">20+</div>
+                  <div class="text-slate-300 text-sm">Hours Saved Weekly</div>
+                  <p class="text-xs text-slate-400 mt-2">Automated scheduling and communication eliminated manual administrative work</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-blue-400 mb-2">95%</div>
+                  <div class="text-slate-300 text-sm">On-Time Completion</div>
+                  <p class="text-xs text-slate-400 mt-2">Improved from 85% to 95% project completion rate within deadlines</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-purple-400 mb-2">3x</div>
+                  <div class="text-slate-300 text-sm">Concurrent Projects</div>
+                  <p class="text-xs text-slate-400 mt-2">Scaled from 5 to 15 simultaneous projects without additional admin staff</p>
+                </div>
+              </div>
+              
+              <div class="mt-8 pt-6 border-t border-slate-700">
+                <h4 class="font-semibold text-green-400 mb-4">Client Feedback Improvements:</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <ul class="space-y-2 text-slate-300">
+                    <li>• Client satisfaction increased from 3.2/5 to 4.7/5</li>
+                    <li>• 90% reduction in "project status" phone calls</li>
+                    <li>• 100% of clients now receive daily photo updates</li>
+                  </ul>
+                  <ul class="space-y-2 text-slate-300">
+                    <li>• Invoice processing time reduced by 75%</li>
+                    <li>• Zero billing disputes since platform launch</li>
+                    <li>• 40% increase in repeat business and referrals</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-purple-400">System Architecture</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-purple-400">
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-purple-400 mb-4">Backend Systems:</h4>
+                  <ul class="space-y-2 text-slate-300 text-sm">
+                    <li>• Node.js API with Express framework</li>
+                    <li>• PostgreSQL database for project data</li>
+                    <li>• AWS S3 for photo and document storage</li>
+                    <li>• Twilio integration for SMS notifications</li>
+                    <li>• Stripe Connect for payment processing</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-purple-400 mb-4">Frontend Features:</h4>
+                  <ul class="space-y-2 text-slate-300 text-sm">
+                    <li>• React SPA with real-time updates</li>
+                    <li>• Mobile-responsive design for field use</li>
+                    <li>• Drag-and-drop project timeline interface</li>
+                    <li>• Photo upload with automatic compression</li>
+                    <li>• Role-based access control</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="text-center bg-gradient-to-r from-orange-600 to-red-600 p-12 rounded-xl">
+            <h3 class="text-2xl font-bold mb-4 text-white">
+              Transform Your Construction Business?
+            </h3>
+            <p class="text-orange-100 mb-8 text-lg">
+              Ready to eliminate administrative bottlenecks and scale your operations? Let's build a custom solution for your construction business.
+            </p>
+            <a 
+              href="/contact"
+              class="bg-white text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-orange-50 transition-colors inline-block"
+            >
+              Schedule Construction Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

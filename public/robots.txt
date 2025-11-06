@@ -1,0 +1,97 @@
+# Robots.txt for isaacbenyakar.com
+# Professional SEO Expert & Web Developer
+
+User-agent: *
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block AI crawlers and scrapers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Block common scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Allow access to important files
+Allow: /sitemap.xml
+Allow: /favicon.ico
+Allow: /robots.txt
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.pdf
+
+# Disallow admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.well-known/
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /*.json$
+
+# Allow important directories for SEO
+Allow: /services/
+Allow: /projects/
+Allow: /locations/
+Allow: /industries/
+Allow: /blog/
+Allow: /miami/
+Allow: /contact
+Allow: /about
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
+
+# Main sitemap location
+Sitemap: https://isaacbenyakar.com/sitemap.xml

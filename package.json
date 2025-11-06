@@ -1,0 +1,24 @@
+{
+  "name": "isaac-portfolio-v2",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "build:cloudflare": "astro build",
+    "deploy": "npm run build:cloudflare && echo 'Build complete! Deploy the dist/ folder to Cloudflare Pages'",
+    "lint": "astro check",
+    "type-check": "astro check --watch"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.13",
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "@sanity/astro": "^3.2.10",
+    "@sanity/client": "^7.12.1",
+    "astro": "^5.15.4",
+    "tailwindcss": "^3.4.18"
+  }
+}

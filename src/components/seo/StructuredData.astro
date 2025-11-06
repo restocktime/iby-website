@@ -1,0 +1,186 @@
+---
+interface Props {
+  type: 'person' | 'organization' | 'website' | 'article' | 'service' | 'project';
+  data?: any;
+}
+
+const { type, data = {} } = Astro.props;
+
+const baseUrl = 'https://isaacbenyakar.com';
+
+// Base person data for Isaac Benyakar
+const personData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Isaac Benyakar",
+  "jobTitle": "Full-Stack Developer & Automation Specialist",
+  "description": "Automation-First Full-Stack Developer specializing in e-commerce solutions and intelligent business automation.",
+  "url": baseUrl,
+  "email": "isaac@isaacbenyakar.com",
+  "image": `${baseUrl}/isaac-profile.jpg`,
+  "sameAs": [
+    "https://github.com/isaacbenyakar",
+    "https://linkedin.com/in/isaacbenyakar",
+    "https://twitter.com/RestockTime"
+  ],
+  "knowsAbout": [
+    "Full-Stack Development",
+    "Business Automation", 
+    "E-commerce Development",
+    "Python Programming",
+    "JavaScript Development",
+    "Web Scraping",
+    "API Integration",
+    "Shopify Development",
+    "Discord Bot Development",
+    "Database Management"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Restocktime LLC",
+    "url": "https://restocktime.com"
+  },
+  "alumniOf": {
+    "@type": "Organization", 
+    "name": "Self-Taught Developer"
+  }
+};
+
+// Generate structured data based on type
+let structuredData;
+
+switch (type) {
+  case 'person':
+    structuredData = { ...personData, ...data };
+    break;
+    
+  case 'organization':
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Isaac Benyakar - Automation Solutions",
+      "url": baseUrl,
+      "logo": `${baseUrl}/logo.png`,
+      "description": "Specialized automation and full-stack development services for e-commerce, construction, and SaaS businesses.",
+      "founder": personData,
+      "employee": [personData],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-XXX-XXX-XXXX",
+        "contactType": "Customer Service",
+        "email": "isaac@isaacbenyakar.com"
+      },
+      "sameAs": [
+        "https://github.com/isaacbenyakar",
+        "https://linkedin.com/in/isaacbenyakar"
+      ],
+      ...data
+    };
+    break;
+    
+  case 'website':
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Isaac Benyakar - Portfolio",
+      "url": baseUrl,
+      "description": "Portfolio showcasing automation-first development solutions and case studies with proven business results.",
+      "author": personData,
+      "inLanguage": "en-US",
+      "copyrightYear": new Date().getFullYear(),
+      "copyrightHolder": personData,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${baseUrl}/projects?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      },
+      ...data
+    };
+    break;
+    
+  case 'service':
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": data.name || "Custom Development & Automation Services",
+      "description": data.description || "Full-stack development and business automation services specializing in e-commerce, construction, and SaaS solutions.",
+      "provider": personData,
+      "areaServed": "Worldwide",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": `${baseUrl}/contact`,
+        "serviceType": "Online Consultation"
+      },
+      "category": "Software Development",
+      "serviceType": [
+        "Full-Stack Development",
+        "Business Process Automation", 
+        "E-commerce Development",
+        "API Integration",
+        "Database Design"
+      ],
+      ...data
+    };
+    break;
+    
+  case 'article':
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": data.title,
+      "description": data.description,
+      "author": personData,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Isaac Benyakar",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${baseUrl}/logo.png`
+        }
+      },
+      "datePublished": data.datePublished || new Date().toISOString(),
+      "dateModified": data.dateModified || new Date().toISOString(),
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": data.url || baseUrl
+      },
+      "image": data.image ? `${baseUrl}${data.image}` : `${baseUrl}/og-image.jpg`,
+      ...data
+    };
+    break;
+    
+  case 'project':
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": data.name,
+      "description": data.description,
+      "applicationCategory": "WebApplication",
+      "creator": personData,
+      "url": data.url,
+      "operatingSystem": "Web Browser",
+      "programmingLanguage": data.technologies || [],
+      "dateCreated": data.dateCreated,
+      "softwareVersion": data.version || "1.0",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      ...data
+    };
+    break;
+    
+  default:
+    structuredData = { ...personData, ...data };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

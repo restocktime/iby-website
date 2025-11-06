@@ -1,0 +1,58 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { projects } from '../../data/projects.ts';
+
+const project = projects.find(p => p.id === 'yossi-co');
+---
+
+<Layout 
+  title="Yossi.co E-commerce Platform Case Study"
+  description="Premium e-commerce platform built with modern technologies for optimal performance and user experience."
+>
+  <div class="pt-8">
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">Yossi.co</h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">Premium E-commerce Experience</p>
+          <img src="/projects/yossi-hero.svg" alt="Yossi.co Platform" class="w-full max-w-4xl mx-auto rounded-xl shadow-2xl" />
+        </div>
+      </div>
+    </section>
+    
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-8 text-white">Full-Stack E-commerce Solution</h2>
+          <p class="text-slate-300 text-lg mb-8">Built with React, Node.js, and modern payment processing for a seamless shopping experience.</p>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-purple-400">Key Features</h3>
+              <ul class="text-slate-300 text-left space-y-2">
+                <li>• Custom product catalog with advanced filtering</li>
+                <li>• Secure payment processing with Stripe</li>
+                <li>• Responsive design for all devices</li>
+                <li>• Admin dashboard for inventory management</li>
+              </ul>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-xl">
+              <h3 class="text-xl font-bold mb-4 text-blue-400">Technologies</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">React</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">Node.js</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">Stripe</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">AWS</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-12">
+            <a href="/contact" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+              Build Your E-commerce Platform
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

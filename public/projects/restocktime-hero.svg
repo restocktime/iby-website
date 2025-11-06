@@ -1,0 +1,58 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="restockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#3730a3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#restockGradient)"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="80" fill="#1e293b" opacity="0.9"/>
+  <text x="40" y="45" fill="#3b82f6" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Restocktime</text>
+  <text x="40" y="65" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Real-Time Product Monitoring</text>
+  
+  <!-- Main Dashboard -->
+  <rect x="40" y="120" width="720" height="280" fill="#374151" rx="12"/>
+  
+  <!-- Left Panel - Discord Style -->
+  <rect x="60" y="140" width="320" height="240" fill="#36393f" rx="8"/>
+  <rect x="70" y="150" width="300" height="30" fill="#40444b" rx="4"/>
+  <text x="80" y="170" fill="#dcddde" font-family="Arial, sans-serif" font-size="16" font-weight="bold"># restock-alerts</text>
+  
+  <!-- Messages -->
+  <circle cx="90" cy="200" r="12" fill="#5865f2"/>
+  <text x="110" y="205" fill="#dcddde" font-family="Arial, sans-serif" font-size="12">RestockBot • Now</text>
+  <rect x="110" y="210" width="250" height="35" fill="#2f3136" rx="4"/>
+  <text x="120" y="225" fill="#00d166" font-family="Arial, sans-serif" font-size="11">🔥 RESTOCK ALERT</text>
+  <text x="120" y="240" fill="#dcddde" font-family="Arial, sans-serif" font-size="10">Nike Air Jordan 1 - Back in Stock!</text>
+  
+  <circle cx="90" cy="260" r="12" fill="#5865f2"/>
+  <text x="110" y="265" fill="#dcddde" font-family="Arial, sans-serif" font-size="12">RestockBot • 2m ago</text>
+  <rect x="110" y="270" width="250" height="35" fill="#2f3136" rx="4"/>
+  <text x="120" y="285" fill="#00d166" font-family="Arial, sans-serif" font-size="11">⚡ QUICK DROP</text>
+  <text x="120" y="300" fill="#dcddde" font-family="Arial, sans-serif" font-size="10">Yeezy Boost 350 - Limited Stock</text>
+  
+  <!-- Right Panel - Analytics -->
+  <rect x="400" y="140" width="340" height="240" fill="#1f2937" rx="8"/>
+  <text x="420" y="165" fill="#f9fafb" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Live Analytics</text>
+  
+  <!-- Stats -->
+  <rect x="420" y="180" width="80" height="60" fill="#065f46" rx="6"/>
+  <text x="430" y="200" fill="#34d399" font-family="Arial, sans-serif" font-size="12">Uptime</text>
+  <text x="440" y="220" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">99.9%</text>
+  
+  <rect x="520" y="180" width="80" height="60" fill="#7c2d12" rx="6"/>
+  <text x="530" y="200" fill="#fb923c" font-family="Arial, sans-serif" font-size="12">Followers</text>
+  <text x="540" y="220" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">8.9K</text>
+  
+  <rect x="620" y="180" width="80" height="60" fill="#581c87" rx="6"/>
+  <text x="630" y="200" fill="#c084fc" font-family="Arial, sans-serif" font-size="12">Daily Alerts</text>
+  <text x="645" y="220" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">1K+</text>
+  
+  <!-- Chart -->
+  <rect x="420" y="260" width="300" height="100" fill="#374151" rx="6"/>
+  <text x="430" y="280" fill="#9ca3af" font-family="Arial, sans-serif" font-size="12">Performance Over Time</text>
+  <polyline points="440,330 470,320 500,315 530,310 560,305 590,300 620,295 650,290 680,285 710,280" 
+            fill="none" stroke="#3b82f6" stroke-width="3"/>
+</svg>

@@ -1,0 +1,464 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+---
+
+<Layout 
+  title="Technical SEO Checklist 2024: Core Web Vitals & Page Speed Complete Guide"
+  description="Complete technical SEO checklist for 2024. Master Core Web Vitals, page speed optimization, and technical SEO fundamentals with actionable examples and tools."
+>
+  <div class="pt-8">
+    <!-- Article Header -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-8">
+            <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              Technical SEO Guide
+            </span>
+          </div>
+          <h1 class="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
+            Technical SEO Checklist 2024: Core Web Vitals & Page Speed
+          </h1>
+          <p class="text-xl text-slate-300 mb-8">
+            Complete technical SEO guide covering Core Web Vitals optimization, page speed improvements, 
+            and essential technical factors that directly impact search rankings in 2024.
+          </p>
+          <div class="flex items-center justify-center space-x-6 text-slate-400">
+            <div class="flex items-center">
+              <span class="text-sm">By Isaac Benyakar</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-sm">January 5, 2024</span>
+            </div>
+            <div class="flex items-center">
+              <span class="text-sm">18 min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="bg-slate-800 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto prose prose-invert prose-lg">
+          
+          <!-- Table of Contents -->
+          <div class="bg-slate-700 p-8 rounded-xl mb-12 border-l-4 border-purple-400">
+            <h2 class="text-2xl font-bold text-purple-400 mb-4">Complete Technical SEO Checklist</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <h3 class="font-bold text-blue-400 mb-2">Core Web Vitals</h3>
+                <ul class="text-slate-300 text-sm space-y-1">
+                  <li>• Largest Contentful Paint (LCP)</li>
+                  <li>• First Input Delay (FID)</li>
+                  <li>• Cumulative Layout Shift (CLS)</li>
+                  <li>• Interaction to Next Paint (INP)</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-bold text-green-400 mb-2">Technical Fundamentals</h3>
+                <ul class="text-slate-300 text-sm space-y-1">
+                  <li>• Crawling & Indexing</li>
+                  <li>• Site Architecture</li>
+                  <li>• Mobile Optimization</li>
+                  <li>• Security & HTTPS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-bold text-white mb-6">Why Technical SEO Matters in 2024</h2>
+          <p class="text-slate-300 leading-relaxed mb-8">
+            Technical SEO has become more critical than ever. Google's Page Experience update made 
+            Core Web Vitals a direct ranking factor, and with the introduction of Interaction to Next Paint (INP), 
+            the focus on user experience metrics continues to intensify.
+          </p>
+
+          <div class="bg-gradient-to-r from-red-900 to-blue-900 p-8 rounded-xl mb-8">
+            <h3 class="text-2xl font-bold text-white mb-6 text-center">Technical SEO Impact Statistics</h3>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div class="text-3xl font-bold text-red-400 mb-2">53%</div>
+                <div class="text-slate-300 text-sm">of mobile users abandon sites that take longer than 3 seconds to load</div>
+              </div>
+              <div>
+                <div class="text-3xl font-bold text-blue-400 mb-2">2x</div>
+                <div class="text-slate-300 text-sm">higher conversion rates for sites with good Core Web Vitals scores</div>
+              </div>
+              <div>
+                <div class="text-3xl font-bold text-green-400 mb-2">70%</div>
+                <div class="text-slate-300 text-sm">of pages that rank in top 10 have passing Core Web Vitals</div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-bold text-white mb-6">Core Web Vitals: Complete Optimization Guide</h2>
+          <p class="text-slate-300 leading-relaxed mb-8">
+            Core Web Vitals are Google's set of metrics that measure real-world user experience. 
+            Here's how to optimize each metric with specific, actionable techniques.
+          </p>
+
+          <h3 class="text-2xl font-bold text-blue-400 mb-6">1. Largest Contentful Paint (LCP) - Target: Under 2.5s</h3>
+          <p class="text-slate-300 leading-relaxed mb-6">
+            LCP measures how quickly the largest content element becomes visible. Poor LCP 
+            is often caused by slow server response times, render-blocking resources, or unoptimized images.
+          </p>
+
+          <div class="bg-slate-700 p-6 rounded-xl mb-8">
+            <h4 class="text-xl font-bold text-blue-400 mb-4">LCP Optimization Techniques:</h4>
+            <div class="space-y-6">
+              <div>
+                <h5 class="font-bold text-green-400 mb-3">Server Response Optimization:</h5>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• <strong>Use a CDN:</strong> Cloudflare, AWS CloudFront, or similar</li>
+                  <li>• <strong>Optimize TTFB:</strong> Target under 200ms server response time</li>
+                  <li>• <strong>Enable Compression:</strong> Gzip or Brotli compression</li>
+                  <li>• <strong>Cache Optimization:</strong> Browser and server-side caching</li>
+                  <li>• <strong>Upgrade Hosting:</strong> Use SSD storage and adequate RAM</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-purple-400 mb-3">Resource Loading:</h5>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• <strong>Preload Critical Resources:</strong> <code>&lt;link rel="preload"&gt;</code> for fonts and images</li>
+                  <li>• <strong>Eliminate Render-Blocking:</strong> Defer non-critical JavaScript</li>
+                  <li>• <strong>Inline Critical CSS:</strong> Include above-the-fold styles inline</li>
+                  <li>• <strong>Optimize Images:</strong> WebP format, proper sizing, lazy loading</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-800 p-6 rounded-xl mb-8 border border-slate-600">
+            <h4 class="text-lg font-bold text-orange-400 mb-3">Code Example: Preloading Critical Resources</h4>
+            <pre class="bg-slate-900 p-4 rounded text-sm text-green-400 overflow-x-auto"><code>&lt;!-- Preload critical font --&gt;
+&lt;link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin&gt;
+
+&lt;!-- Preload hero image --&gt;
+&lt;link rel="preload" href="/images/hero-image.webp" as="image"&gt;
+
+&lt;!-- Preload critical CSS --&gt;
+&lt;link rel="preload" href="/css/critical.css" as="style"&gt;</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-bold text-green-400 mb-6">2. First Input Delay (FID) / Interaction to Next Paint (INP)</h3>
+          <p class="text-slate-300 leading-relaxed mb-6">
+            Google is transitioning from FID to INP in March 2024. INP measures responsiveness 
+            throughout the entire page lifecycle, not just the first interaction.
+          </p>
+
+          <div class="bg-slate-700 p-6 rounded-xl mb-8">
+            <h4 class="text-xl font-bold text-green-400 mb-4">INP Optimization Strategies:</h4>
+            <div class="space-y-4">
+              <div>
+                <h5 class="font-bold text-blue-400 mb-2">JavaScript Optimization:</h5>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• <strong>Code Splitting:</strong> Load only necessary JavaScript</li>
+                  <li>• <strong>Tree Shaking:</strong> Remove unused code from bundles</li>
+                  <li>• <strong>Defer Non-Critical JS:</strong> Use <code>defer</code> or <code>async</code> attributes</li>
+                  <li>• <strong>Web Workers:</strong> Move heavy computations off main thread</li>
+                  <li>• <strong>Minimize Long Tasks:</strong> Break up tasks over 50ms</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-purple-400 mb-2">Third-Party Scripts:</h5>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• <strong>Audit All Scripts:</strong> Remove unnecessary third-party code</li>
+                  <li>• <strong>Load Asynchronously:</strong> Prevent blocking main thread</li>
+                  <li>• <strong>Use Resource Hints:</strong> <code>dns-prefetch</code> for external domains</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold text-red-400 mb-6">3. Cumulative Layout Shift (CLS) - Target: Under 0.1</h3>
+          <p class="text-slate-300 leading-relaxed mb-6">
+            CLS measures visual stability. Unexpected layout shifts are caused by images 
+            without dimensions, web fonts, or dynamically injected content.
+          </p>
+
+          <div class="bg-slate-700 p-6 rounded-xl mb-8">
+            <h4 class="text-xl font-bold text-red-400 mb-4">CLS Prevention Techniques:</h4>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-bold text-blue-400 mb-3">Image Optimization:</h5>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Always include width/height attributes</li>
+                  <li>• Use aspect-ratio CSS property</li>
+                  <li>• Implement proper lazy loading</li>
+                  <li>• Reserve space for images</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-green-400 mb-3">Content Loading:</h5>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Avoid inserting content above existing</li>
+                  <li>• Use skeleton screens for loading states</li>
+                  <li>• Preload web fonts with font-display: swap</li>
+                  <li>• Reserve space for ads and embeds</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-bold text-white mb-6">Complete Technical SEO Checklist</h2>
+          <p class="text-slate-300 leading-relaxed mb-8">
+            Beyond Core Web Vitals, these technical factors are crucial for SEO success 
+            and should be audited regularly.
+          </p>
+
+          <h3 class="text-2xl font-bold text-orange-400 mb-6">Crawling & Indexing Optimization</h3>
+          <div class="bg-slate-700 p-6 rounded-xl mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-bold text-blue-400 mb-4">✅ Crawling Checklist:</h4>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• XML sitemap submitted and error-free</li>
+                  <li>• Robots.txt properly configured</li>
+                  <li>• No orphaned pages (pages without internal links)</li>
+                  <li>• Proper internal linking structure</li>
+                  <li>• Breadcrumb navigation implemented</li>
+                  <li>• Site architecture is shallow (3-click rule)</li>
+                  <li>• No redirect chains or loops</li>
+                  <li>• All important pages are indexable</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold text-green-400 mb-4">✅ Indexing Checklist:</h4>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Canonical tags properly implemented</li>
+                  <li>• No duplicate content issues</li>
+                  <li>• Proper noindex usage on low-value pages</li>
+                  <li>• Hreflang tags for international sites</li>
+                  <li>• Structured data markup implemented</li>
+                  <li>• Meta titles and descriptions optimized</li>
+                  <li>• Header tags properly structured (H1-H6)</li>
+                  <li>• Image alt text and file names optimized</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold text-purple-400 mb-6">Mobile & User Experience</h3>
+          <div class="bg-slate-700 p-6 rounded-xl mb-8">
+            <h4 class="text-xl font-bold text-purple-400 mb-4">Mobile-First Optimization:</h4>
+            <div class="space-y-4">
+              <div>
+                <h5 class="font-bold text-blue-400 mb-2">Responsive Design:</h5>
+                <ul class="text-slate-300 text-sm space-y-1">
+                  <li>• Viewport meta tag correctly configured</li>
+                  <li>• Touch targets are at least 48px</li>
+                  <li>• Text is readable without zooming</li>
+                  <li>• No horizontal scrolling required</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-green-400 mb-2">Performance:</h5>
+                <ul class="text-slate-300 text-sm space-y-1">
+                  <li>• Mobile page speed under 3 seconds</li>
+                  <li>• Images optimized for different screen sizes</li>
+                  <li>• Minimize mobile-specific JavaScript</li>
+                  <li>• Use progressive web app features</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold text-yellow-400 mb-6">Security & HTTPS</h3>
+          <div class="bg-slate-700 p-6 rounded-xl mb-8">
+            <h4 class="text-xl font-bold text-yellow-400 mb-4">Security Essentials:</h4>
+            <ul class="text-slate-300 space-y-3">
+              <li>• <strong>SSL Certificate:</strong> Valid HTTPS across entire site</li>
+              <li>• <strong>HSTS Headers:</strong> Force HTTPS connections</li>
+              <li>• <strong>Mixed Content:</strong> No HTTP resources on HTTPS pages</li>
+              <li>• <strong>Security Headers:</strong> CSP, X-Frame-Options, X-XSS-Protection</li>
+              <li>• <strong>Safe Browsing:</strong> No malware or phishing warnings</li>
+            </ul>
+          </div>
+
+          <h2 class="text-3xl font-bold text-white mb-6">Essential Technical SEO Tools</h2>
+          <div class="bg-slate-700 p-8 rounded-xl mb-8">
+            <div class="grid md:grid-cols-3 gap-8">
+              <div>
+                <h3 class="text-xl font-bold text-blue-400 mb-4">Free Tools</h3>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Google PageSpeed Insights</li>
+                  <li>• Google Search Console</li>
+                  <li>• Chrome DevTools</li>
+                  <li>• Lighthouse</li>
+                  <li>• Google Mobile-Friendly Test</li>
+                  <li>• Structured Data Testing Tool</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-green-400 mb-4">Premium Tools</h3>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Screaming Frog SEO Spider</li>
+                  <li>• GTmetrix Pro</li>
+                  <li>• SEMrush Site Audit</li>
+                  <li>• Ahrefs Site Audit</li>
+                  <li>• WebPageTest</li>
+                  <li>• DeepCrawl</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-purple-400 mb-4">Monitoring</h3>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Google Analytics 4</li>
+                  <li>• Core Web Vitals report</li>
+                  <li>• Real User Monitoring (RUM)</li>
+                  <li>• Uptime monitoring</li>
+                  <li>• Page speed monitoring</li>
+                  <li>• Search Console alerts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-bold text-white mb-6">Implementation Roadmap</h2>
+          <div class="space-y-6 mb-8">
+            <div class="bg-slate-700 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-green-400 mb-4">Phase 1: Quick Wins (Week 1-2)</h3>
+              <ul class="text-slate-300 space-y-2">
+                <li>• Fix critical Core Web Vitals issues</li>
+                <li>• Optimize images (WebP conversion, compression)</li>
+                <li>• Add missing alt text and meta descriptions</li>
+                <li>• Submit XML sitemap to Search Console</li>
+                <li>• Enable HTTPS across entire site</li>
+              </ul>
+            </div>
+            <div class="bg-slate-700 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-blue-400 mb-4">Phase 2: Foundation Building (Month 1-2)</h3>
+              <ul class="text-slate-300 space-y-2">
+                <li>• Comprehensive site audit and cleanup</li>
+                <li>• Implement structured data markup</li>
+                <li>• Optimize internal linking structure</li>
+                <li>• Set up proper canonical tags</li>
+                <li>• Configure robots.txt and crawl optimization</li>
+              </ul>
+            </div>
+            <div class="bg-slate-700 p-6 rounded-xl">
+              <h3 class="text-xl font-bold text-purple-400 mb-4">Phase 3: Advanced Optimization (Month 2-3)</h3>
+              <ul class="text-slate-300 space-y-2">
+                <li>• Advanced JavaScript optimization</li>
+                <li>• Implement progressive web app features</li>
+                <li>• Set up comprehensive monitoring</li>
+                <li>• Create automated testing workflows</li>
+                <li>• Optimize for emerging ranking factors</li>
+              </ul>
+            </div>
+          </div>
+
+          <h2 class="text-3xl font-bold text-white mb-6">Common Technical SEO Mistakes to Avoid</h2>
+          <div class="bg-slate-700 p-8 rounded-xl mb-8">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-bold text-red-400 mb-4">❌ Critical Mistakes:</h3>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Blocking important pages in robots.txt</li>
+                  <li>• Using noindex on pages you want to rank</li>
+                  <li>• Ignoring mobile-first indexing</li>
+                  <li>• Having multiple H1 tags per page</li>
+                  <li>• Not setting up proper redirects</li>
+                  <li>• Ignoring Core Web Vitals warnings</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-bold text-green-400 mb-4">✅ Best Practices:</h3>
+                <ul class="text-slate-300 text-sm space-y-2">
+                  <li>• Regular technical SEO audits</li>
+                  <li>• Monitor Core Web Vitals continuously</li>
+                  <li>• Test changes on staging first</li>
+                  <li>• Document all technical modifications</li>
+                  <li>• Keep up with Google algorithm updates</li>
+                  <li>• Use data-driven optimization decisions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-purple-600 to-blue-600 p-8 rounded-xl text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">
+              Need Technical SEO Help?
+            </h3>
+            <p class="text-purple-100 mb-6">
+              Get a comprehensive technical SEO audit with Core Web Vitals analysis and 
+              prioritized action plan. I'll identify and fix the issues holding back your rankings.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/contact"
+                class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+              >
+                Get Your Technical SEO Audit
+              </a>
+              <a 
+                href="/services/seo-optimization"
+                class="border border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors"
+              >
+                View SEO Services
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Technical SEO Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Technical SEO Checklist 2024: Core Web Vitals & Page Speed Complete Guide",
+    "description": "Complete technical SEO checklist for 2024. Master Core Web Vitals, page speed optimization, and technical SEO fundamentals with actionable examples and tools.",
+    "image": "https://isaacbenyakar.com/blog/technical-seo-guide.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Isaac Benyakar",
+      "url": "https://isaacbenyakar.com",
+      "sameAs": [
+        "https://linkedin.com/in/isaacbenyakar",
+        "https://github.com/isaacbenyakar"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Isaac Benyakar Development Services",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://isaacbenyakar.com/logo.png"
+      }
+    },
+    "datePublished": "2024-01-05",
+    "dateModified": "2024-01-05",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://isaacbenyakar.com/blog/technical-seo-checklist-core-web-vitals-page-speed"
+    },
+    "articleSection": "Technical SEO",
+    "keywords": [
+      "technical SEO",
+      "Core Web Vitals",
+      "page speed optimization",
+      "LCP optimization",
+      "CLS improvement",
+      "INP optimization",
+      "technical SEO checklist"
+    ],
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Technical SEO"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Core Web Vitals"
+      }
+    ],
+    "proficiencyLevel": "Expert"
+  }
+  </script>
+</Layout>

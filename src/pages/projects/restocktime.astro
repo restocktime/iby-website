@@ -1,0 +1,204 @@
+---
+import Layout from '../../components/layout/Layout.astro';
+import { projects } from '../../data/projects.ts';
+
+const project = projects.find(p => p.id === 'restocktime');
+if (!project) {
+  throw new Error('Restocktime project not found');
+}
+---
+
+<Layout 
+  title="Restocktime Case Study - 7-Year E-commerce Automation Success"
+  description="Deep dive into Restocktime, a successful 7+ year e-commerce automation business serving thousands with real-time product monitoring and Discord integration."
+  type="article"
+>
+  <article class="pt-8">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            Flagship Case Study
+          </div>
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            {project.title}
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-8">
+            {project.longDescription}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Visit Live Site
+            </a>
+            <a 
+              href="https://twitter.com/RestockTime"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-slate-400 hover:border-blue-400 text-slate-300 hover:text-blue-400 px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              8.9K Twitter Followers
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="bg-slate-800 py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-12 text-white">
+            Proven Track Record
+          </h2>
+          <div class="grid md:grid-cols-4 gap-8">
+            {project.metrics && project.metrics.map((metric) => (
+              <div class="text-center bg-slate-700 p-6 rounded-xl">
+                <div class="text-3xl font-bold text-blue-400 mb-2">{metric.value}</div>
+                <div class="text-slate-300">{metric.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Study Content -->
+    <section class="bg-slate-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          
+          <!-- The Problem -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-red-400">The Problem</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-red-400">
+              <p class="text-slate-300 text-lg leading-relaxed">
+                {project.caseStudy?.problem}
+              </p>
+            </div>
+          </div>
+
+          <!-- The Solution -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-blue-400">The Solution</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-blue-400">
+              <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                {project.caseStudy?.solution}
+              </p>
+              <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div>
+                  <h4 class="font-semibold text-blue-400 mb-4">Key Features Built:</h4>
+                  <ul class="space-y-2">
+                    {project.features.map((feature) => (
+                      <li class="flex items-start text-slate-300">
+                        <svg class="w-5 h-5 text-green-400 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-blue-400 mb-4">Technologies Used:</h4>
+                  <div class="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span class="bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Approach -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-purple-400">Development Approach</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-purple-400">
+              <div class="grid gap-6">
+                {project.caseStudy?.approach.map((step, index) => (
+                  <div class="flex items-start">
+                    <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold mr-4 flex-shrink-0">
+                      {index + 1}
+                    </div>
+                    <p class="text-slate-300 text-lg">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-green-400">Results & Impact</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-green-400">
+              <div class="grid gap-4">
+                {project.caseStudy?.results.map((result) => (
+                  <div class="flex items-start">
+                    <svg class="w-6 h-6 text-green-400 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <p class="text-slate-300 text-lg">{result}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture Highlight -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6 text-yellow-400">Technical Architecture</h2>
+            <div class="bg-slate-800 p-8 rounded-xl border-l-4 border-yellow-400">
+              <p class="text-slate-300 text-lg mb-6">
+                Restocktime's success stems from a robust, scalable architecture designed for high-frequency data processing and real-time notifications:
+              </p>
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-yellow-400 mb-4">Backend Systems:</h4>
+                  <ul class="space-y-2 text-slate-300">
+                    <li>• Python-based web scraping with rotating proxy pools</li>
+                    <li>• Distributed task queue for parallel processing</li>
+                    <li>• Real-time database with change stream monitoring</li>
+                    <li>• Anti-detection measures and rate limiting</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-yellow-400 mb-4">Integration Layer:</h4>
+                  <ul class="space-y-2 text-slate-300">
+                    <li>• Discord bot with custom notification logic</li>
+                    <li>• WebSocket connections for real-time updates</li>
+                    <li>• User management and subscription system</li>
+                    <li>• Analytics and performance monitoring</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 p-12 rounded-xl">
+            <h3 class="text-2xl font-bold mb-4 text-white">
+              Ready to Build Your Own Success Story?
+            </h3>
+            <p class="text-blue-100 mb-8 text-lg">
+              Let's discuss how automation and intelligent systems can transform your business operations.
+            </p>
+            <a 
+              href="/contact"
+              class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-block"
+            >
+              Schedule Your Free Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</Layout>

@@ -459,15 +459,10 @@ import Layout from '../components/layout/Layout.astro';
     }
   </style>
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   
   <!-- Contact Form Handler -->
-  <script>
-    // Initialize EmailJS
-    emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
-    
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+  <script>    
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       
       const submitBtn = document.getElementById('submit-btn');
@@ -489,46 +484,196 @@ import Layout from '../components/layout/Layout.astro';
       
       // Get form data
       const formData = new FormData(this);
-      const templateParams = {
-        from_name: formData.get('name'),
-        from_email: formData.get('email'),
-        company: formData.get('company'),
-        project_type: formData.get('project-type'),
-        budget: formData.get('budget'),
-        timeline: formData.get('timeline'),
-        message: formData.get('message'),
-        to_email: 'benyakar.isaac@gmail.com'
-      };
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const company = formData.get('company') || 'Not provided';
+      const projectType = formData.get('project-type') || 'Not specified';
+      const budget = formData.get('budget') || 'To be discussed';
+      const timeline = formData.get('timeline') || 'Flexible';
+      const message = formData.get('message');
       
-      // Send notification email to Isaac
-      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-        .then(function() {
-          // Send auto-response to client
-          return emailjs.send('YOUR_SERVICE_ID', 'YOUR_AUTORESPONSE_TEMPLATE_ID', {
-            to_name: templateParams.from_name,
-            to_email: templateParams.from_email,
-            project_type: templateParams.project_type,
-            budget: templateParams.budget
-          });
-        })
-        .then(function() {
-          // Success
-          formMessages.classList.remove('hidden');
-          successMessage.classList.remove('hidden');
-          document.getElementById('contact-form').reset();
-        })
-        .catch(function(error) {
-          // Error
-          console.error('EmailJS Error:', error);
-          formMessages.classList.remove('hidden');
-          errorMessage.classList.remove('hidden');
-        })
-        .finally(function() {
-          // Reset button
-          btnText.classList.remove('hidden');
-          btnLoading.classList.add('hidden');
-          submitBtn.disabled = false;
+      try {
+        // Send notification email to Isaac
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer re_P96HVRFZ_CA4mA1PShLPZWWUv9qm7uKGf',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'website@isaacbenyakar.com',
+            to: 'benyakar.isaac@gmail.com',
+            reply_to: email,
+            subject: `🚀 New Lead: ${name} ${projectType ? `(${projectType})` : ''} - ${budget}`,
+            html: `
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <meta charset="utf-8">
+                <style>
+                  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+                  .header { background: linear-gradient(135deg, #3B82F6, #8B5CF6); padding: 30px 20px; text-align: center; border-radius: 12px 12px 0 0; }
+                  .header h1 { color: white; margin: 0; font-size: 24px; font-weight: 600; }
+                  .content { background: white; padding: 30px; border: 1px solid #e5e7eb; }
+                  .field { margin: 15px 0; }
+                  .field-label { font-weight: 600; color: #374151; }
+                  .field-value { background: #f8fafc; padding: 12px; border-radius: 6px; margin-top: 5px; }
+                  .message-box { background: #fefefe; padding: 20px; border-radius: 8px; border: 1px solid #e5e7eb; margin: 20px 0; }
+                  .cta { background: #3B82F6; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: 600; margin: 20px 0; }
+                </style>
+              </head>
+              <body>
+                <div class="header">
+                  <h1>🚀 New Lead Alert!</h1>
+                  <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">Someone is interested in working with you</p>
+                </div>
+                
+                <div class="content">
+                  <h2 style="margin-top: 0; color: #1f2937;">${name}</h2>
+                  
+                  <div class="field">
+                    <div class="field-label">📧 Email</div>
+                    <div class="field-value">${email}</div>
+                  </div>
+                  
+                  <div class="field">
+                    <div class="field-label">🏢 Company</div>
+                    <div class="field-value">${company}</div>
+                  </div>
+                  
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                    <div class="field">
+                      <div class="field-label">🎯 Project Type</div>
+                      <div class="field-value">${projectType}</div>
+                    </div>
+                    <div class="field">
+                      <div class="field-label">💰 Budget</div>
+                      <div class="field-value">${budget}</div>
+                    </div>
+                  </div>
+                  
+                  <div class="field">
+                    <div class="field-label">💬 Message</div>
+                    <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+                  </div>
+                  
+                  <div style="text-align: center;">
+                    <a href="mailto:${email}?subject=Re: Your Project Inquiry&body=Hi ${name},%0A%0AThank you for reaching out! I'd love to discuss your project.%0A%0ABest regards,%0AIsaac" class="cta">Reply to ${name}</a>
+                  </div>
+                </div>
+              </body>
+              </html>
+            `
+          })
         });
+        
+        // Send beautiful autoresponse to client
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer re_P96HVRFZ_CA4mA1PShLPZWWUv9qm7uKGf',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'Isaac Benyakar <noreply@isaacbenyakar.com>',
+            to: email,
+            subject: '✅ Thank you for reaching out - Isaac Benyakar',
+            html: `
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <meta charset="utf-8">
+                <style>
+                  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; }
+                  .header { background: linear-gradient(135deg, #3B82F6, #8B5CF6); padding: 40px 20px; text-align: center; border-radius: 12px 12px 0 0; }
+                  .header h1 { color: white; margin: 0; font-size: 28px; font-weight: 600; }
+                  .header p { color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 18px; }
+                  .content { background: white; padding: 40px; border: 1px solid #e5e7eb; border-top: none; }
+                  .summary-box { background: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #3B82F6; }
+                  .next-steps { background: #eff6ff; padding: 25px; border-radius: 8px; margin: 25px 0; }
+                  .step { display: flex; align-items: start; margin: 15px 0; }
+                  .step-number { background: #3B82F6; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
+                  .contact-info { background: #1f2937; color: white; padding: 25px; text-align: center; border-radius: 8px; margin: 25px 0; }
+                  .footer { background: #f9fafb; padding: 25px; text-align: center; border-radius: 0 0 12px 12px; font-size: 14px; color: #6b7280; }
+                </style>
+              </head>
+              <body>
+                <div class="header">
+                  <h1>✅ Message Received!</h1>
+                  <p>Hi ${name}, thanks for reaching out</p>
+                </div>
+                
+                <div class="content">
+                  <p>Thank you for your interest in working together! I've received your inquiry and wanted to confirm the details:</p>
+                  
+                  <div class="summary-box">
+                    <h3 style="margin-top: 0; color: #1f2937;">📋 Your Project Summary</h3>
+                    <p><strong>Project Type:</strong> ${projectType}</p>
+                    <p><strong>Budget Range:</strong> ${budget}</p>
+                    <p><strong>Timeline:</strong> ${timeline}</p>
+                    ${company !== 'Not provided' ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+                    <p style="margin: 15px 0 0 0;"><strong>Your Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>
+                  </div>
+                  
+                  <div class="next-steps">
+                    <h3 style="margin-top: 0; color: #1e40af;">🚀 What Happens Next?</h3>
+                    <div class="step">
+                      <div class="step-number">1</div>
+                      <div>
+                        <strong>Quick Review (Next 2 Hours)</strong><br>
+                        I'll review your project details and do some initial research on your specific needs.
+                      </div>
+                    </div>
+                    <div class="step">
+                      <div class="step-number">2</div>
+                      <div>
+                        <strong>Personal Response (Within 24 Hours)</strong><br>
+                        I'll send you a personalized email with initial thoughts, questions, and next steps.
+                      </div>
+                    </div>
+                    <div class="step">
+                      <div class="step-number">3</div>
+                      <div>
+                        <strong>Free Consultation Call</strong><br>
+                        We'll schedule a 30-minute call to discuss your project in detail and see if we're a good fit.
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p>In the meantime, feel free to check out some of my recent work at <a href="https://isaacbenyakar.com/projects" style="color: #3B82F6;">isaacbenyakar.com/projects</a></p>
+                </div>
+                
+                <div class="contact-info">
+                  <h3 style="margin-top: 0;">📞 Need to Reach Me Urgently?</h3>
+                  <p>Email: <a href="mailto:benyakar.isaac@gmail.com" style="color: #60a5fa;">benyakar.isaac@gmail.com</a><br>
+                  Phone: <a href="tel:+13053933009" style="color: #60a5fa;">(305) 393-3009</a></p>
+                </div>
+                
+                <div class="footer">
+                  <p><strong>Isaac Benyakar</strong> - SEO Expert & Web Developer</p>
+                  <p>This is an automated confirmation. You'll hear from me personally soon!</p>
+                </div>
+              </body>
+              </html>
+            `
+          })
+        });
+        
+        // Success
+        formMessages.classList.remove('hidden');
+        successMessage.classList.remove('hidden');
+        this.reset();
+        
+      } catch (error) {
+        console.error('Email sending error:', error);
+        formMessages.classList.remove('hidden');
+        errorMessage.classList.remove('hidden');
+      } finally {
+        // Reset button
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+        submitBtn.disabled = false;
+      }
     });
   </script>
 
